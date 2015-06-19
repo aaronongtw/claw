@@ -20,29 +20,13 @@
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :admin %><br>
-    <%= f.check_box :admin %>
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
   </div>
   <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :coins %><br>
-    <%= f.number_field :coins %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
-  </div>
+    <%= f.label :password_confirmation %><br>
+    <%= f.text_field :password_confirmation %>
+  </div>  
   <div class="actions">
     <%= f.submit %>
   </div>
