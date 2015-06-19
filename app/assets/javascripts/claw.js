@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var claw = function() {
 
     $('#moveClawLeft').mousedown(function() {
         moveLeft = setInterval(function() {
@@ -40,4 +40,4 @@ $(document).ready(function() {
     });
 
     
-});
+};

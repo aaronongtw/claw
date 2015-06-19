@@ -1,6 +1,6 @@
-var app = app || {}
+var game = game || {}
 
-app.flappy = function(){
+game.flappy = function(){
 
 
   console.log('inside flappy function app');
@@ -17,10 +17,10 @@ var mainState = {
         game.stage.backgroundColor = '#71c5cf';
 
         // Load the bird sprite
-        game.load.image('bird', 'assets/bird.png');  
+        game.load.image('bird', '../assets/bird.png');  
 
         // Load the pipe sprite
-        game.load.image('pipe', 'assets/pipe.png');      
+        game.load.image('pipe', '../assets/pipe.png');      
     },
 
     // Fuction called after 'preload' to setup the game 
@@ -107,7 +107,5 @@ var mainState = {
 game.state.add('main', mainState);  
 game.state.start('main'); 
 
-
-  
 
 };
