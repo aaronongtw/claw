@@ -38,6 +38,8 @@ gem 'greensock-rails'
 
 gem 'geocoder'
 
+gem 'purecss'
+
 group :development do
   gem 'pry-rails'
   gem 'pry-stack_explorer'
@@ -47,9 +49,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
 end
-
-
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
