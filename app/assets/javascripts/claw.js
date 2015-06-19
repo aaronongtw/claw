@@ -31,9 +31,9 @@ $(document).ready(function() {
     });
     $('#moveClawGrab').click(function() {
       console.log('la')
-      var claw = $('#clawArm')
-        clawGrab = TweenLite.set(claw, 3, {
-          height:'500px'
+      var gameView = $('#gameBox')
+        clawGrab = TweenLite.set(gameView, 3, {
+          top:'0px'
         });
         clawGrab
 
