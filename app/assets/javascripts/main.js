@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   claw();
 
-  if( $('#flapFood').length ){  //if id exists runs flap game
+  if( $('#flappyFood').length ){  //if id exists runs flap game
         game.flappy();
     };
 
