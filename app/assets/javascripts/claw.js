@@ -39,4 +39,10 @@ $(document).ready(function() {
 
 
     });
+
+
+    if $('#flappyFood'){
+        app.flappy();
+    }
+    
 });
