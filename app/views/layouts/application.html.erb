@@ -7,7 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="navHead">
+<nav>
+  <ul>
+    <li><%= link_to('Home', root_path) %></li>
+    <%== smart_nav %>
+  </ul>
+</nav>
+</div>
 <%= yield %>
 
 </body>
