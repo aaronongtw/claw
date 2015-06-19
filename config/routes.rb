@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'play/flappyfood'
+
+  get 'play/fishingtacos'
+
   resources :highscores
   resources :users
   resources :vouchers
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
   get 'main/claw'
 
   get 'main/slot'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
