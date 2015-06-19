@@ -1,10 +1,18 @@
-.gameBox {
-  position:relative;
-  top:700px;
-  width: 400px;
-  height: 400px;
-  background-color: brown;
+#gameBox {
+  position: absolute;
+  left: 15%;
+  top: 900px;
+  width: 70%;
+  height: 80%;
+  background-color: papayawhip;
   margin:0px auto;
+  z-index: -100
+}
+
+canvas {
+  margin-top: 5px;
+  height: 95%;
+  margin: 0px auto;
 }
 
 #clawGlass {
@@ -17,11 +25,15 @@
 }
 
 #clawTop {
-  position: absolute;
-  height: 10px;
+  position: fixed;
+  height: 50px;
   width: 100%;
-  top: 5%;
+  top: 0%;
   background-color: silver;
+}
+
+#clawTop li {
+  display: inline-block;
 }
 
 #clawArm {
@@ -31,6 +43,7 @@
   width: 3%;
   top: 5%;
   background-color: darkgray;
+  z-index: 50;
 }
 
 #clawArm svg {

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var claw = function() {
 
     $('#moveClawLeft').mousedown(function() {
         moveLeft = setInterval(function() {
@@ -57,22 +57,30 @@ $(document).ready(function() {
       clowDown = TweenMax.to('#clawArm', 3, {
         top:'640px',
         onComplete: function() {
-          $('#clawArm').append('<div class="gameBox"></div>')
-          clowDown.reverse();
-          
+          $('#gameBox').append('<div id="flappyFood"></div>')
+          grabGame();
         }
-      })
+      });
+    };
+
+    var grabGame = function() {
+      grabGame = TweenMax.to('#gameBox',3, {
+        top:'50px',
+        onComplete: function() {
+          renderGame();
+        }
+      });
+    };
+
+    var renderGame = function() {
+      game.flappy();
     }
 
         
 
-
-
     $('#moveClawGrab').click(function() {
         clawDown()
-      
-
     });
 
     
-});
+};

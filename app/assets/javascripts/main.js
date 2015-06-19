@@ -1,8 +1,10 @@
 $(document).ready(function() {
+  claw();
 
+  if( $('#flappyFood').length ){  //if id exists runs flap game
+        game.flappy();
 
-
-  if( $('#flapFood') ){  //if id exists runs flap game
-        app.flappy();
     };
-}
+
+  console.log("starting document ready");
+});
