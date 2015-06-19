@@ -37,12 +37,7 @@ $(document).ready(function() {
         });
         clawGrab
 
-
     });
 
-
-    if $('#flappyFood'){
-        app.flappy();
-    }
     
 });
