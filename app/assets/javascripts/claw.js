@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#moveClawLeft').mousedown(function() {
         moveLeft = setInterval(function() {
             hPos = parseInt($('#clawArm').css('left').split('p')[0])
-            if (hPos > 32) {
+            if (hPos > 10) {
                 hPos -= 1
 
             }
@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('#moveClawRight').mousedown(function() {
         moveRight = setInterval(function() {
             hPos = parseInt($('#clawArm').css('left').split('p')[0])
-            if (hPos < 275) {
+            if (hPos < 1200) {
                 hPos += 1
             }
             hPos += "px"

@@ -1,5 +1,6 @@
 .gameBox {
   position:relative;
+  top:700px;
   width: 400px;
   height: 400px;
   background-color: brown;
@@ -25,7 +26,7 @@
 
 #clawArm {
   position: relative;
-  left: 10%;
+  left: 50%;
   height: 8%;
   width: 3%;
   top: 5%;
