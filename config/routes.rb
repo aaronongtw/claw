@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root :to => "main#index"
+
   get 'play/flappyfood'
 
   get 'play/fishingtacos'
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
   resources :vouchers
   resources :games
   resources :clients
-  get 'main/index'
 
   get 'main/claw'
 
