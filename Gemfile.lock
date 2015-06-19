@@ -106,6 +106,8 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    purecss (0.5.0.2)
+      rails (>= 3.1)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.2)
@@ -200,6 +202,7 @@ DEPENDENCIES
   phaser-rails
   pry-rails
   pry-stack_explorer
+  purecss
   quiet_assets
   rails (= 4.2.1)
   rails_12factor
