@@ -29,14 +29,50 @@ $(document).ready(function() {
 
 
     });
-    $('#moveClawGrab').click(function() {
-      console.log('la')
-      var gameView = $('#gameBox')
-        clawGrab = TweenLite.set(gameView, 3, {
-          top:'0px'
-        });
-        clawGrab
 
+  //   var animateImage = function () {
+  //   currentTween = TweenMax.to( '.image', 3, {
+  //     backgroundColor: 'pink',
+  //     left: '50%',
+  //     top: '50%',
+  //     width: 600,
+  //     xPosition: '-50%',
+  //     yPosition: '-50%',
+  //     rotation: '1080',
+  //     delay: 1,
+  //     yoyo: true,
+  //     repeat: -1,
+  //     repeatDelay: 0.5,
+  //     ease: Bounce.easeOut,
+  //     onStart: function () {
+  //       // console.log('Animation Started');
+  //     },
+  //     onUpdate: function () {
+  //       // console.log('Animation updated');
+  //     }
+  //   });
+  // };
+
+    var clawDown = function() {
+      clowDown = TweenMax.to('#clawArm', 3, {
+        top:'640px',
+        onComplete: function() {
+          $('#clawArm').append('<div class="gameBox"></div>')
+          clowDown.reverse();
+          
+        }
+      })
+    }
+
+        
+
+
+
+    $('#moveClawGrab').click(function() {
+        clawDown()
+      
 
     });
+
+    
 });
