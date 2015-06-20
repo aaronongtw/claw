@@ -1,6 +1,6 @@
 var game = game || {}
 var score = 0
-game.flappy = function(){
+game.flappy2 = function(){
 
 
   console.log('inside flappy function app');
