@@ -4,7 +4,7 @@
   top: 900px;
   width: 70%;
   height: 80%;
-  background-color: papayawhip;
+  background-color: #F1C40F;
   margin:0px auto;
   z-index: -100
 }
@@ -29,7 +29,7 @@ canvas {
   height: 50px;
   width: 100%;
   top: 0%;
-  background-color: silver;
+  background-color: #E74C3C;
 }
 
 #clawTop li {
@@ -81,5 +81,5 @@ canvas {
   height:50px;
   width: 50px;
   border-radius: 50%;
-  background-color:red;
+  background-color: #E67E22;
 }

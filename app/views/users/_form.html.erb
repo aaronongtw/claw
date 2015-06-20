@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<fieldset><%= form_for(@user, :class => "pure-form pure-form-stacked") do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -13,11 +13,7 @@
 
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
+    <%= f.text_field :email  %>
   </div>
   <div class="field">
     <%= f.label :password %><br>
@@ -28,6 +24,7 @@
     <%= f.text_field :password_confirmation %>
   </div>  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Log In", :class => "pure-button pure-button-primary" %>
   </div>
 <% end %>
+</fieldset>
