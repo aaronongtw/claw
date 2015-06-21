@@ -23,9 +23,10 @@
     <%= f.label :expiry %><br>
     <%= f.datetime_select :expiry %>
   </div>
-  <div class="field">
+  
+  <div class="field hidden">
     <%= f.label :client_id %><br>
-    <%= f.number_field :client_id %>
+    <%= f.number_field :client_id, :value => params[:client] %>
   </div>
   <div class="field">
     <%= f.label :textstuff %><br>

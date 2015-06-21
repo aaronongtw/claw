@@ -12,7 +12,7 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @client.type %>
+  <%= @client.clienttype %>
 </p>
 
 <p>
@@ -24,6 +24,9 @@
   <strong>Longitude:</strong>
   <%= @client.longitude %>
 </p>
+
+<%= link_to "New Voucher", :controller => "vouchers", :action => "new", :client => @client.id %> |
+
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', clients_path %>

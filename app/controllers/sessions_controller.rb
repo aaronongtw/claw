@@ -1,4 +1,4 @@
-class SessionController < ActionController::Base
+class SessionsController < ActionController::Base
   # protect_from_forgery with: :exception
 
   def new
@@ -11,7 +11,7 @@ class SessionController < ActionController::Base
       redirect_to root_path
     else
       flash[:notice] = "Invalid login, please try again."
-      redirect_to login_path
+      redirect_to root_path
     end
   end
 

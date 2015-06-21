@@ -1,3 +1,6 @@
+
+
+
 var claw = function() {
 
     $('#moveClawLeft').mousedown(function() {

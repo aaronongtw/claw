@@ -1,0 +1,81 @@
+#gameBox {
+    display: none;
+    position: absolute;
+    left: 15%;
+    top: 900px;
+    width: 70%;
+    height: 80%;
+    background-color: #F1C40F;
+    margin: 0px auto;
+    z-index: -100
+}
+
+canvas {
+    margin-top: 5px;
+    height: 95%;
+    margin: 0px auto;
+}
+
+.gameSelect {
+    width: 29%;
+    text-align: center;
+    margin: 1em;
+    border-radius: 50%;
+    background-color: #E74C3C;
+    box-shadow: 0 0 90px white;
+}
+
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+    background: #111;
+    color: #888;
+    text-align: center;
+}
+
+.gameTitle {
+    overflow: auto;
+    color: rgba(100, 1, 200, 1);
+    text-shadow: 0 0 1px grey;
+}
+
+.gameSelect:hover {
+    color: black;
+}
+
+.pure-menu {
+    background-color: #E74C3C;
+}
+
+.banner {
+    background: transparent url('http://widebaykids.com.au/kids/wp-content/uploads/2015/04/girls-graffiti.jpg') 0 0 no-repeat fixed;
+    text-align: center;
+    background-size: cover;
+    filter: progid: DXImageTransform.Microsoft.AlphaImageLoader(src='http://widebaykids.com.au/kids/wp-content/uploads/2015/04/girls-graffiti.jpg', sizingMethod='scale');
+    height: 200px;
+    width: 100%;
+    margin-bottom: 1em;
+    display: table;
+}
+
+.gameController {
+    bottom: 2px;
+    left: 10px;
+}
+
+.gameController h5 {
+    text-align: center;
+}
+
+.clawButtons {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #E67E22;
+}

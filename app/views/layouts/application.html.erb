@@ -5,30 +5,46 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+
 </head>
 <body>
-<div id='clawTop'>
-<div class="navHead">
-<nav>
-  <ul>
-    <li><%= link_to('Home', root_path) %></li>
+
+
+<div id="#clawTop" class="pure-menu pure-menu-horizontal">
+  <a href="#" class="pure-menu-heading">Claw of Noms</a>
+  <ul class="pure-menu-list">
     <%== smart_nav %>
+    <% if @current_user.present? && session[:user_id] %>
+    <% else %>
+      <form for="login" method="POST" class="pure-form">
+    <fieldset>
+        <div class="pure-"
+        <label for="email"></label>
+        <input id="email" type="email" name="email" placeholder="email" autofocus="true">
+
+        <label for="password"></label>
+        <input id="password" type="password" name="password" class="pure-input-rounded" placeholder="password">
+
+        <button type="submit" class="pure-button pure-button-primary">sign in</button>
+    </fieldset>
+</form>
+
+
+
+    <% end %>
   </ul>
-</nav>
 </div>
+<div class="banner"></div>
+
+    <%= yield %>
+
+<div class="gameController footer" >
+    <div id="moveClawLeft" class="clawButtons"><h5>L</h5></div><div id="moveClawRight" class="clawButtons"><h5>R</h5></div>
+    <div id="moveClawGrab" class="clawButtons"><h5>Grab</h5>
+  </div>
 </div>
-
-<!-- Pure CSS Scalable DIV -->
-<div class="pure-g">
-    <div class="pure-u-1">
-
-
-      <%= yield %>
-
-    </div> <!-- pure-g -->
-</div> <!--  pure-u-1 -->
-
 </body>
 </html>
 

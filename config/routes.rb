@@ -117,8 +117,8 @@ Rails.application.routes.draw do
   get 'main/submittest'
 
   # SESSIONS:
-  get '/login' => 'session#new'
-  post '/login' => 'session#create'
-  delete '/login' => 'session#destroy'
+  get '/login' => 'sessions#new'
+  post '/' => 'sessions#create'
+  delete '/login' => 'sessions#destroy'
 
 end
