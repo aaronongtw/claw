@@ -256,6 +256,9 @@ game.flappy = function() {
         this.bestText = this.game.add.bitmapText(this.scoreboard.width, 230, 'flappyfont', '', 18);
         this.add(this.bestText);
 
+        this.rankText = this.game.add.bitmapText(60, 200, 'flappyfont', '', 20);
+        this.add(this.rankText);
+
         // add our start button with a callback
         this.startButton = this.game.add.button(this.game.width / 2, 300, 'startButton', this.startClick, this);
         this.startButton.anchor.setTo(0.5, 0.5);
@@ -270,71 +273,100 @@ game.flappy = function() {
     Scoreboard.prototype = Object.create(Phaser.Group.prototype);
     Scoreboard.prototype.constructor = Scoreboard;
 
-    Scoreboard.prototype.show = function(score) {
-
+    Scoreboard.prototype.show = function(scoreIn) {
+        var board = this;
+        var score = scoreIn;
+        var name = "flappyFood"
+        console.log(this);
+        console.log(board);
         ////////////////////////////////////////////////////////
         //                                                    //
         //     add ajax/socekts for global score              //
         //                                                    //
         ////////////////////////////////////////////////////////
+        var requestRank = function() {
+            var scoreData = {  
+                game:{
+                    name: name,
+                    highscore: score
+                }
 
+            };
 
-        var coin, bestScore;
-        this.scoreText.setText(score.toString());
-        if (!!localStorage) {
-            bestScore = localStorage.getItem('bestScore');
-            if (!bestScore || bestScore < score) {
-                bestScore = score;
-                localStorage.setItem('bestScore', bestScore);
+            $.ajax({
+                url: '/game_rank',
+                method: 'POST',
+                data: scoreData
+
+            }).done(function(data){
+
+                console.log("recieved data: " + data);
+
+                drawScore(data);
+            });
+        };
+
+        var drawScore = function(rank){
+            console.log("inside score draw");
+            console.log(rank);
+            var coin, bestScore;
+            board.scoreText.setText(score.toString());
+            if (!!localStorage) {
+                bestScore = localStorage.getItem('bestScore');
+                if (!bestScore || bestScore < score) {
+                    bestScore = score;
+                    localStorage.setItem('bestScore', bestScore);
+                }
+            } else {
+                bestScore = 'N/A';
             }
-        } else {
-            bestScore = 'N/A';
-        }
 
-        this.bestText.setText(bestScore.toString());
+            board.bestText.setText(bestScore.toString());
+            board.rankText.setText(rank);
 
 
 
-        if (score >= 10 && score < 20) {
-            coin = this.game.add.sprite(-65, 7, 'medals', 1);
-        } else if (score >= 20) {
-            coin = this.game.add.sprite(-65, 7, 'medals', 0);
-        }
+            // if  {
+            //     coin = board.game.add.sprite(-65, 7, 'medals', 1);
+            // } else if (score >= 20) {
+            //     coin = board.game.add.sprite(-65, 7, 'medals', 0);
+            // }
 
-        this.game.add.tween(this).to({
-            y: 0
-        }, 1000, Phaser.Easing.Bounce.Out, true);
+            board.game.add.tween(board).to({
+                y: 0
+            }, 1000, Phaser.Easing.Bounce.Out, true);
 
-        if (coin) {
-
-            coin.anchor.setTo(0.5, 0.5);
-            this.scoreboard.addChild(coin);
-
-            // Emitters have a center point and a width/height, which extends from their center point to the left/right and up/down
-            var emitter = this.game.add.emitter(coin.x, coin.y, 400);
-            this.scoreboard.addChild(emitter);
-            emitter.width = coin.width;
-            emitter.height = coin.height;
+            if (rank <= 10) {
 
 
-            //  This emitter will have a width of 800px, so a particle can emit from anywhere in the range emitter.x += emitter.width / 2
-            // emitter.width = 800;
+                // Emitters have a center point and a width/height, which extends from their center point to the left/right and up/down
+                var emitter = board.game.add.emitter(-65, 7, 400);
+                board.scoreboard.addChild(emitter);
+                emitter.width = 30;
+                emitter.height = 30;
 
-            emitter.makeParticles('particle');
 
-            // emitter.minParticleSpeed.set(0, 300);
-            // emitter.maxParticleSpeed.set(0, 600);
+                //  This emitter will have a width of 800px, so a particle can emit from anywhere in the range emitter.x += emitter.width / 2
+                // emitter.width = 800;
 
-            emitter.setRotation(-100, 100);
-            emitter.setXSpeed(0, 0);
-            emitter.setYSpeed(0, 0);
-            emitter.minParticleScale = 0.25;
-            emitter.maxParticleScale = 0.5;
-            emitter.setAll('body.allowGravity', false);
+                emitter.makeParticles('particle');
 
-            emitter.start(false, 1000, 1000);
+                // emitter.minParticleSpeed.set(0, 300);
+                // emitter.maxParticleSpeed.set(0, 600);
 
-        }
+                emitter.setRotation(-100, 100);
+                emitter.setXSpeed(0, 0);
+                emitter.setYSpeed(0, 0);
+                emitter.minParticleScale = 0.25;
+                emitter.maxParticleScale = 0.5;
+                emitter.setAll('body.allowGravity', false);
+
+                emitter.start(false, 1000, 1000);
+
+            }
+        };
+
+        requestRank();
     };
 
     Scoreboard.prototype.startClick = function() {

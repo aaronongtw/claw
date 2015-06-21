@@ -116,6 +116,8 @@ Rails.application.routes.draw do
 
   get 'main/submittest'
 
+  post 'game_rank' => 'games#game_rank'
+
   # SESSIONS:
   get '/login' => 'session#new'
   post '/login' => 'session#create'
