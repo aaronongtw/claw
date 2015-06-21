@@ -8,7 +8,6 @@ class GamesController < ApplicationController
     
     @rank = 99
     
-
     if game && score
       @rank = check_db_score(game, score) #games_helper.rb function
     end

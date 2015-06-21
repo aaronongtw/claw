@@ -256,7 +256,7 @@ game.flappy = function() {
         this.bestText = this.game.add.bitmapText(this.scoreboard.width, 230, 'flappyfont', '', 18);
         this.add(this.bestText);
 
-        this.rankText = this.game.add.bitmapText(60, 200, 'flappyfont', '', 20);
+        this.rankText = this.game.add.bitmapText(65, 200, 'flappyfont', '', 20);
         this.add(this.rankText);
 
         // add our start button with a callback
@@ -279,11 +279,13 @@ game.flappy = function() {
         var name = "flappyFood"
         console.log(this);
         console.log(board);
+
         ////////////////////////////////////////////////////////
         //                                                    //
-        //     add ajax/socekts for global score              //
+        //     ajax/socekts for global score                  //
         //                                                    //
         ////////////////////////////////////////////////////////
+
         var requestRank = function() {
             var scoreData = {  
                 game:{
@@ -325,19 +327,11 @@ game.flappy = function() {
             board.rankText.setText(rank);
 
 
-
-            // if  {
-            //     coin = board.game.add.sprite(-65, 7, 'medals', 1);
-            // } else if (score >= 20) {
-            //     coin = board.game.add.sprite(-65, 7, 'medals', 0);
-            // }
-
             board.game.add.tween(board).to({
                 y: 0
             }, 1000, Phaser.Easing.Bounce.Out, true);
 
             if (rank <= 10) {
-
 
                 // Emitters have a center point and a width/height, which extends from their center point to the left/right and up/down
                 var emitter = board.game.add.emitter(-65, 7, 400);
