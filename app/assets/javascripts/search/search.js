@@ -8,14 +8,9 @@ function whereAmI() {
         if (navigator.geolocation) {
 
             navigator.geolocation.getCurrentPosition(showPosition, showError);
-
-        } else {
-            
-            // when nav isnt available
         }
 
     }
-
 
     function showPosition(position) {
 
@@ -24,7 +19,6 @@ function whereAmI() {
 
         sendData(lat, lng);
     }
-
 
     function sendData(lat, lng) {
         console.log("sending: " + lat + " and " + lng);
@@ -40,14 +34,11 @@ function whereAmI() {
                 url: '/geolocation',
                 method: 'POST',
                 data: userLocation
-
             }).done(function(data){
-
-
+              console.log(data);
             });
 
     }
-
 
     function showError(error) {
       switch(error.code) {

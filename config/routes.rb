@@ -1,9 +1,13 @@
 # == Route Map
 #
 #            Prefix Verb   URI Pattern                    Controller#Action
+#       play_fluffy GET    /play/fluffy(.:format)         play#fluffy
+#        play_stack GET    /play/stack(.:format)          play#stack
+#      play_fishing GET    /play/fishing(.:format)        play#fishing
 #              root GET    /                              main#index
 #   play_flappyfood GET    /play/flappyfood(.:format)     play#flappyfood
 # play_fishingtacos GET    /play/fishingtacos(.:format)   play#fishingtacos
+#           closest POST   /closest(.:format)             clients#closestVoucher
 #        highscores GET    /highscores(.:format)          highscores#index
 #                   POST   /highscores(.:format)          highscores#create
 #     new_highscore GET    /highscores/new(.:format)      highscores#new
@@ -87,10 +91,13 @@
 #         main_claw GET    /main/claw(.:format)           main#claw
 #         main_slot GET    /main/slot(.:format)           main#slot
 #   main_submittest GET    /main/submittest(.:format)     main#submittest
+#         game_rank POST   /game_rank(.:format)           games#game_rank
+#       geolocation POST   /geolocation(.:format)         users#geolocation
 #             login GET    /login(.:format)               session#new
 #                   POST   /login(.:format)               session#create
 #                   DELETE /login(.:format)               session#destroy
 #
+
 
 Rails.application.routes.draw do
   get 'play/fluffy'
@@ -130,8 +137,8 @@ Rails.application.routes.draw do
   post 'geolocation' => 'users#geolocation'
 
   # SESSIONS:
-  get '/login' => 'sessions#new'
-  post '/' => 'sessions#create'
-  delete '/login' => 'sessions#destroy'
+  get '/login' => 'session#new'
+  post '/login' => 'session#create'
+  delete '/login' => 'session#destroy'
 
 end
