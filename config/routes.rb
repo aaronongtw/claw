@@ -124,6 +124,8 @@ Rails.application.routes.draw do
 
   post 'game_rank' => 'games#game_rank'
 
+  get 'geolocation' => 'users#geolocation'
+
   # SESSIONS:
   get '/login' => 'sessions#new'
   post '/' => 'sessions#create'

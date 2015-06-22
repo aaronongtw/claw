@@ -1,5 +1,9 @@
 var whereAmI = function() {
 
+    var x;
+
+    getLocation();
+
     function getLocation() {
 
         if (navigator.geolocation) {
@@ -20,14 +24,7 @@ var whereAmI = function() {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude
 
-
-
-        x.innerHTML = "Latitude: " + lat +
-            "<br>Longitude: " + lng;
-
         sendData(lat, lng);
-        showMeMap(lat, lng);
-        addMarkerToMap(lat, lng);
     }
 
 
