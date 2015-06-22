@@ -18,21 +18,7 @@
   <a href="#" class="pure-menu-heading">Claw of Noms</a>
   <ul class="pure-menu-list">
     <%== smart_nav %>
-    <% if @current_user.present? && session[:user_id] %>
-    <% else %>
-      <form for="login" method="POST" class="pure-form">
-        <fieldset>
-          <div class="pure-"
-          <label for="email"></label>
-          <input id="email" type="email" name="email" placeholder="email" autofocus="true">
 
-          <label for="password"></label>
-          <input id="password" type="password" name="password" class="pure-input-rounded" placeholder="password">
-
-          <button type="submit" class="pure-button pure-button-primary">sign in</button>
-        </fieldset>
-      </form>
-    <% end %>
   </ul>
 </div>
 <div id="theClaw"></div>
