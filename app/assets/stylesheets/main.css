@@ -7,7 +7,8 @@
     height: 80%;
     background-color: #D2527F;
     margin: 0px auto;
-    z-index: -100
+    z-index: -100;
+    text-align: center;
 }
 
 /* * * CANVAS * * */
@@ -15,6 +16,13 @@ canvas {
     margin-top: 5px;
     height: 95%;
     margin: 0px auto;
+}
+
+.coinButton {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    margin:10px;
 }
 
 /*gameSelect {

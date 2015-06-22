@@ -8,8 +8,14 @@ class ClientsController < ApplicationController
   end
 
   def closestVoucher
+    @current_user.coins -= params[:client][:used].to_i
+    @current_user.save
     client = Client.near("Sydney, NSW", 5, :order => "distance")
-    render :json => client[0].vouchers
+    cVouchers = []
+    client.each do |c|
+      cVouchers << c.vouchers.sample
+    end
+    render :json => cVouchers
   end
 
   # GET /clients/1
@@ -74,6 +80,6 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :location, :clienttype, :latitude, :longitude)
+      params.require(:client).permit(:name, :location, :clienttype, :latitude, :longitude, :used)
     end
 end
