@@ -15,13 +15,22 @@ canvas {
     margin: 0px auto;
 }
 
-.gameSelect {
+/*gameSelect {
     width: 29%;
     text-align: center;
     margin: 1em;
     border-radius: 50%;
     background-color: #E74C3C;
     box-shadow: 0 0 90px white;
+}*/
+
+#theClaw {
+    background-image: url('claw/claw.png');
+    position:absolute;
+    top:0;
+    left:50%;
+    height: 119px;
+    width:83px;
 }
 
 .footer {
