@@ -9,6 +9,7 @@ class SessionsController < ActionController::Base
     if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
 
+      binding.pry
       #user.ip_address = request.remote_ip
       user.ip_address = "202.171.181.44"
       user.save

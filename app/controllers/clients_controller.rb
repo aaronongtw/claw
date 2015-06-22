@@ -8,10 +8,12 @@ class ClientsController < ApplicationController
   end
 
   def closestVoucher
+    #todo check actual db for coins
+
     @current_user.coins -= params[:client][:used].to_i
     @current_user.save
     client = Client.near(@current_user, 1000, :order => "distance")
-    
+
     binding.pry
 
     cVouchers = []
