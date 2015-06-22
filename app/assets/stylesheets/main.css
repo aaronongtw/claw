@@ -29,11 +29,15 @@ canvas {
     position: fixed;
     left: 0px;
     bottom: 0px;
-    height: 30px;
+    height: 60px;
     width: 100%;
     background: #111;
     color: #888;
     text-align: center;
+}
+
+.footerL {
+    display: inline-block;
 }
 
 .gameTitle {
@@ -59,11 +63,6 @@ canvas {
     width: 100%;
     margin-bottom: 1em;
     display: table;
-}
-
-.gameController {
-    bottom: 2px;
-    left: 10px;
 }
 
 .gameController h5 {
