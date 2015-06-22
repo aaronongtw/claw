@@ -7,6 +7,11 @@ class ClientsController < ApplicationController
     @clients = Client.all
   end
 
+  def closestVoucher
+    client = Client.near("Sydney, NSW", 5, :order => "distance")
+    render :json => client[0].vouchers
+  end
+
   # GET /clients/1
   # GET /clients/1.json
   def show

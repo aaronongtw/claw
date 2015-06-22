@@ -104,6 +104,7 @@ Rails.application.routes.draw do
   get 'play/flappyfood'
 
   get 'play/fishingtacos'
+  get 'closest/' => 'clients#closestVoucher'
 
   resources :highscores
   resources :users
@@ -121,6 +122,8 @@ Rails.application.routes.draw do
   get 'main/slot'
 
   get 'main/submittest'
+
+
 
   post 'game_rank' => 'games#game_rank'
 
