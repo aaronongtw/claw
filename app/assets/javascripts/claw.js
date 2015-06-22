@@ -71,7 +71,7 @@ var claw = function() {
 
     $('#moveClawGrab').click(function() {
         clawDown("RedemtionView");
-        whereAmI(); //runs browser GPS updates user location
+        whereAmI(); //updates user location with GPS
     });
 
     $('#addCoins').click(function() {
