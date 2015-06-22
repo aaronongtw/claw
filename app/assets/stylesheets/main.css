@@ -1,14 +1,16 @@
+/* * * GAME BOX - POSITION WHERE GAMES ARE DISPLAYED * * */
 #gameBox {
     position: absolute;
     left: 15%;
     top: 900px;
     width: 70%;
     height: 80%;
-    background-color: #F1C40F;
+    background-color: #D2527F;
     margin: 0px auto;
     z-index: -100
 }
 
+/* * * CANVAS * * */
 canvas {
     margin-top: 5px;
     height: 95%;
@@ -24,6 +26,7 @@ canvas {
     box-shadow: 0 0 90px white;
 }*/
 
+/* * * CLAW * * */
 #theClaw {
     background-image: url('claw/claw.png');
     position:absolute;
@@ -33,25 +36,13 @@ canvas {
     width:83px;
 }
 
-.footer {
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    height: 60px;
-    width: 100%;
-    background: #111;
-    color: #888;
-    text-align: center;
-}
 
-.footerL {
-    display: inline-block;
-}
-
+/* * * GAME TITLES * * */
 .gameTitle {
     overflow: auto;
-    color: rgba(100, 1, 200, 1);
+    color: #303030;
     text-shadow: 0 0 1px grey;
+    font-size: 20px;
 }
 
 .gameSelect:hover {
@@ -59,7 +50,7 @@ canvas {
 }
 
 .pure-menu {
-    background-color: #E74C3C;
+    background-color: #303030;
 }
 
 .banner {
@@ -85,4 +76,21 @@ canvas {
     width: 50px;
     border-radius: 50%;
     background-color: #E67E22;
+}
+
+
+/* * * FOOTER * * */
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    background: #303030;
+    color: #888;
+    text-align: center;
+}
+
+.footerL {
+    display: inline-block;
 }

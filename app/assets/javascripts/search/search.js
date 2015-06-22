@@ -1,44 +1,48 @@
+var whereAmI = function() {
 
-function getLocation() {
- 
-    if (navigator.geolocation) {
+    function getLocation() {
 
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-         
-        x = document.getElementById("look");
+        if (navigator.geolocation) {
 
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+
+            x = document.getElementById("look");
+
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
     }
 
-}
+
+    function showPosition(position) {
+
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude
 
 
-function showPosition(position) {
 
-   var lat = position.coords.latitude;
-   var lng = position.coords.longitude
+        x.innerHTML = "Latitude: " + lat +
+            "<br>Longitude: " + lng;
 
-    
-
-    x.innerHTML = "Latitude: " + lat + 
-    "<br>Longitude: " + lng; 
-
-  sendData(lat, lng);
-  showMeMap(lat, lng);
-  addMarkerToMap(lat, lng);
-}
+        sendData(lat, lng);
+        showMeMap(lat, lng);
+        addMarkerToMap(lat, lng);
+    }
 
 
-function sendData(lat, lng){
+    function sendData(lat, lng) {
 
-var numbers = lat.toString()+ "," + lng.toString();
+        var numbers = lat.toString() + "," + lng.toString();
 
-  $.ajax({
-        type: "POST",/*method type*/
-        contentType: "application/json; charset=utf-8",
-        url: "/search",
-        data: '{"my_data":"' + numbers + '"}',
-        dataType: "json"
-  });
+        $.ajax({
+            type: "POST",
+            /*method type*/
+            contentType: "application/json; charset=utf-8",
+            url: "/search",
+            data: '{"my_data":"' + numbers + '"}',
+            dataType: "json"
+        });
+    }
+
 }
