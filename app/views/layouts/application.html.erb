@@ -3,10 +3,12 @@
 <head>
   <title>ClawOfNoms</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.9.22/paper-full.min.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+
 
 </head>
 <body>
@@ -19,24 +21,21 @@
     <% if @current_user.present? && session[:user_id] %>
     <% else %>
       <form for="login" method="POST" class="pure-form">
-    <fieldset>
-        <div class="pure-"
-        <label for="email"></label>
-        <input id="email" type="email" name="email" placeholder="email" autofocus="true">
+        <fieldset>
+          <div class="pure-"
+          <label for="email"></label>
+          <input id="email" type="email" name="email" placeholder="email" autofocus="true">
 
-        <label for="password"></label>
-        <input id="password" type="password" name="password" class="pure-input-rounded" placeholder="password">
+          <label for="password"></label>
+          <input id="password" type="password" name="password" class="pure-input-rounded" placeholder="password">
 
-        <button type="submit" class="pure-button pure-button-primary">sign in</button>
-    </fieldset>
-</form>
-
-
-
+          <button type="submit" class="pure-button pure-button-primary">sign in</button>
+        </fieldset>
+      </form>
     <% end %>
   </ul>
 </div>
-<div class="banner"></div>
+<div id="theClaw"></div>
 
     <%= yield %>
 
@@ -48,9 +47,9 @@
     <div id="coinDisplay" class="footerL">
     <h5><%= @current_user.coins %> coin(s)</h5>
     </div>
-    <% end %>
     <div id="moveClawGrab" class="clawButtons footerL"><h5>REDEEM</h5>
   </div>
+  <% end %>
 </div>
 </body>
 </html>

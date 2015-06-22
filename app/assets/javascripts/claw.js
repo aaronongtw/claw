@@ -3,35 +3,7 @@
 
 var claw = function() {
 
-    $('#moveClawLeft').mousedown(function() {
-        moveLeft = setInterval(function() {
-            hPos = parseInt($('#clawArm').css('left').split('p')[0])
-            if (hPos > 10) {
-                hPos -= 1
 
-            }
-            hPos += "px"
-            hPos = hPos = $('#clawArm').css('left', hPos)
-        }, 10)
-        $(document).mouseup(function() {
-            clearInterval(moveLeft)
-        });
-    });
-    $('#moveClawRight').mousedown(function() {
-        moveRight = setInterval(function() {
-            hPos = parseInt($('#clawArm').css('left').split('p')[0])
-            if (hPos < 1200) {
-                hPos += 1
-            }
-            hPos += "px"
-            hPos = hPos = $('#clawArm').css('left', hPos)
-        }, 10)
-        $(document).mouseup(function() {
-            clearInterval(moveRight)
-        });
-
-
-    });
 
   //   var animateImage = function () {
   //   currentTween = TweenMax.to( '.image', 3, {
@@ -56,17 +28,18 @@ var claw = function() {
   //   });
   // };
 
-    var clawDown = function() {
-      clowDown = TweenMax.to('#clawArm', 3, {
-        top:'640px',
+    var clawDown = function(grabItem) {
+      clowDown = TweenMax.to('#theClaw', 3, {
+        top:'110%',
         onComplete: function() {
-          $('#gameBox').append('<div id="flappyFood"></div>')
-          grabGame();
+          $('#gameBox').append('<div id=' + grabItem + '></div>')
+          item = grabItem
+          grabGame(item);
         }
       });
     };
 
-    var grabGame = function() {
+    var grabGame = function(item) {
       grabGame = TweenMax.to('#gameBox',3, {
         top:'50px',
         onComplete: function() {
@@ -82,8 +55,49 @@ var claw = function() {
         
 
     $('#moveClawGrab').click(function() {
-        clawDown()
+        clawDown("RedemtionView")
     });
 
     
 };
+
+// Adapted from the following Processing example:
+// http://processing.org/learning/topics/follow3.html
+
+// The amount of points in the path:
+var points = 25;
+
+// The distance between the points:
+var length = 35;
+
+var path = new Path({
+  strokeColor: '#E4141B',
+  strokeWidth: 20,
+  strokeCap: 'round'
+});
+
+var start = view.center / [10, 1];
+for (var i = 0; i < points; i++)
+  path.add(start + new Point(i * length, 0));
+
+function onMouseMove(event) {
+  path.firstSegment.point = event.point;
+  for (var i = 0; i < points - 1; i++) {
+    var segment = path.segments[i];
+    var nextSegment = segment.next;
+    var vector = segment.point - nextSegment.point;
+    vector.length = length;
+    nextSegment.point = segment.point - vector;
+  }
+  path.smooth();
+}
+
+function onMouseDown(event) {
+  path.fullySelected = true;
+  path.strokeColor = '#e08285';
+}
+
+function onMouseUp(event) {
+  path.fullySelected = false;
+  path.strokeColor = '#e4141b';
+}
