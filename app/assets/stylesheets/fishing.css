@@ -1,0 +1,52 @@
+#fishGame {
+	width: 500px;
+	height: 700px;
+	margin: 0 auto;
+	background: url('images/fishTacoBKG.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: -1000;
+}
+
+#waveOne {
+	position: relative;
+	top: 70%;
+	width: 500px;
+	height: 100px;
+	margin: 0 auto;
+	background: url('images/fishTacoWave.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 150;
+}
+
+#waveTwo {
+	position: relative;
+	top: 70%;
+	width: 500px;
+	height: 100px;
+	margin: 0 auto;
+	background: url('images/fishTacoWave.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 500;
+}
+
+#fishLoop {
+	top: 50%;
+	width: 500px;
+	position: relative;
+}
+
+#fish {
+	position: absolute;
+	top: 50%;
+	left: 80%;
+	width:100px;
+	height: 100px;
+	margin: 0 auto;
+	background-image: url('images/fishTaco.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 1000;
+}
