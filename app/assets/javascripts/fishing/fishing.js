@@ -8,8 +8,8 @@ game.fishing = function() {
 	var scoreCount = 0
 
 	var moveWaves = function() {
-		TweenMax.to('#waveOne', 1, {rotation:-10, yoyo:true, repeat:-1, ease:Linear.easeNone});
-		TweenMax.to('#waveTwo', 1, {rotation:10, yoyo:true, repeat:-1, ease:Linear.easeNone});
+		TweenMax.to('#waveOne', 1, {rotation:-12, yoyo:true, repeat:-1, ease:Linear.easeNone});
+		TweenMax.to('#waveTwo', 1, {rotation:12, yoyo:true, repeat:-1, ease:Linear.easeNone});
 	}
 
 	moveWaves();

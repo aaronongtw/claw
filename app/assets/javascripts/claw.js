@@ -52,20 +52,26 @@ var claw = function() {
                 else if (callItem === "flappyFood"){
                 game.flappy()
                 }
-
+                else if (callItem === "taco"){
+                renderFish()
+                game.fishing()
+                }
+                else if (callItem === "slide"){
+                game.slide()
+                }
             }
         });
     };
 
-    var renderItem = function() {
-        voucher();
-
+    var renderFish = function() {
+        $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div></div>")
     }
 
 
 
     $('#moveClawGrab').click(function() {
-        clawDown("RedemtionView")
+        clawDown("RedemtionView");
+        whereAmI(); //updates user location with GPS
     });
 
     $('#addCoins').click(function() {
@@ -79,54 +85,11 @@ var claw = function() {
     $('#Fluffy').click(function() {
         clawDown("flappyFood")
     });
+    $('#Taco').click(function() {
+        clawDown("taco")
+    });
+    $('#Slide').click(function() {
+        clawDown("slide")
+    });
 
 };
-
-
-
-
-
-
-
-// $(document).ready(function() {
-//     // Adapted from the following Processing example:
-//     // http://processing.org/learning/topics/follow3.html
-
-//     // The amount of points in the path:
-//     var points = 25;
-
-//     // The distance between the points:
-//     var length = 35;
-
-//     var path = new Path({
-//         strokeColor: '#E4141B',
-//         strokeWidth: 20,
-//         strokeCap: 'round'
-//     });
-
-//     var start = view.center / [10, 1];
-//     for (var i = 0; i < points; i++)
-//         path.add(start + new Point(i * length, 0));
-
-//     function onMouseMove(event) {
-//         path.firstSegment.point = event.point;
-//         for (var i = 0; i < points - 1; i++) {
-//             var segment = path.segments[i];
-//             var nextSegment = segment.next;
-//             var vector = segment.point - nextSegment.point;
-//             vector.length = length;
-//             nextSegment.point = segment.point - vector;
-//         }
-//         path.smooth();
-//     }
-
-//     function onMouseDown(event) {
-//         path.fullySelected = true;
-//         path.strokeColor = '#e08285';
-//     }
-
-//     function onMouseUp(event) {
-//         path.fullySelected = false;
-//         path.strokeColor = '#e4141b';
-//     }
-// });

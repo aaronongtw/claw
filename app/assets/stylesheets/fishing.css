@@ -1,51 +1,59 @@
 #fishGame {
+	position: relative;
 	width: 500px;
-	height: 700px;
+	height: 100%;
 	margin: 0 auto;
-	background: url('images/fishTacoBKG.png');
+	background: url('fishing/fishTacoBKG.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	z-index: -1000;
+	overflow: hidden;
 }
 
 #waveOne {
-	position: relative;
+	position: absolute;
 	top: 70%;
-	width: 500px;
-	height: 100px;
+	left:-5%;
+	width: 600px;
+	height: 250px;
 	margin: 0 auto;
-	background: url('images/fishTacoWave.png');
-	background-size: 100%;
+	background: url('fishing/fishTacoWave.png');
+	background-size: 170%;
 	background-repeat: no-repeat;
 	z-index: 150;
+	transform: rotate(5deg);
+	overflow: hidden;
 }
 
 #waveTwo {
-	position: relative;
-	top: 70%;
-	width: 500px;
-	height: 100px;
+	position: absolute;
+	top: 80%;
+	left:-5%;
+	width: 600px;
+	height: 250px;
 	margin: 0 auto;
-	background: url('images/fishTacoWave.png');
-	background-size: 100%;
+	background: url('fishing/fishTacoWave.png');
+	background-size: 170%;
 	background-repeat: no-repeat;
 	z-index: 500;
+	transform: rotate(-5deg)
+	overflow: hidden;
 }
 
 #fishLoop {
-	top: 50%;
+	top: 80%;
 	width: 500px;
 	position: relative;
 }
 
 #fish {
 	position: absolute;
-	top: 50%;
+	top: 90%;
 	left: 80%;
 	width:100px;
 	height: 100px;
 	margin: 0 auto;
-	background-image: url('images/fishTaco.png');
+	background-image: url('fishing/fishTaco.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	z-index: 1000;

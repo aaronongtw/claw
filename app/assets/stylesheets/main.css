@@ -19,6 +19,7 @@ canvas {
     margin: 0px auto;
 }
 
+
 .coinButton {
     width: 10px;
     height: 10px;
@@ -40,9 +41,10 @@ canvas {
     background-image: url('claw/claw.png');
     position:absolute;
     top:0;
-    left:50%;
+    left:45%;
     height: 119px;
     width:83px;
+    z-index: -100;
 }
 
 
@@ -62,16 +64,6 @@ canvas {
     background-color: #303030;
 }
 
-.banner {
-    background: transparent url('http://widebaykids.com.au/kids/wp-content/uploads/2015/04/girls-graffiti.jpg') 0 0 no-repeat fixed;
-    text-align: center;
-    background-size: cover;
-    filter: progid: DXImageTransform.Microsoft.AlphaImageLoader(src='http://widebaykids.com.au/kids/wp-content/uploads/2015/04/girls-graffiti.jpg', sizingMethod='scale');
-    height: 200px;
-    width: 100%;
-    margin-bottom: 1em;
-    display: table;
-}
 
 .gameController h5 {
     text-align: center;
