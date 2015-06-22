@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Highscores.destroy_all
+Highscore.destroy_all
 User.destroy_all
 Client.destroy_all
 Game.destroy_all
@@ -13,8 +13,9 @@ Game.destroy_all
 g1 = Game.create(name: 'flappyFood')
 g2 = Game.create(name: 'fishingTaco')
 g3 = Game.create(name: 'stackerBurger')
+g4 = Game.create(name: 'something')
 
 c1 = Client.create(name: 'Baker Bros', location: 'Shop 1 56-58 York St Sydney NSW 2000')
 
-u1 = User.create(email: 'email@site.com', password: "password", admin: true)
+u1 = User.create(email: 'email@site', password: "password", admin: true)
 
