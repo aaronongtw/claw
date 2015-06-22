@@ -52,14 +52,19 @@ var claw = function() {
                 else if (callItem === "flappyFood"){
                 game.flappy()
                 }
-
+                else if (callItem === "taco"){
+                renderFish()
+                game.fishing()
+                }
+                else if (callItem === "slide"){
+                game.slide()
+                }
             }
         });
     };
 
-    var renderItem = function() {
-        voucher();
-
+    var renderFish = function() {
+        $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div></div>")
     }
 
 
@@ -79,6 +84,12 @@ var claw = function() {
 
     $('#Fluffy').click(function() {
         clawDown("flappyFood")
+    });
+    $('#Taco').click(function() {
+        clawDown("taco")
+    });
+    $('#Slide').click(function() {
+        clawDown("slide")
     });
 
 };
