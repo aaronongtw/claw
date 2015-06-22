@@ -1,19 +1,17 @@
-var whereAmI = function() {
+//needs to be run after user has logged in
 
-    var x;
-
+function whereAmI() {
     getLocation();
 
     function getLocation() {
-
+        console.log("inside get location");
         if (navigator.geolocation) {
 
             navigator.geolocation.getCurrentPosition(showPosition, showError);
 
-            x = document.getElementById("look");
-
         } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
+            
+            // when nav isnt available
         }
 
     }
@@ -22,24 +20,50 @@ var whereAmI = function() {
     function showPosition(position) {
 
         var lat = position.coords.latitude;
-        var lng = position.coords.longitude
+        var lng = position.coords.longitude;
 
         sendData(lat, lng);
     }
 
 
     function sendData(lat, lng) {
+        console.log("sending: " + lat + " and " + lng);
+        var userLocation = {  
+                user:{
+                    latitude: lat,
+                    longitude: lng
+                }
 
-        var numbers = lat.toString() + "," + lng.toString();
+            };
 
-        $.ajax({
-            type: "POST",
-            /*method type*/
-            contentType: "application/json; charset=utf-8",
-            url: "/search",
-            data: '{"my_data":"' + numbers + '"}',
-            dataType: "json"
-        });
+            $.ajax({
+                url: '/geolocation',
+                method: 'POST',
+                data: userLocation
+
+            }).done(function(data){
+
+
+            });
+
+    }
+
+
+    function showError(error) {
+      switch(error.code) {
+          case error.PERMISSION_DENIED:
+              console.log("User denied the request for Geolocation.")
+              break;
+          case error.POSITION_UNAVAILABLE:
+              console.log("Location information is unavailable.")
+              break;
+          case error.TIMEOUT:
+              console.log("The request to get user location timed out.")
+              break;
+          case error.UNKNOWN_ERROR:
+              console.log("An unknown error occurred.")
+              break;
+      }
     }
 
 }

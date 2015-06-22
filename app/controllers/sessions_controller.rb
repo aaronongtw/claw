@@ -9,6 +9,10 @@ class SessionsController < ActionController::Base
     if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to root_path
+
+      user.ip_address = request.remote_ip
+      user.save
+
     else
       flash[:notice] = "Invalid login, please try again."
       redirect_to root_path
