@@ -4,5 +4,5 @@ class Client <ActiveRecord::Base
 
    geocoded_by :location
    after_validation :geocode,
-   :if => lambda{ |obj| obj.address_changed? }
+   :if => lambda{ |obj| obj.location_changed? }
 end
