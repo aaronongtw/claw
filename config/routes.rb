@@ -104,7 +104,7 @@ Rails.application.routes.draw do
   get 'play/flappyfood'
 
   get 'play/fishingtacos'
-  get 'closest/' => 'clients#closestVoucher'
+  post 'closest/' => 'clients#closestVoucher'
 
   resources :highscores
   resources :users
