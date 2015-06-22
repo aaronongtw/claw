@@ -93,6 +93,12 @@
 #
 
 Rails.application.routes.draw do
+  get 'play/fluffy'
+
+  get 'play/stack'
+
+  get 'play/fishing'
+
   root :to => "main#index"
 
   get 'play/flappyfood'
