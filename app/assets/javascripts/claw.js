@@ -43,12 +43,12 @@ var claw = function() {
       grabGame = TweenMax.to('#gameBox',3, {
         top:'50px',
         onComplete: function() {
-          renderGame();
+          renderItem();
         }
       });
     };
 
-    var renderGame = function() {
+    var renderItem = function() {
       game.flappy();
     }
 
@@ -61,6 +61,13 @@ var claw = function() {
     
 };
 
+
+
+
+
+
+
+$(document).ready(function() {
 // Adapted from the following Processing example:
 // http://processing.org/learning/topics/follow3.html
 
@@ -101,3 +108,4 @@ function onMouseUp(event) {
   path.fullySelected = false;
   path.strokeColor = '#e4141b';
 }
+});
