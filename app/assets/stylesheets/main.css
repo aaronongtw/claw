@@ -1,8 +1,9 @@
 /* * * GAME BOX - POSITION WHERE GAMES ARE DISPLAYED * * */
 #gameBox {
+    display:none;
     position: absolute;
     left: 15%;
-    top: 900px;
+    top: 110%;
     width: 70%;
     height: 80%;
     background-color: #D2527F;
