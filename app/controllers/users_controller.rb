@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   def geolocation
     user = @current_user
 
-    binding.pry
-
     redirect_to root_path
   end
 
