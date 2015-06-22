@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  def geolocation
+    @current_user.update(user_params)
+    render text: "got your geolocation thanks"
+  end
+
   # GET /users
   # GET /users.json
   def index
@@ -68,8 +73,8 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through.u
     def user_params
-      params.require(:user).permit(:email, :username, :password, :password_confirmation)
+      params.require(:user).permit(:email, :username, :password, :password_confirmation, :latitude, :longitude)
     end
 end

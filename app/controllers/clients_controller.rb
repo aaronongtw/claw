@@ -10,7 +10,8 @@ class ClientsController < ApplicationController
   def closestVoucher
     @current_user.coins -= params[:client][:used].to_i
     @current_user.save
-    client = Client.near("Sydney, NSW", 5, :order => "distance")
+    client = Client.near(@current_user, 1000, :order => "distance")
+
     cVouchers = []
     client.each do |c|
       cVouchers << c.vouchers.sample

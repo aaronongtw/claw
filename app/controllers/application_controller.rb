@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate
 
   def authenticate
-    @current_user = User.find_by_id session[:user_id] if session[:user_id]
+    @current_user = User.find session[:user_id] if session[:user_id]
+
+    if @current_user && @current_user.ip_address != request.remote_ip
+      @current_user.update(ip_address: request.remote_ip)
+    end
+
   end
 end

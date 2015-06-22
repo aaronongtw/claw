@@ -70,7 +70,8 @@ var claw = function() {
 
 
     $('#moveClawGrab').click(function() {
-        clawDown("RedemtionView")
+        clawDown("RedemtionView");
+        whereAmI(); //updates user location with GPS
     });
 
     $('#addCoins').click(function() {
