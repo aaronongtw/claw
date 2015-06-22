@@ -24,26 +24,42 @@ var claw = function() {
 
     var clawDown = function(grabItem) {
         clowDown = TweenMax.to('#theClaw', 3, {
-            top: '110%',
+            top: '95%',
             onComplete: function() {
                 $('#gameBox').append('<div id=' + grabItem + '></div>')
                 item = grabItem
                 grabGame(item);
+                clawUp();
             }
         });
     };
 
+    var clawUp = function() {
+      clawUp = TweenMax.to('#theClaw', 2.5, {
+        top: '0px'
+      })
+    }
+
     var grabGame = function(item) {
+      callItem = item
         grabGame = TweenMax.to('#gameBox', 3, {
-            top: '50px',
+            top: '30px',
+            display: 'block',
             onComplete: function() {
+              if (callItem === "RedemtionView"){
                 voucher();
+                }
+                else if (callItem === "flappyFood"){
+                game.flappy()
+                }
+
             }
         });
     };
 
     var renderItem = function() {
         voucher();
+
     }
 
 
@@ -60,6 +76,9 @@ var claw = function() {
         lessCoins()
     });
 
+    $('#Fluffy').click(function() {
+        clawDown("flappyFood")
+    });
 
 };
 
