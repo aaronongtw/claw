@@ -33,10 +33,18 @@
     <div id="coinDisplay" class="footerL">
     <h5><%= @current_user.coins %> coin(s)</h5>
     </div>
-    <div id="moveClawGrab" class="clawButtons footerL"><h5>REDEEM</h5>
-  </div>
+    <div id="addCoins" class="coinButton footerL"></div>
+    <div id="lessCoins" class="coinButton footerL"></div>
+    <div id="moveClawGrab" class="clawButtons footerL">0</div>
+  
   <% end %>
 </div>
+
 </body>
+<%if @current_user.present? %>
+<script type='text/javascript'>
+    var CoinCap = <%= @current_user.coins %>
+  </script>
+  <% end %>
 </html>
 
