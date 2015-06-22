@@ -21,7 +21,7 @@ game.fishing = function() {
 		console.log (fishTimer)
 		fLRotation -= 360
 		fRotation -= 720
-		fishLoop = TweenMax.to('#fishLoop', 5/*<--speed*/, {rotation:fLRotation,});
+		fishLoop = TweenMax.to('#fishLoop', ((fishTimer-2000)/1000)/*<--speed*/, {rotation:fLRotation,});
 		fish = TweenMax.to('#fish', 2, {rotation:fRotation});
 		clearTimeout(fishInterval)
 		callSpinFish()
