@@ -3,35 +3,7 @@
 
 var claw = function() {
 
-    $('#moveClawLeft').mousedown(function() {
-        moveLeft = setInterval(function() {
-            hPos = parseInt($('#clawArm').css('left').split('p')[0])
-            if (hPos > 10) {
-                hPos -= 1
 
-            }
-            hPos += "px"
-            hPos = hPos = $('#clawArm').css('left', hPos)
-        }, 10)
-        $(document).mouseup(function() {
-            clearInterval(moveLeft)
-        });
-    });
-    $('#moveClawRight').mousedown(function() {
-        moveRight = setInterval(function() {
-            hPos = parseInt($('#clawArm').css('left').split('p')[0])
-            if (hPos < 1200) {
-                hPos += 1
-            }
-            hPos += "px"
-            hPos = hPos = $('#clawArm').css('left', hPos)
-        }, 10)
-        $(document).mouseup(function() {
-            clearInterval(moveRight)
-        });
-
-
-    });
 
   //   var animateImage = function () {
   //   currentTween = TweenMax.to( '.image', 3, {
@@ -56,17 +28,18 @@ var claw = function() {
   //   });
   // };
 
-    var clawDown = function() {
+    var clawDown = function(grabItem) {
       clowDown = TweenMax.to('#clawArm', 3, {
-        top:'640px',
+        top:'110%',
         onComplete: function() {
-          $('#gameBox').append('<div id="flappyFood"></div>')
-          grabGame();
+          $('#gameBox').append('<div id=' + grabItem + '></div>')
+          item = grabItem
+          grabGame(item);
         }
       });
     };
 
-    var grabGame = function() {
+    var grabGame = function(item) {
       grabGame = TweenMax.to('#gameBox',3, {
         top:'50px',
         onComplete: function() {
@@ -82,7 +55,7 @@ var claw = function() {
         
 
     $('#moveClawGrab').click(function() {
-        clawDown()
+        clawDown("RedemtionView")
     });
 
     
