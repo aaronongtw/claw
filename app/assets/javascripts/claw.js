@@ -49,6 +49,7 @@ var claw = function() {
                 game.fishing()
                 }
                 else if (callItem === "slide"){
+                renderSlide()
                 game.slide()
                 }
             }
@@ -79,6 +80,11 @@ var claw = function() {
 
     var renderFish = function() {
         $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div></div>")
+    }
+
+    var renderSlide = function() {
+      $('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:</h2><div id="stackerResults"><h5 id="stackerScoreComplete"></h5></div><div id="stackCentre"></div></div>')
+
     }
 
 
