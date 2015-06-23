@@ -1,12 +1,27 @@
+#clawString {
+  position: absolute;
+  width:2px;
+  background-color: black;
+  z-index: -500;
+}
+
 #gameBox {
   position: absolute;
   left: 15%;
-  top: 900px;
+  top: 120%;
   width: 70%;
   height: 80%;
   background-color: #F1C40F;
   margin:0px auto;
   z-index: -100
+}
+
+#prizeBox {
+  position:absolute;
+  top: 130%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
 }
 
 canvas {
