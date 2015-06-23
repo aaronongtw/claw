@@ -114,7 +114,8 @@ Rails.application.routes.draw do
   post 'closest' => 'clients#closestVoucher'
   get 'closest' => 'clients#closestVoucher'
   get 'uservouchers' => 'users#uvoucher'
-
+  post 'voucheritem' => 'vouchers#item'
+  post 'redeemitem' => 'vouchers#redeem'
 
   resources :highscores
   resources :users

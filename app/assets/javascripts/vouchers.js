@@ -13,7 +13,6 @@ var voucher = function() {
             data: data
         }).done(function(data) { 
             $('#gameBox').append('<div id="voucher-list"></div>')
-            console.log(data.length)
               for (var i = 0 ; i < data.length; i += 1){
                  $('#voucher-list').append('<div>' + data[i].name + ' ' + data[i].description + '</div>')
               }
