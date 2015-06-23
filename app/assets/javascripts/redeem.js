@@ -14,8 +14,12 @@ var redeemList = function() {
         DigitalData = data.filter(function(el) {
             return el.client_id == 4
         })
+        gData = DigitalData
+        $('#redeem').append('<div id="dPrizes"><div id="teddy" class="dPrize"></div><div id="rubber" class="dPrize"></div><div id="clover" class="dPrize"></div><div id="glasses" class="dPrize"></div><div id="paper" class="dPrize"></div><div id="kitty" class="dPrize"></div><div id="boot" class="dPrize"></div><div id="sock" class="dPrize"></div><div id="watch" class="dPrize"></div><div id="cactus" class="dPrize"></div></div>')
         for (var i = 0; i < DigitalData.length; i += 1) {
-            $('#redeem').append('<img src="assets/prizes/' + DigitalData[i].textstuff + '">' + '<div id=' + DigitalData[i].id + '>' + DigitalData[i].name + ' ' + DigitalData[i].description + '</div>')
+           $caller = '#' + DigitalData[i].name.split(' ')[0].toLowerCase()
+           $($caller).css('-webkit-filter', 'grayscale(0)')
+           $($caller).css('opacity', '1')           
         }
     }).done(function(){
     $('.redeemIt').click(function(e) {
