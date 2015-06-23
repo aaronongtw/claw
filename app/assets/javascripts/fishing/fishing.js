@@ -1,5 +1,5 @@
 var game = game || {}
-
+var fishInterval
 game.fishing = function() {
 
 	var fLRotation = 0
@@ -45,6 +45,10 @@ game.fishing = function() {
 		addToScore();
 	})
 
+};
+
+game.endFish = function() {
+	clearTimeout(fishInterval)
 };
 
 

@@ -8,7 +8,7 @@
     height: 80%;
     background-color: #D2527F;
     margin: 0px auto;
-    z-index: -100;
+    z-index: 10;
     text-align: center;
 }
 
@@ -27,6 +27,7 @@ canvas {
     margin:10px;
 }
 
+
 /*gameSelect {
     width: 29%;
     text-align: center;
@@ -44,7 +45,7 @@ canvas {
     left:45%;
     height: 119px;
     width:83px;
-    z-index: -100;
+    z-index: -10;
 }
 
 
@@ -56,8 +57,8 @@ canvas {
     font-size: 20px;
 }
 
-.gameSelect:hover {
-    color: black;
+#gameSelector h1 {
+    text-align: center;
 }
 
 .pure-menu {
@@ -94,4 +95,16 @@ canvas {
 
 .footerL {
     display: inline-block;
+}
+
+#dropBox {
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    background-color: black;
+    height: 20px;
+    width: 20px;
+    border-radius:50%;
+    color: white;
+
 }
