@@ -31,7 +31,7 @@ module GamesHelper
       #runs the what_rank which returns ranking
       what_rank(user_hscore)
 
-      return user_hscore.rank
+      return user_hscore
   end
 
 

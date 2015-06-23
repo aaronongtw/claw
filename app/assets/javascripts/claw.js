@@ -22,27 +22,19 @@ var claw = function() {
     }
     }
 
-    var clawDown = function(grabItem) {
-        clowDown = TweenMax.to('#theClaw', 3, {
-            top: '95%',
-            onComplete: function() {
-                $('#gameBox').append('<div id=' + grabItem + '></div>')
-                item = grabItem
-                grabGame(item);
-                clawUp();
-            }
-        });
-    };
-
-    var clawUp = function() {
-      clawUp = TweenMax.to('#theClaw', 2.5, {
-        top: '0px'
+    var dropBox = function(){
+      $('#gameBox').html('')
+      game.endFish()
+      $('#gameSelector').css('display','block')
+      dropGameAn = TweenMax.to('#gameBox',0.3, {
+        top: '110%',
+        display: 'none'
       })
     }
 
     var grabGame = function(item) {
       callItem = item
-        grabGame = TweenMax.to('#gameBox', 3, {
+        grabGameAn = TweenMax.to('#gameBox', 3, {
             top: '30px',
             display: 'block',
             onComplete: function() {
@@ -62,6 +54,28 @@ var claw = function() {
             }
         });
     };
+
+    var clawDown = function(grabItem) {
+        $('#gameSelector').css('display','none')
+        clowDownAn = TweenMax.to('#theClaw', 3, {
+            top: '95%',
+            onComplete: function() {
+                $('#gameBox').append('<div id=' + grabItem + '></div>')
+                item = grabItem
+                grabGame(item);
+                clawUp();
+            }
+
+        });
+    };
+
+    var clawUp = function() {
+      clawUpAn = TweenMax.to('#theClaw', 2.5, {
+        top: '0px'
+      })
+    }
+
+    
 
     var renderFish = function() {
         $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div></div>")
@@ -91,5 +105,8 @@ var claw = function() {
     $('#Slide').click(function() {
         clawDown("slide")
     });
+    $('#dropBox').click(function() {
+        dropBox()
+    })
 
 };

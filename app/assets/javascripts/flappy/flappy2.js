@@ -302,9 +302,7 @@ game.flappy = function() {
 
             }).done(function(data){
 
-                console.log("recieved data: " + data);
-
-                drawScore(data);
+                drawScore(data.rank);
             });
         };
 

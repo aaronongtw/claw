@@ -1,0 +1,88 @@
+#stackerScoreTally {
+	position: absolute;
+	color: white;
+	top: 85px;
+	left: 45px;
+	z-index: 2;
+}
+
+#stackerScoreComplete {
+	position: absolute;
+	color: white;
+	top: 110px;
+	left: 45px;
+	z-index: 2;
+}
+
+#stackerReset {
+	background-color: grey;
+	border-radius: 5px;
+}
+
+#stackerGame {
+	width: 520px;
+	height: 700px;
+	margin: 0 auto;
+	background-image: url('images/stackBurgerBKG.png');
+	background-size: contain;
+	position: relative;
+}
+
+#stackCentre {
+	position: relative;
+	top: 108px;
+	margin: 0 auto;
+	width: 197px;
+	height: 559px;
+	background-image: url('images/stackerCenter.png');
+}
+
+.stack {
+	position: absolute;
+	bottom: 33px;
+	width: 197px;
+	height: 56px;
+	z-index: 1;	
+}
+
+#stack0 {
+	background-image: url('images/stackLayerOne.png');
+}
+
+#stack1 {
+	background-image: url('images/stackLayerTwo.png');
+}
+
+#stack2 {
+	background-image: url('images/stackLayerThree.png');
+}
+
+#stack3 {
+	background-image: url('images/stackLayerFour.png');
+}
+
+#stack4 {
+	background-image: url('images/stackLayerFive.png');
+}
+
+#stack5 {
+	background-image: url('images/stackLayerSix.png');
+}
+
+#stack6 {
+	background-image: url('images/stackLayerSeven.png');
+}
+
+#stack7 {
+	background-image: url('images/stackLayerEight.png');
+}
+
+#stack8 {
+	background-image: url('images/stackLayerNine.png');
+}
+
+#stack9 {
+	background-image: url('images/stackLayerTen.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}

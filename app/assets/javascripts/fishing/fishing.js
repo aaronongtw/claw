@@ -1,5 +1,5 @@
 var game = game || {}
-
+var fishInterval
 game.fishing = function() {
 
 	var fLRotation = 0
@@ -14,14 +14,12 @@ game.fishing = function() {
 
 	moveWaves();
 
-
-
 	var spinFish = function() {
 		fishTimer = (Math.random() * 5000) + 2000
 		console.log (fishTimer)
 		fLRotation -= 360
 		fRotation -= 720
-		fishLoop = TweenMax.to('#fishLoop', 5/*<--speed*/, {rotation:fLRotation,});
+		fishLoop = TweenMax.to('#fishLoop', ((fishTimer-2000)/1000)/*<--speed*/, {rotation:fLRotation,});
 		fish = TweenMax.to('#fish', 2, {rotation:fRotation});
 		clearTimeout(fishInterval)
 		callSpinFish()
@@ -38,6 +36,28 @@ game.fishing = function() {
 		$('#scoreTally').html(scoreCount)
 	}
 
+	var requestRank = function() {
+    var scoreData = {  
+        game:{
+            name: "fishingTaco",
+            highscore: scoreCount
+        }
+
+    };
+
+    $.ajax({
+        url: '/game_rank',
+        method: 'POST',
+        data: scoreData
+
+    }).done(function(data){
+
+        console.log("recieved data: " + data);
+
+        //show scoreboard and jquery funkyness code
+    });
+  }
+
 	callSpinFish();
 
 	$('#fish').click(function(){
@@ -45,6 +65,10 @@ game.fishing = function() {
 		addToScore();
 	})
 
+};
+
+game.endFish = function() {
+	clearTimeout(fishInterval)
 };
 
 
