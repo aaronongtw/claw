@@ -39,7 +39,7 @@ game.fishing = function() {
 	var requestRank = function() {
     var scoreData = {  
         game:{
-            name: "fishingTaco",
+            name: "Taco Fishing",
             highscore: scoreCount
         }
 
