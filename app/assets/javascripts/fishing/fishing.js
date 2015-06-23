@@ -28,7 +28,8 @@ game.fishing = function() {
 
 	var callSpinFish = function(){
 		fishInterval = setTimeout(function() {
-		spinFish() }, 
+		spinFish()
+    }, 
 		((Math.random() * 4000) + 3000)
 	)};
 
@@ -38,9 +39,10 @@ game.fishing = function() {
 		console.log (fishTimer)
 		fLRotation -= 360
 		fRotation -= 720
-		fishLoop = TweenMax.to('#fishLoop', (fishTimer/1000), {rotation:fLRotation,});
+		fishLoop = TweenMax.to('#fishLoop', ((fishTimer/1000)+(10-scoreCount)), {rotation:fLRotation,});
 		fish = TweenMax.to('#fish', 5	, {rotation:fRotation});
 		clearTimeout(fishInterval)
+    
 		callSpinFish()
 	}
 
@@ -49,7 +51,13 @@ game.fishing = function() {
 
 
 	var addToScore = function() {
-		scoreCount +=1
+    if ($('#fish').position().top < 40){
+ 		scoreCount +=1
+    }
+    else {
+    console.log('CHEAT DETECTED')
+    miss += 1
+    }
 	}
 
 	var requestRank = function() {
