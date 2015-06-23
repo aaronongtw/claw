@@ -1,11 +1,12 @@
 var game = game || {}
 var fishInterval
 game.fishing = function() {
-
+	
 	var fLRotation = 0
 	var fRotation = 0
 	var fishTimer
 	var scoreCount = 0
+
 
 	var moveWaves = function() {
 		TweenMax.to('#waveOne', 1, {rotation:-12, yoyo:true, repeat:-1, ease:Linear.easeNone});
@@ -58,6 +59,8 @@ game.fishing = function() {
     });
   }
 
+
+  console.log('test')
 	callSpinFish();
 
 	$('#fish').click(function(){
@@ -70,5 +73,4 @@ game.fishing = function() {
 game.endFish = function() {
 	clearTimeout(fishInterval)
 };
-
 
