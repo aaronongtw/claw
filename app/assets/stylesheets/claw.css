@@ -1,13 +1,14 @@
-#gameBox {
+/*#gameBox {
   position: absolute;
   left: 15%;
   top: 900px;
   width: 70%;
-  height: 80%;
+  height: 86%;
   background-color: #F1C40F;
   margin:0px auto;
+  margin-top: 0.7%;
   z-index: -100
-}
+}*/
 
 canvas {
   margin-top: 5px;
@@ -25,11 +26,11 @@ canvas {
 }
 
 #clawTop {
-  position: fixed;
-  height: 50px;
-  width: 100%;
+/*  position: fixed;
+  height: 50%;
+  width:50%;
   top: 0%;
-  background-color: #E74C3C;
+  background-color: #E74C3C;*/
 }
 
 #clawTop li {
