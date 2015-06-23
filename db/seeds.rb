@@ -9,6 +9,7 @@ Highscore.destroy_all
 User.destroy_all
 Client.destroy_all
 Game.destroy_all
+Voucher.destroy_all
 
 g1 = Game.create(name: 'Fluffy Gelato')
 g2 = Game.create(name: 'Taco Fishing')
