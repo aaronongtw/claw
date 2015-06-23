@@ -14,8 +14,6 @@ game.fishing = function() {
 
 	moveWaves();
 
-
-
 	var spinFish = function() {
 		fishTimer = (Math.random() * 5000) + 2000
 		console.log (fishTimer)
@@ -37,6 +35,28 @@ game.fishing = function() {
 		scoreCount +=1
 		$('#scoreTally').html(scoreCount)
 	}
+
+	var requestRank = function() {
+    var scoreData = {  
+        game:{
+            name: "fishingTaco",
+            highscore: scoreCount
+        }
+
+    };
+
+    $.ajax({
+        url: '/game_rank',
+        method: 'POST',
+        data: scoreData
+
+    }).done(function(data){
+
+        console.log("recieved data: " + data);
+
+        //show scoreboard and jquery funkyness code
+    });
+  }
 
 	callSpinFish();
 
