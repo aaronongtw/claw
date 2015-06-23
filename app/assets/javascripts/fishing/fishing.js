@@ -1,5 +1,6 @@
 var game = game || {}
 var fishInterval
+var miss = 0
 game.fishing = function() {
 	
 	var fLRotation = 0
@@ -15,26 +16,49 @@ game.fishing = function() {
 
 	moveWaves();
 
-	var spinFish = function() {
-		fishTimer = (Math.random() * 5000) + 2000
-		console.log (fishTimer)
-		fLRotation -= 360
-		fRotation -= 720
-		fishLoop = TweenMax.to('#fishLoop', ((fishTimer-2000)/1000)/*<--speed*/, {rotation:fLRotation,});
-		fish = TweenMax.to('#fish', 2, {rotation:fRotation});
-		clearTimeout(fishInterval)
-		callSpinFish()
+	var flyTaco = function() {
+		flyingTaco = TweenMax.to('#fish2', 0.5, {
+			top: '-10%',
+			onComplete: function() {
+				$('#fish2').css('top','110%')
+			}
+		})
 	}
+	
 
 	var callSpinFish = function(){
 		fishInterval = setTimeout(function() {
 		spinFish()
-	}, fishTimer
-	)}
+    }, 
+		((Math.random() * 4000) + 3000)
+	)};
+
+
+	var spinFish = function() {
+		fishTimer = (Math.random() * (5000/(scoreCount + 1))) + (20000/(scoreCount+1))
+		console.log (fishTimer)
+		fLRotation -= 360
+		fRotation -= 720
+		fishLoop = TweenMax.to('#fishLoop', ((fishTimer/1000)+(10-(scoreCount*0.7))), {rotation:fLRotation,});
+		fish = TweenMax.to('#fish', 5	, {rotation:fRotation});
+		clearTimeout(fishInterval)
+    
+		callSpinFish()
+	}
+
+	spinFish()
+
+
 
 	var addToScore = function() {
-		scoreCount +=1
-		$('#scoreTally').html(scoreCount)
+    if ($('#fish').position().top < 40){
+ 		scoreCount +=1
+    flyTaco();
+    }
+    else {
+    console.log('missed')
+    miss += 1
+    }
 	}
 
 	var requestRank = function() {
@@ -44,6 +68,11 @@ game.fishing = function() {
             highscore: scoreCount
         }
 
+    };
+
+
+    var fishResetGame = function() {
+    	
     };
 
     $.ajax({
@@ -58,14 +87,26 @@ game.fishing = function() {
         //show scoreboard and jquery funkyness code
     });
   }
+	
 
-
-  console.log('test')
-	callSpinFish();
-
-	$('#fish').click(function(){
-		console.log('score')
+	$('#catch').click(function(){
 		addToScore();
+	})
+
+	$('#fishGame').click(function(){
+		$('#scoreTally').html('score: ' + scoreCount + 'missed: ' + miss)
+		if (miss === 5 ) {
+			$('#fishGame').html('YOU LOSE FOOL' + '<button id="reset">reset</button>')
+			$('#reset').click(function() {
+				$('#gameBox').html('')
+		    	$('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'><div id='catch'></div></div></div>")
+		    	miss = 0
+		    	scoreCount = 0
+		    	game.endFish()
+		    	game.fishing()
+			})
+			game.endFish()
+		}
 	})
 
 };

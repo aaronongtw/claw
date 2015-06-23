@@ -21,9 +21,6 @@ var firstStackCreation = function() {
 		$stack0.appendTo('#stackerGame');
 }
 
-
-$(document).ready(function() {
-
 	var startStackerGame = function() {
 		firstStackCreation()
 		left = parseInt( $("#stackerGame").css("width") ) - parseInt( $("#stack0").css("width") );
@@ -83,21 +80,21 @@ $(document).ready(function() {
 				console.log("Perfect Hit!");
 				score += 100;
 			}
-			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 4) {
+			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 10) {
 				console.log("oohhh close,, within 4"); 
 				score += 90; 
 			}
-			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 10) {
+			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 20) {
 				console.log("close,, within 10"); 
 				score += 50; 
 			}
-			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 50) {
-				console.log("not so close,, within 50"); 
-				score += 25;
-			}
 			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 100) {
+				console.log("not so close,, within 50"); 
+				score += 15;
+			}
+			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 200) {
 				console.log("hmm not so close,, within 100"); 
-				score += 10;
+				score += 1;
 			}
 			else {
 				console.log("Too far,you get nothing!");
@@ -113,9 +110,33 @@ $(document).ready(function() {
 	var finalStackerResult = function() {
 		stackerGameComplete = true;
 
-		$('#stackerScoreComplete').css('display','block');
-		$('#stackerScoreComplete').html('You scored ' + score + ' points! <br> Rank: <br> High Score: <br><br> <button id="stackerReset">reset</button>');
+		requestRank()
 	};
+
+	var requestRank = function() {
+    var scoreData = {  
+        game:{
+            name: "Slide n Stack",
+            highscore: score
+        }
+
+    };
+
+    $.ajax({
+        url: '/game_rank',
+        method: 'POST',
+        data: scoreData
+
+    }).done(function(data){
+
+    $('#stackerScoreComplete').css('display','block');
+		$('#stackerScoreComplete').html('You scored ' + score +
+		' points! <br> Best Score: '+ data.highestscore + 
+		'  <br> Rank: ' + data.rank + 
+		' <br><br> <button id="stackerReset">reset</button>');
+        //show scoreboard and jquery funkyness code
+    });
+  }
 
 
 
@@ -131,7 +152,7 @@ $(document).ready(function() {
 		score = 0, 
 		elementToBeScored = 0, 
 		scorePosition = 0;
-				$('#stackerScoreTally').html("SCORE: " + score);
+		$('#stackerScoreTally').html("SCORE: " + score);
 		
 		$('#stackerScoreComplete').css('display','none');
 	};
@@ -156,8 +177,5 @@ $(document).ready(function() {
 			startStackerGame();
 		}
 	});
-
-
-});
 
 }
