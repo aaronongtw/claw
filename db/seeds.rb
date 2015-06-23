@@ -24,15 +24,14 @@ v1 = Voucher.create(name: 'Teddy Bear', textstuff: 'teddy.png')
 v2 = Voucher.create(name: 'Rubber Duck', textstuff: 'duck.png')
 v3 = Voucher.create(name: 'Dirty Old Boot', textstuff: 'boot.png')
 v4 = Voucher.create(name: 'Ola Kitty', textstuff: 'kitty.png')
-v5 = Voucher.create(name: 'Abit of Plastic', textstuff: 'plastic.png')
+v5 = Voucher.create(name: 'Cactus', textstuff: 'cactus.png')
 v6 = Voucher.create(name: 'Cursed Watch', textstuff: 'watch.png')
 v7 = Voucher.create(name: 'Witwicky Glasses', textstuff: 'glasses.png')
-v8 = Voucher.create(name: 'Piece of Virtual Paper', textstuff: 'vpaper.png')
 v9 = Voucher.create(name: 'Lucky Clover', textstuff: 'clover.png')
 v10 = Voucher.create(name: 'Smelly Sock', textstuff: 'sock.png')
 
 c1.vouchers << v0
-c2.vouchers << v1 << v2 << v3 << v4 << v5 << v6 << v7 << v8 << v9 << v10
+c2.vouchers << v1 << v2 << v3 << v4 << v5 << v6 << v7 << v9 << v10
 
 
 
