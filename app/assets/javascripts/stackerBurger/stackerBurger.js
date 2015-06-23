@@ -1,4 +1,6 @@
+var game = game || {}
 
+game.fishing = function() {
 // Set variables and values for some (we set them outside of document ready so they are global)
 var animation,
 	generateAnimation,
@@ -158,3 +160,4 @@ $(document).ready(function() {
 
 });
 
+}

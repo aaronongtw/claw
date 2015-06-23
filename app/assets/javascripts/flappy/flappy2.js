@@ -276,7 +276,7 @@ game.flappy = function() {
     Scoreboard.prototype.show = function(scoreIn) {
         var board = this;
         var score = scoreIn;
-        var name = "flappyFood"
+        var name = "Fluffy Gelato"
         console.log(this);
         console.log(board);
 
