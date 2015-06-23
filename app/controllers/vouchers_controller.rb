@@ -12,6 +12,16 @@ class VouchersController < ApplicationController
   def show
   end
 
+  def item
+    @voucher = Voucher.find params[:voucher][:vID]
+    render :json => @voucher
+  end
+
+  def redeem
+    redeemedVID = params[:voucher][:vID]
+    @current_user.vouchers.delete(redeemedVID)
+  end
+
   # GET /vouchers/new
   def new
     @voucher = Voucher.new
@@ -69,6 +79,6 @@ class VouchersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def voucher_params
-      params.require(:voucher).permit(:name, :description, :expiry, :client_id, :textstuff, :user_id)
+      params.require(:voucher).permit(:name, :description, :expiry, :client_id, :textstuff, :user_id, :vID)
     end
 end
