@@ -23,7 +23,7 @@
 	width: 520px;
 	height: 700px;
 	margin: 0 auto;
-	background-image: url('images/stackBurgerBKG.png');
+	background-image: url('burgerStacker/stackBurgerBKG.png');
 	background-size: contain;
 	position: relative;
 }
@@ -34,7 +34,7 @@
 	margin: 0 auto;
 	width: 197px;
 	height: 559px;
-	background-image: url('images/stackerCenter.png');
+	background-image: url('burgerStacker/stackerCenter.png');
 }
 
 .stack {
@@ -46,43 +46,43 @@
 }
 
 #stack0 {
-	background-image: url('images/stackLayerOne.png');
+	background-image: url('burgerStacker/stackLayerOne.png');
 }
 
 #stack1 {
-	background-image: url('images/stackLayerTwo.png');
+	background-image: url('burgerStacker/stackLayerTwo.png');
 }
 
 #stack2 {
-	background-image: url('images/stackLayerThree.png');
+	background-image: url('burgerStacker/stackLayerThree.png');
 }
 
 #stack3 {
-	background-image: url('images/stackLayerFour.png');
+	background-image: url('burgerStacker/stackLayerFour.png');
 }
 
 #stack4 {
-	background-image: url('images/stackLayerFive.png');
+	background-image: url('burgerStacker/stackLayerFive.png');
 }
 
 #stack5 {
-	background-image: url('images/stackLayerSix.png');
+	background-image: url('burgerStacker/stackLayerSix.png');
 }
 
 #stack6 {
-	background-image: url('images/stackLayerSeven.png');
+	background-image: url('burgerStacker/stackLayerSeven.png');
 }
 
 #stack7 {
-	background-image: url('images/stackLayerEight.png');
+	background-image: url('burgerStacker/stackLayerEight.png');
 }
 
 #stack8 {
-	background-image: url('images/stackLayerNine.png');
+	background-image: url('burgerStacker/stackLayerNine.png');
 }
 
 #stack9 {
-	background-image: url('images/stackLayerTen.png');
+	background-image: url('burgerStacker/stackLayerTen.png');
 	background-repeat: no-repeat;
 	background-position: center;
 }
