@@ -21,9 +21,6 @@ var firstStackCreation = function() {
 		$stack0.appendTo('#stackerGame');
 }
 
-
-$(document).ready(function() {
-
 	var startStackerGame = function() {
 		firstStackCreation()
 		left = parseInt( $("#stackerGame").css("width") ) - parseInt( $("#stack0").css("width") );
@@ -113,9 +110,35 @@ $(document).ready(function() {
 	var finalStackerResult = function() {
 		stackerGameComplete = true;
 
-		$('#stackerScoreComplete').css('display','block');
-		$('#stackerScoreComplete').html('You scored ' + score + ' points! <br> Rank: <br> High Score: <br><br> <button id="stackerReset">reset</button>');
+		requestRank()
 	};
+
+	var requestRank = function() {
+    var scoreData = {  
+        game:{
+            name: "Slide n Stack",
+            highscore: score
+        }
+
+    };
+
+    $.ajax({
+        url: '/game_rank',
+        method: 'POST',
+        data: scoreData
+
+    }).done(function(data){
+
+        console.log("recieved data: " + data);
+
+    $('#stackerScoreComplete').css('display','block');
+		$('#stackerScoreComplete').html('You scored ' + score +
+		' points! <br> Best Score: '+ data.highestscore + 
+		'  <br> Rank: ' + data.rank + 
+		' <br><br> <button id="stackerReset">reset</button>');
+        //show scoreboard and jquery funkyness code
+    });
+  }
 
 
 
@@ -131,7 +154,7 @@ $(document).ready(function() {
 		score = 0, 
 		elementToBeScored = 0, 
 		scorePosition = 0;
-				$('#stackerScoreTally').html("SCORE: " + score);
+		$('#stackerScoreTally').html("SCORE: " + score);
 		
 		$('#stackerScoreComplete').css('display','none');
 	};
@@ -156,8 +179,5 @@ $(document).ready(function() {
 			startStackerGame();
 		}
 	});
-
-
-});
 
 }
