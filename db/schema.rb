@@ -11,15 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623014332) do
+ActiveRecord::Schema.define(version: 20150623022725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "client_games", force: :cascade do |t|
-    t.integer "client_id"
-    t.integer "game_id"
-  end
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -31,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150623014332) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "game_users", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "clients_games", force: :cascade do |t|
+    t.integer "client_id"
     t.integer "game_id"
   end
 
@@ -41,6 +36,11 @@ ActiveRecord::Schema.define(version: 20150623014332) do
     t.text     "highscore"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "games_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
   end
 
   create_table "highscores", force: :cascade do |t|
@@ -65,6 +65,11 @@ ActiveRecord::Schema.define(version: 20150623014332) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "ip_address"
+  end
+
+  create_table "users_vouchers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "voucher_id"
   end
 
   create_table "vouchers", force: :cascade do |t|
