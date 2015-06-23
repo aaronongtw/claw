@@ -6,15 +6,15 @@ class GamesController < ApplicationController
     score = game_params[:highscore].to_i
     game = game_params[:name]
     
-    @rank = nil
+    rank = nil
     
     if game && score
-      @rank = check_db_score(game, score) #games_helper.rb function
+      rank = check_db_score(game, score) #games_helper.rb function
     end
 
 
     if request.xhr? && score
-      render :json => @rank
+      render :json => rank
     end
 
   end

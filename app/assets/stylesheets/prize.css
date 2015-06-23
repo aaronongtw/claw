@@ -1,0 +1,49 @@
+#redeem {
+}
+
+#dPrizes {
+  position:absolute;
+  bottom:0px;
+  height:90px;
+  width: 100%;
+}
+
+.dPrize {
+  margin: 2px;
+  display:inline-block;
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  -webkit-filter: grayscale(1);
+  opacity: 0.5;
+}
+
+
+#rubber {
+  background-image: url('prizes/duck.png')
+}
+#teddy {
+  background-image: url('prizes/teddy.png')
+}
+#clover {
+  background-image: url('prizes/clover.png')
+}
+#boot {
+  background-image: url('prizes/boot.png')
+}
+#kitty {
+  background-image: url('prizes/kitty.png')
+}
+#sock {
+  background-image: url('prizes/sock.png')
+}
+#cactus {
+  background-image: url('prizes/cactus.png')
+}
+#watch {
+  background-image: url('prizes/watch.png')
+}
+
+#glasses {
+  background-image: url('prizes/glasses.png')
+}

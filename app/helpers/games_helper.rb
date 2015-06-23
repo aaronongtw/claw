@@ -15,6 +15,8 @@ module GamesHelper
         #only update if user score is lower than new score
         if user_hscore.score < score
             user_hscore.score = score
+
+            user_hscore.highestscore = score if user_hscore.highestscore < score
             user_hscore.save
         end
 
@@ -24,6 +26,7 @@ module GamesHelper
         user_hscore.user_id = u_id
         user_hscore.game_id = g_id
         user_hscore.score = score
+        user_hscore.highestscore = score
         user_hscore.save
 
       end

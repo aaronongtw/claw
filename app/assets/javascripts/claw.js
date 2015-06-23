@@ -61,6 +61,7 @@ var claw = function() {
 
     var clawDown = function(grabItem) {
         $('#gameSelector').css('display','none')
+        $('#gameBox').html('')
         clowDownAn = TweenMax.to('#theClaw', 3, {
             top: '95%',
             onComplete: function() {
@@ -120,5 +121,6 @@ var claw = function() {
     $('#redeemDisplay').click(function() {
         clawDown("redeem")
     })
+    
 
 };
