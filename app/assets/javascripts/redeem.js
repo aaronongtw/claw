@@ -6,13 +6,13 @@ var redeemList = function() {
     }).done(function(data) {
         $('#gameBox').append('<div id="redeem-list"></div>')
         RedeemData = data.filter(function(el) {
-            return el.client_id != 4
+            return el.client_id != 6
         });
         for (var i = 0; i < RedeemData.length; i += 1) {
             $('#redeem').append('<div id=' + RedeemData[i].id + ' class="redeemIt">' + RedeemData[i].name + ' ' + RedeemData[i].description + '</div>')
         }
         DigitalData = data.filter(function(el) {
-            return el.client_id == 4
+            return el.client_id == 6
         })
         gData = DigitalData
         $('#redeem').append('<div id="dPrizes"><div id="teddy" class="dPrize"></div><div id="rubber" class="dPrize"></div><div id="clover" class="dPrize"></div><div id="glasses" class="dPrize"></div><div id="kitty" class="dPrize"></div><div id="boot" class="dPrize"></div><div id="sock" class="dPrize"></div><div id="watch" class="dPrize"></div><div id="cactus" class="dPrize"></div></div>')

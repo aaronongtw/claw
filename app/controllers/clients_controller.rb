@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
 
   def closestVoucher
     cVouchers = []
-    coins_used = 1
+    coins_used = params[:client][:used]
     client = Client.near(@current_user, 1000, :order => "distance")
     if coins_used >= 5
     client.each do |c|
