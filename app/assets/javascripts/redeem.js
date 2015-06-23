@@ -21,7 +21,7 @@ var redeemList = function() {
               return el.client_id == 4
             })
               for (var i = 0 ; i < DigitalData.length; i += 1){
-                 $('#redeem').append('<img src='+ DigitalData[i].textstuff +'>' + '<div id='+ DigitalData[i].id +'>' + DigitalData[i].name + ' ' + DigitalData[i].description + '</div>' )
+                 $('#redeem').append('<img src="assets/prizes/'+ DigitalData[i].textstuff +'">' + '<div id='+ DigitalData[i].id +'>' + DigitalData[i].name + ' ' + DigitalData[i].description + '</div>' )
               }
             })
         }

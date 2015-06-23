@@ -27,7 +27,7 @@
 <div class="gameController footer" >
     <% if @current_user.present? %>
     <div id="redeemDisplay" class="footerL"% >
-    <h5> Admits <%= @current_user.vouchers.where.not(client_id: 4).length %> 
+    <h5> <%= @current_user.vouchers.where.not(client_id: 4).length %> 
     </h5>
     </div>
     <div id="coinDisplay" class="footerL">

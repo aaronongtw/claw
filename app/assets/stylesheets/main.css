@@ -59,6 +59,7 @@ canvas {
 
 #gameSelector h1 {
     text-align: center;
+    cursor: pointer;
 }
 
 .pure-menu {
@@ -91,20 +92,42 @@ canvas {
     background: #303030;
     color: #888;
     text-align: center;
+    z-index:50;
 }
 
 .footerL {
     display: inline-block;
 }
 
+#redeemDisplay {
+    margin-top: 5px;
+    margin-right: 50px;
+    background-size: cover;
+    background-image: url('layout/prize.png');
+    width: 100px;
+    height: 60px;
+    vertical-align: text-bottom;
+    cursor: pointer;
+}
+
+#redeemDisplay h5{
+    margin-top: 33px;
+    color: black;
+
+}
+
+#redeemDisplay :hover {
+    color: white;
+
+}
+
 #dropBox {
     position:absolute;
     right: 10px;
     top: 10px;
-    background-color: black;
+    background-image: url('layout/close-button.png');
     height: 20px;
     width: 20px;
     border-radius:50%;
     color: white;
-
 }
