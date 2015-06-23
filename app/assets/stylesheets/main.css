@@ -130,4 +130,5 @@ canvas {
     width: 20px;
     border-radius:50%;
     color: white;
+    cursor: pointer;
 }
