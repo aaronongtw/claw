@@ -39,7 +39,7 @@ game.fishing = function() {
 		console.log (fishTimer)
 		fLRotation -= 360
 		fRotation -= 720
-		fishLoop = TweenMax.to('#fishLoop', ((fishTimer/1000)+(10-scoreCount)), {rotation:fLRotation,});
+		fishLoop = TweenMax.to('#fishLoop', ((fishTimer/1000)+(10-(scoreCount*0.7))), {rotation:fLRotation,});
 		fish = TweenMax.to('#fish', 5	, {rotation:fRotation});
 		clearTimeout(fishInterval)
     
@@ -53,9 +53,10 @@ game.fishing = function() {
 	var addToScore = function() {
     if ($('#fish').position().top < 40){
  		scoreCount +=1
+    flyTaco();
     }
     else {
-    console.log('CHEAT DETECTED')
+    console.log('missed')
     miss += 1
     }
 	}
@@ -88,21 +89,17 @@ game.fishing = function() {
   }
 	
 
-	$('#fish').click(function(){
-		console.log('score')
-		miss -= 1
+	$('#catch').click(function(){
 		addToScore();
-		flyTaco();
 	})
 
 	$('#fishGame').click(function(){
-		miss += 1
 		$('#scoreTally').html('score: ' + scoreCount + 'missed: ' + miss)
 		if (miss === 5 ) {
 			$('#fishGame').html('YOU LOSE FOOL' + '<button id="reset">reset</button>')
 			$('#reset').click(function() {
 				$('#gameBox').html('')
-		    	$('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div></div>")
+		    	$('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'><div id='catch'></div></div></div>")
 		    	miss = 0
 		    	scoreCount = 0
 		    	game.endFish()
