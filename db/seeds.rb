@@ -36,7 +36,7 @@ c2.vouchers << v1 << v2 << v3 << v4 << v5 << v6 << v7 << v8 << v9 << v10
 
 
 
-u1 = User.create(email: 'admin@site', password: "password", admin: true)
+u1 = User.create(email: 'admin@site', password: "password", admin: true, coins: 50)
 
 
 u1.vouchers << v0 << v1 << v2
