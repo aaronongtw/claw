@@ -129,7 +129,7 @@ var firstStackCreation = function() {
 
     }).done(function(data){
 
-        console.log("recieved data: " + data);
+        console.log(data);
 
     $('#stackerScoreComplete').css('display','block');
 		$('#stackerScoreComplete').html('You scored ' + score +
