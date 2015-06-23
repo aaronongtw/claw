@@ -129,8 +129,6 @@ var firstStackCreation = function() {
 
     }).done(function(data){
 
-        console.log(data);
-
     $('#stackerScoreComplete').css('display','block');
 		$('#stackerScoreComplete').html('You scored ' + score +
 		' points! <br> Best Score: '+ data.highestscore + 

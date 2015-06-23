@@ -9,6 +9,7 @@ class SessionController < ApplicationController
     if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
       user.update(ip_address: request.remote_ip)
+
       redirect_to root_path
 
     else
