@@ -15,7 +15,7 @@ var redeemList = function() {
             return el.client_id == 4
         })
         gData = DigitalData
-        $('#redeem').append('<div id="dPrizes"><div id="teddy" class="dPrize"></div><div id="rubber" class="dPrize"></div><div id="clover" class="dPrize"></div><div id="glasses" class="dPrize"></div><div id="paper" class="dPrize"></div><div id="kitty" class="dPrize"></div><div id="boot" class="dPrize"></div><div id="sock" class="dPrize"></div><div id="watch" class="dPrize"></div><div id="cactus" class="dPrize"></div></div>')
+        $('#redeem').append('<div id="dPrizes"><div id="teddy" class="dPrize"></div><div id="rubber" class="dPrize"></div><div id="clover" class="dPrize"></div><div id="glasses" class="dPrize"></div><div id="kitty" class="dPrize"></div><div id="boot" class="dPrize"></div><div id="sock" class="dPrize"></div><div id="watch" class="dPrize"></div><div id="cactus" class="dPrize"></div></div>')
         for (var i = 0; i < DigitalData.length; i += 1) {
            $caller = '#' + DigitalData[i].name.split(' ')[0].toLowerCase()
            $($caller).css('-webkit-filter', 'grayscale(0)')
