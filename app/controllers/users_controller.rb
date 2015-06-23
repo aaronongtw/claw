@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     render text: "got your geolocation thanks"
   end
 
+  def uvoucher
+    render json: @current_user.vouchers
+  end
+
   # GET /users
   # GET /users.json
   def index

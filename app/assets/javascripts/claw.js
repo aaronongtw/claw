@@ -52,6 +52,9 @@ var claw = function() {
                 renderSlide()
                 game.slide()
                 }
+                else if (callItem === "redeem"){
+                redeemList()
+                }
             }
         });
     };
@@ -113,6 +116,9 @@ var claw = function() {
     });
     $('#dropBox').click(function() {
         dropBox()
+    })
+    $('#redeemDisplay').click(function() {
+        clawDown("redeem")
     })
 
 };

@@ -113,6 +113,8 @@ Rails.application.routes.draw do
   get 'play/fishingtacos'
   post 'closest' => 'clients#closestVoucher'
   get 'closest' => 'clients#closestVoucher'
+  get 'uservouchers' => 'users#uvoucher'
+
 
   resources :highscores
   resources :users

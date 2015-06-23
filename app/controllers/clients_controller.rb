@@ -16,7 +16,7 @@ class ClientsController < ApplicationController
       cVouchers << c.vouchers.sample
     end
     elsif coins_used >= 1
-      clawGM = (Client.find_by :name => "Claw Of Noms")
+      clawGM = (Client.find_by :name => "Claw of Noms")
       (clawGM.vouchers * (5 - coins_used)).each do |virthers|
         cVouchers << virthers
       end
