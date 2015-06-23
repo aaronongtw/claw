@@ -80,21 +80,21 @@ var firstStackCreation = function() {
 				console.log("Perfect Hit!");
 				score += 100;
 			}
-			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 4) {
+			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 10) {
 				console.log("oohhh close,, within 4"); 
 				score += 90; 
 			}
-			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 10) {
+			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 20) {
 				console.log("close,, within 10"); 
 				score += 50; 
 			}
-			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 50) {
-				console.log("not so close,, within 50"); 
-				score += 25;
-			}
 			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 100) {
+				console.log("not so close,, within 50"); 
+				score += 15;
+			}
+			else if ( Math.abs(scorePosition - perfectWinningPosition) <= 200) {
 				console.log("hmm not so close,, within 100"); 
-				score += 10;
+				score += 1;
 			}
 			else {
 				console.log("Too far,you get nothing!");
