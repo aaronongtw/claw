@@ -27,7 +27,8 @@
 <div class="gameController footer" >
     <% if @current_user.present? %>
     <div id="redeemDisplay" class="footerL"% >
-    <h5> Admits <%= @current_user.vouchers.length %> </h5>
+    <h5> Admits <%= @current_user.vouchers.length %> 
+    </h5>
     </div>
     <div id="coinDisplay" class="footerL">
     <h5><%= @current_user.coins %> coin(s)</h5>

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
 //= require 'greensock/TweenLite.js'
 //= require 'greensock/easing/EasePack.js'
 //= require 'greensock/jquery.gsap.js'
