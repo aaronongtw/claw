@@ -2,7 +2,9 @@ var game = game || {}
 
 game.beans = function() {
 
-    var game = new Phaser.Game(400, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+    var game = new Phaser.Game(400, 600, Phaser.AUTO, 'bean', { preload: preload, create: create, update: update });
+
 
     function preload() {
 
@@ -162,8 +164,7 @@ game.beans = function() {
         star.kill();
         miss += 1
         console.log('miss' + miss)
-        if (miss == 5) {
-            console.log('STOP SHIT')
+        if (miss >= 5) {
             clearTimeout(beanbeantime)
         }
 
@@ -181,7 +182,7 @@ game.beans = function() {
 
             //  Let gravity do its thing
             star.body.gravity.y = 100;
-            randomCreateBean()
+            randomCreateBean();
     }
 
     var randomCreateBean = function() {
@@ -190,6 +191,16 @@ game.beans = function() {
         }
 
 
-    randomCreateBean()
+    var resetGame = function () {
+        $('#scoreboard').css('display','none');       
+    }
+
+    randomCreateBean();
+
+
+    $('#scoreboard').on('click', resetGame);
+
+
+
 
 }
