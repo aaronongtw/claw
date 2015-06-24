@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by_id session[:user_id] if session[:user_id]
     
     reset_highscores if (Time.now - Game.first.updated_at).to_i > 2.hours
+    
     if @current_user && @current_user.ip_address != request.remote_ip
       @current_user.update(ip_address: request.remote_ip)
 
