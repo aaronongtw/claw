@@ -6,7 +6,7 @@
         <% if @current_user.present? %>
         <div id="gameSelector" class="pure-g game-table">
   <% Game.all.each do |g| %>
-  <div id=<%=g.name.split(' ')[0]%> class="pure-u-1 pure-u-md-1-4 gameSelect"> <h1 class="gameTitle"><%= g.name %></h1> </div>
+  <div id=<%=g.name.split(' ')[0]%> class="pure-u-1 pure-u-md-1-4 gameSelect"> <h1 class="gameTitle"><%= g.name %></h1><h5 class="tutorial"><%= g.highscore %></h5></div>
   <% end %>
 </div>
 
@@ -23,10 +23,9 @@
             <fieldset>
             
               <div class="pure-">
-                <%= label_tag 'email' %>
+
                 <%= email_field_tag 'email', nil, placeholder: 'email', autofocus: 'true'%>
                 
-                <%= label_tag 'password' %>
                 <%= password_field_tag 'password', nil, placeholder: 'password'%>
 
                 <%= submit_tag 'Login', class: 'pure-button pure-button-primary' %>

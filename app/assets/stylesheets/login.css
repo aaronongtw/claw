@@ -1,19 +1,50 @@
 .login-page {
+/*  border: 1px solid black;
+*/width: 180px;
+  text-align: center;
+  margin: auto;
+  margin-top: 120px;
+}
+
+/*.pure-input-rounded {
+  margin: 0px auto;
+  margin-top: 10px;
+  outline: 0; 
   text-align: center;
 }
+*/
 
-
-
-.pure-input-rounded {
-  margin: 0px auto;
+#email {
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
-.pure-button .pure-button-primary {
-  background-color: black;
+#password {
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
+#password input:focus, textarea:focus {
+    outline: none;
+}
 
+.pure-button.pure-button-primary {
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/*
 .button-login {
   background-color: #F89406;
   border-radius: 18px;
+}*/
+
+.pure-u-md-1-4 {
+  width: 23%;
 }
+
+
+.pure-form:focus {
+  outline:0 !important;
+}
+

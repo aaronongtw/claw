@@ -62,8 +62,42 @@ canvas {
 
 #gameSelector h1 {
     text-align: center;
-    cursor: pointer;
+    
 }
+
+
+/*styling for individual game icons on home page*/
+.gameSelect {
+  top: 20%;
+  height: 300px;
+  background-color: grey;
+  background-image: contain;
+  background-repeat: no-repeat;
+  margin: 10px;
+  margin-top: 90px;
+  border-radius: 10px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+#Taco {
+  background: url('fishing/fishingGameIcon.png');
+}
+
+#Slide {
+  background: url('burgerStacker/stackerGameIcon.png');
+}
+
+#Something {
+/*  needs a background icon*/
+}
+
+#Fluffy {
+/*  needs a background icon*/
+}
+
+
+
 
 .pure-menu {
     background-color: #303030;
