@@ -32,7 +32,7 @@
     </h5>
     </div>
     <div id="coinDisplay" class="footerL">
-    <h5 id="coinForUser"><%= @current_user.coins %> coin(s)</h5>
+    <h5 id="coinForUser"><%= pluralize(@current_user.coins, 'coin') %></h5>
     </div>
     <div id="addCoins" class="coinButton footerL">+</div>
     <div id="lessCoins" class="coinButton footerL">-</div>

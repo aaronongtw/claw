@@ -20,63 +20,7 @@ canvas {
 
 
 
-.coinButton {
-  display: inline-block;
-    margin: 0 10px 40px 0;
-    width: 40px;
-    height: 40px;
-  border: solid 1px #476b6b;
-  color: #ffffff;
-  font-family:'Helvetica Neue',sans-serif;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 35px;
-  font-size:30px;
-  text-shadow: 0 -1px 0 #476b6b;
-  border-radius: 50%;
-  
-  box-shadow: 0 1px 0 1px rgba(31, 48, 48, 0.1) , inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1);
-  background: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #749593), color-stop(50%, #64898c), color-stop(51%, #557d7f), color-stop(100%, #476b6b));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
-  /* Opera 11.10+ */
-  background: -moz-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
-  /* IE10+ */
-  background: linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
-  /* W3C */
-}
-.coinButton:hover {
-  background: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #749593), color-stop(50%, #64898c), color-stop(51%, #557d7f), color-stop(100%, #557d7f));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
-  /* Opera 11.10+ */
-  background: -moz-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
-  /* IE10+ */
-  background: linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
-  /* W3C */
-}
-.coinButton:active {
-  background: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #688886), color-stop(50%, #597a7d), color-stop(51%, #4b6e70), color-stop(100%, #4b6e70));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
-  /* Opera 11.10+ */
-  background: -moz-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
-  /* IE10+ */
-  background: linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
-  /* W3C */
-}
+
 
 
 /*.coinButton {
@@ -171,11 +115,12 @@ canvas {
 
 
 #coinForUser {
-  margin: 0 10px 40px 0;
-  width: 40px;
-  height: 40px;
   position: absolute;
-  top:15px;
+  left: 10%;
+  margin: 0 10px 40px 0;
+  width: 80px;
+  height: 25px;
+  top:25px;
   border-radius: 2px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
   display: inline-block;
@@ -184,23 +129,14 @@ canvas {
   font-family: helvetica, arial, sans-serif;
   font-weight: normal;
   color: #e27619;
-}
-
-#coinForUser h1 {
-  text-align: center;
-  font-size: 20px;
-  margin: 5px 0 0 0;
-  color: #fff;
-  text-shadow: 0 1px 0 white, 0 -1px 0 rgba(0, 0, 0, 0.5);
-  font-family: helvetica, arial, sans-serif;
-  font-weight: normal;
+  line-height: 2.2em
 }
 
 
 #coinForUser:after {
   content: "";
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 35px;
   display: block;
   position: absolute;
   left: -5px;
@@ -215,6 +151,7 @@ canvas {
    -webkit-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
   -moz-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
   box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
+  
 }
 
 #coinForUser {
@@ -235,13 +172,84 @@ canvas {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 28px 6px rgba(255, 174, 0, 0.8);
 }
 
+#addCoins {
+  position: absolute;
+  top: 15px;
+  left: 70%;
+}
 
+#lessCoins {
+  position:absolute;
+  top: 15px;
+  left: 74%;
+}
+
+
+.coinButton {
+  display: inline-block;
+    margin: 0 10px 40px 0;
+    width: 40px;
+    height: 40px;
+  border: solid 1px #476b6b;
+  color: #ffffff;
+  font-family:'Helvetica Neue',sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 35px;
+  font-size:30px;
+  text-shadow: 0 -1px 0 #476b6b;
+  border-radius: 50%;
+  
+  box-shadow: 0 1px 0 1px rgba(31, 48, 48, 0.1) , inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1);
+  background: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #749593), color-stop(50%, #64898c), color-stop(51%, #557d7f), color-stop(100%, #476b6b));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
+  /* Opera 11.10+ */
+  background: -moz-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #476b6b 100%);
+  /* W3C */
+}
+.coinButton:hover {
+  background: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #749593), color-stop(50%, #64898c), color-stop(51%, #557d7f), color-stop(100%, #557d7f));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
+  /* Opera 11.10+ */
+  background: -moz-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #749593 0%, #64898c 50%, #557d7f 51%, #557d7f 100%);
+  /* W3C */
+}
+.coinButton:active {
+  background: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #688886), color-stop(50%, #597a7d), color-stop(51%, #4b6e70), color-stop(100%, #4b6e70));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
+  /* Opera 11.10+ */
+  background: -moz-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #688886 0%, #597a7d 50%, #4b6e70 51%, #4b6e70 100%);
+  /* W3C */
+}
 
 
 
 
 #redeemDisplay {
-    margin-top: 5px;
+    position: absolute;
+    top: 5px;
+    left:20%;
     margin-right: 50px;
     background-size: cover;
     background-image: url('layout/prize.png');
