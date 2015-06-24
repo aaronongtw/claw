@@ -22,6 +22,7 @@ var firstStackCreation = function() {
 }
 
 	var startStackerGame = function() {
+		$('#stackerScoreComplete').css('display','none');
 		firstStackCreation()
 		left = parseInt( $("#stackerGame").css("width") ) - parseInt( $("#stack0").css("width") );
 		perfectWinningPosition = left / 2;
@@ -131,7 +132,7 @@ var firstStackCreation = function() {
 
     $('#stackerScoreComplete').css('display','block');
 		$('#stackerScoreComplete').html('You scored ' + score +
-		' points! <br> Best Score: '+ data.highestscore + 
+		' points! <br> Your best: '+ data.highestscore + 
 		'  <br> Rank: ' + data.rank + 
 		' <br><br> <button id="stackerReset">reset</button>');
         //show scoreboard and jquery funkyness code
@@ -154,7 +155,7 @@ var firstStackCreation = function() {
 		scorePosition = 0;
 		$('#stackerScoreTally').html("SCORE: " + score);
 		
-		$('#stackerScoreComplete').css('display','none');
+		
 	};
 
 
