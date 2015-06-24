@@ -133,8 +133,7 @@ var firstStackCreation = function() {
     $('#stackerScoreComplete').css('display','block');
 		$('#stackerScoreComplete').html('You scored ' + score +
 		' points! <br> Your best: '+ data.highestscore + 
-		'  <br> Rank: ' + data.rank + 
-		' <br><br> <button id="stackerReset">reset</button>');
+		'  <br> Rank: ' + data.rank);
         //show scoreboard and jquery funkyness code
     });
   }
@@ -169,10 +168,10 @@ var firstStackCreation = function() {
 			generateAnimation();
 			stackerScore();
 		}
-		else if (clickCount === 11) {
+		else if (clickCount === 11)  {
 			finalStackerResult();
 		}
-		else {
+		else if ($('#stackerScoreComplete').css('display') == 'block'){
 			clickCount = 0;
 			resetStackerGame();
 			startStackerGame();

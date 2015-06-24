@@ -15,11 +15,9 @@ var redeemList = function() {
             return el.client_id == GMID
         })
         gData = DigitalData
-<<<<<<< HEAD
-        $('#redeem').append('<div id="dPrizes"><div id="teddy" class="dPrize"></div><div id="rubber" class="dPrize"></div><div id="clover" class="dPrize"></div><div id="glasses" class="dPrize"></div><div id="kitty" class="dPrize"></div><div id="boot" class="dPrize"></div><div id="sock" class="dPrize"></div><div id="cursed" class="dPrize"></div><div id="cactus" class="dPrize"></div></div>')
-=======
-        $('#redeem').append('<div id="dPrizes"><div id="teddy" class="dPrize"></div><div id="rubber" class="dPrize"></div><div id="lucky" class="dPrize"></div><div id="witwicky" class="dPrize"></div><div id="kitty" class="dPrize"></div><div id="dirty" class="dPrize"></div><div id="smelly" class="dPrize"></div><div id="cursed" class="dPrize"></div><div id="cactus" class="dPrize"></div></div>')
->>>>>>> ec0653c60a0e0a74253a153d23792ceb72414b48
+
+        $('#redeem').append('<div id="dPrizes"><div id="teddy" class="dPrize"></div><div id="rubber" class="dPrize"></div><div id="lucky" class="dPrize"></div><div id="witwicky" class="dPrize"></div><div id="ola" class="dPrize"></div><div id="dirty" class="dPrize"></div><div id="smelly" class="dPrize"></div><div id="cursed" class="dPrize"></div><div id="cactus" class="dPrize"></div></div>')
+
         for (var i = 0; i < DigitalData.length; i += 1) {
            $caller = '#' + DigitalData[i].name.split(' ')[0].toLowerCase()
            $($caller).css('-webkit-filter', 'grayscale(0)')

@@ -62,6 +62,8 @@ var claw = function() {
                 clearInterval(drawingLine)
                 if (callItem === "flappyFood") {
                     game.flappy()
+                } else if (callItem === "bean") {
+                    game.beans()   
                 } else if (callItem === "taco") {
                     renderFish()
                     game.fishing()
@@ -79,6 +81,7 @@ var claw = function() {
         console.log('Grabbing Prize')
         voucher();
         grabbingPrize = TweenMax.to('#prizeBox', 2.2, {
+            'display' : 'block',
             top: '30px',
             left: '10px',
             onComplete: function() {
@@ -92,6 +95,8 @@ var claw = function() {
                             'left': '50%'
                         })
                         $('#prizeBox').html('')
+                        num = 0
+                        $('#moveClawGrab').html(num)
                     }
 
                 })
@@ -177,6 +182,9 @@ var claw = function() {
     });
     $('#Slide').click(function() {
         clawDown("slide")
+    });
+    $('#Bean').click(function() {
+        clawDown("bean")
     });
     $('#dropBox').click(function() {
         dropBox()
