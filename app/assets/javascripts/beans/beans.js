@@ -41,21 +41,18 @@ game.beans = function() {
         game.add.sprite(0, 0, 'sky');
 
         // Here we create the ground.
-        ground = game.add.sprite(0, game.world.height-2, 'ground');
+        ground = game.add.sprite(0, game.world.height - 2, 'ground');
 
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         ground.scale.setTo(2, 2);
-
-        //  This stops it from falling away when you jump on it
-        //ground.body.immovable = true;
 
         game.physics.arcade.enable(ground);
 
 
         // The player and its settings
-        player = game.add.sprite(game.world.width/2, 0, 'dude');
-        player.anchor.setTo(0.5,0.5);
-        player.inputEnabled =true;
+        player = game.add.sprite(game.world.width / 2, 0, 'dude');
+        player.anchor.setTo(0.5, 0.5);
+        player.inputEnabled = true;
         player.input.enableDrag();
         player.events.onDragStart.add(startDrag, this);
         player.events.onDragStop.add(stopDrag, this);
@@ -95,18 +92,18 @@ game.beans = function() {
 
     }
 
-    function startDrag(){
-        if(newGame){
+    function startDrag() {
+        if (newGame) {
             $('#stackerScoreComplete').css('display', 'none');
             scoreText.text = 'Score: ' + score;
             newGame = false
             randomCreateBean();
         }
-        
+
         player.body.moves = false;
     }
 
-    function stopDrag(){
+    function stopDrag() {
         player.body.moves = true;
     }
 
@@ -140,7 +137,7 @@ game.beans = function() {
         randomCreateBean();
     }
 
-    var gameOver = function(){
+    var gameOver = function() {
         console.log("game over")
         requestRank();
     }
@@ -186,10 +183,10 @@ game.beans = function() {
         // Removes the star from the screen
         star.kill();
 
-        if(catchBean && !newGame){
+        if (catchBean && !newGame) {
             score += 10;
             scoreText.text = 'Score: ' + score;
-        }else{
+        } else {
 
         }
 
@@ -200,8 +197,8 @@ game.beans = function() {
         star.kill();
         clearTimeout(beanbeantime);
 
-        if(catchBean){
-            waitForEnd = setTimeout( function(){
+        if (catchBean) {
+            waitForEnd = setTimeout(function() {
                 gameOver();
             }, 1500);
         }
@@ -209,7 +206,7 @@ game.beans = function() {
         catchBean = false;
     }
 
-    function particleBurst(star){
+    function particleBurst(star) {
         emitter.x = star.x + 20;
         emitter.y = star.y + 25;
 
@@ -218,7 +215,7 @@ game.beans = function() {
 
 
     $('#bean').append('<div id="stackerResults"><h5 id="stackerScoreComplete"></h5></div>');
-    $('#stackerScoreComplete').css('display','none');
+    $('#stackerScoreComplete').css('display', 'none');
 
     $('#scoreboard').on('click', resetGame);
 
