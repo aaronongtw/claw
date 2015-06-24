@@ -2,10 +2,14 @@ var game = game || {}
 
 game.beans = function() {
 
-$('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:</h2><div id="stackerResults"><h5 id="stackerScoreComplete"></h5></div><div id="stackCentre"></div></div>')
+
+    var game = new Phaser.Game(400, 600, Phaser.AUTO, 'bean', {
+        preload: preload,
+        create: create,
+        update: update
+    });
 
 
-    var game = new Phaser.Game(400, 600, Phaser.AUTO, 'flappyFood', { preload: preload, create: create, update: update });
 
     function preload() {
 
@@ -74,10 +78,13 @@ $('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:<
 
 
         //  The score
-        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText = game.add.text(16, 16, 'score: 0', {
+            fontSize: '32px',
+            fill: '#000'
+        });
 
 
-        
+
 
 
     }
@@ -97,11 +104,11 @@ $('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:<
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
         // Collect Missed.
-        game.physics.arcade.overlap(ground, stars, collectMissed , null, this);
-        
+        game.physics.arcade.overlap(ground, stars, collectMissed, null, this);
+
         // // Collect other objects.
         // game.physics.arcade.overlap(ground, stars, collectStar, null, this);
-        
+
         // // Collect other objects.
         // game.physics.arcade.overlap(ground, stars, collectStar, null, this);
 
@@ -112,44 +119,38 @@ $('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:<
         //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
 
-        if (cursors.left.isDown)
-        {
+        if (cursors.left.isDown) {
             //  Move to the left
             player.body.velocity.x = -150;
 
             player.animations.play('left');
-        }
-        else if (cursors.right.isDown)
-        {
+        } else if (cursors.right.isDown) {
             //  Move to the right
             player.body.velocity.x = 150;
 
             player.animations.play('right');
-        }
-        else
-        {
+        } else {
             //  Stand still
             player.animations.stop();
 
             player.frame = 4;
         }
-        
+
         //  Allow the player to jump if they are touching the ground.
-        if (cursors.up.isDown && player.body.touching.down)
-        {
+        if (cursors.up.isDown && player.body.touching.down) {
             player.body.velocity.y = -350;
         }
 
-        
 
-        
+
+
 
 
 
     }
 
-    function collectStar (player, star) {
-        
+    function collectStar(player, star) {
+
         // Removes the star from the screen
         star.kill();
 
@@ -161,39 +162,69 @@ $('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:<
 
     }
 
-    function collectMissed (ground, star) {
+
+
+    function createBeans() {
+
+        console.log('create beans');
+        //  Here we'll create 12 of them evenly spaced apart
+        i = Math.ceil(Math.random() * 8)
+
+        //  Create a star inside of the 'stars' group
+        // i randomized by 50, 
+        var star = stars.create(i * 40, -20, 'star');
+
+        //  Let gravity do its thing
+        star.body.gravity.y = 100;
+        randomCreateBean();
+    }
+
+    var randomCreateBean = function() {
+        beanbeantime = setTimeout(function() {
+            createBeans()
+        }, Math.random() * 2000)
+    }
+
+
+    var resetGame = function() {
+        $('#scoreboard').css('display', 'none');
+    }
+
+
+    var requestRank = function() {
+
+        var scoreData = {
+            game: {
+                name: "Bean Drop",
+                highscore: score
+            }
+
+        };
+
+        $.ajax({
+            url: '/game_rank',
+            method: 'POST',
+            data: scoreData
+
+        }).done(function(data) {
+
+            $('#stackerScoreComplete').css('display', 'block');
+            $('#stackerScoreComplete').html('You scored ' + score +
+                ' points! <br> Your best: ' + data.highestscore +
+                '  <br> Rank: ' + data.rank);
+            //show scoreboard and jquery funkyness code
+        });
+    }
+
+    function collectMissed(ground, star) {
         star.kill();
         miss += 1
         console.log('miss' + miss)
         if (miss == 5) {
             clearTimeout(beanbeantime)
+            gameOver();
         }
 
-    }
-
-    function createBeans() {
-
-    console.log('create beans');
-    //  Here we'll create 12 of them evenly spaced apart
-            i = Math.ceil(Math.random() * 8)
-
-            //  Create a star inside of the 'stars' group
-            // i randomized by 50, 
-            var star = stars.create(i * 40, -20, 'star');
-
-            //  Let gravity do its thing
-            star.body.gravity.y = 100;
-            randomCreateBean();
-    }
-
-    var randomCreateBean = function() {
-        beanbeantime = setTimeout(function() {
-            createBeans()}, Math.random() * 2000)
-        }
-
-
-    var resetGame = function () {
-        $('#scoreboard').css('display','none');       
     }
 
     randomCreateBean();
