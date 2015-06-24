@@ -5,7 +5,7 @@ game.beans = function() {
 $('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:</h2><div id="stackerResults"><h5 id="stackerScoreComplete"></h5></div><div id="stackCentre"></div></div>')
 
 
-    var game = new Phaser.Game(400, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+    var game = new Phaser.Game(400, 600, Phaser.AUTO, 'flappyFood', { preload: preload, create: create, update: update });
 
     function preload() {
 
