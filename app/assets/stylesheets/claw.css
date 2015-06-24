@@ -81,12 +81,11 @@ canvas {
 /*redeem coin display*/
 
 #moveClawGrab {
-position: absolute;
+  position: absolute;
   top: -12px;
   left: 80%;
   width: 50px;
   height: 50px;
-  border: solid 1px #476b6b;
   color: #ffffff;
   font-family: 'Helvetica Neue',sans-serif;
   text-align: center;
@@ -95,6 +94,33 @@ position: absolute;
   font-size: 33px;
   text-shadow: 0 -1px 0 #476b6b;
   border-radius: 10%;
+}
+#moveClawGrab {
+   border-top: 1px solid #fa2d2d;
+   background: #cc1212;
+   background: -webkit-gradient(linear, left top, left bottom, from(#8c0000), to(#cc1212));
+   background: -webkit-linear-gradient(top, #8c0000, #cc1212);
+   background: -moz-linear-gradient(top, #8c0000, #cc1212);
+   background: -ms-linear-gradient(top, #8c0000, #cc1212);
+   background: -o-linear-gradient(top, #8c0000, #cc1212);
+   -webkit-border-radius: 15px;
+   -moz-border-radius: 15px;
+   border-radius: 15px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-decoration: none;
+   vertical-align: middle;
+}
+#moveClawGrab:hover {
+   border-top-color: #de0000;
+   background: #de0000;
+   color: #ffffff;
+   cursor: pointer;
+}
+#moveClawGrab:active {
+   border-top-color: #b51717;
+   background: #b51717;
 }
 
 

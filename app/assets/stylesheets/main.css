@@ -167,7 +167,6 @@ position: absolute;
   left: 6%;
   width: 160px;
   height: 50px;
-  border: solid 1px #476b6b;
   color: #ffffff;
   font-family: 'Helvetica Neue',sans-serif;
   text-align: center;
@@ -181,14 +180,14 @@ position: absolute;
 
 #addCoins {
   position: absolute;
-  top: 15px;
+  top: 10px;
   left: 85%;
 }
 
 #lessCoins {
   position:absolute;
-  top: 15px;
-  left: 89%;
+  top: 10px;
+  left: 88%;
 }
 
 
@@ -205,27 +204,51 @@ position: absolute;
   font-size: 20px;
   text-shadow: 0 -1px 0 #476b6b;
   border-radius: 25%;
-  background-color: #515151;
   }
+
+
+  .coinButton {
+   border-top: 1px solid #5e5e5e;
+   background: #474747;
+   background: -webkit-gradient(linear, left top, left bottom, from(#1a1a1a), to(#474747));
+   background: -webkit-linear-gradient(top, #1a1a1a, #474747);
+   background: -moz-linear-gradient(top, #1a1a1a, #474747);
+   background: -ms-linear-gradient(top, #1a1a1a, #474747);
+   background: -o-linear-gradient(top, #1a1a1a, #474747);
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   }
+   .coinButton:hover {
+   border-top-color: #4a4a4a;
+   background: #4a4a4a;
+   color: #ffffff;
+   }
+   .coinButton:active {
+   border-top-color: #212121;
+   background: #212121;
+   }
 
 
 
 
 #redeemDisplay {
     position: absolute;
-    top: 5px;
+    top: 10px;
     left:20%;
     margin-right: 50px;
-    background-size: cover;
+    background-size: contain;
     background-image: url('layout/prize.png');
+    background-repeat: no-repeat;
     width: 100px;
-    height: 60px;
+    height: 50px;
     vertical-align: text-bottom;
     cursor: pointer;
 }
 
 #redeemDisplay h5{
-    margin-top: 33px;
+    margin-top: 28px;
+    margin-left: -20px;
     color: black;
 
 }
@@ -237,10 +260,12 @@ position: absolute;
 
 #redeemText {
   position: absolute;
-  bottom: -18%;
-  left: 71%;
+  bottom: -5%;
+  left: 62%;
   color: white;
   font-weight: lighter;
+  font-size: 20px;
+  font-style: italic;
   text-align: right;
 }
 
