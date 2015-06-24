@@ -1,10 +1,10 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_if_admin
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+      @clients = Client.all
   end
 
   def closestVoucher
@@ -89,6 +89,13 @@ class ClientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_client
       @client = Client.find(params[:id])
+    end
+
+    def check_if_admin
+      if !@current_user.admin
+        redirect_to root_path
+      end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

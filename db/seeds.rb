@@ -51,11 +51,17 @@ hs3taco = Highscore.create(score: 12)
 hs4taco = Highscore.create(score: 11)
 hs5taco = Highscore.create(score: 10)
 
+hs1bean = Highscore.create(score: 300)
+hs2bean = Highscore.create(score: 270)
+hs3bean = Highscore.create(score: 260)
+hs4bean = Highscore.create(score: 250)
+hs5bean = Highscore.create(score: 240)
+
 
 g1.highscores << hs1flap << hs2flap << hs3flap << hs4flap << hs5flap
 g2.highscores << hs1taco << hs2taco << hs3taco << hs4taco << hs5taco
 g3.highscores << hs1slide << hs2slide << hs3slide << hs4slide << hs5slide
-
+g4.highscores << hs1bean << hs2bean << hs3bean << hs4bean << hs5bean
 
 
 

@@ -1,4 +1,11 @@
 /* * * GAME BOX - POSITION WHERE GAMES ARE DISPLAYED * * */
+
+html body {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+
 #gameBox {
     display:none;
     position: absolute;

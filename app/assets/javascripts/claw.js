@@ -97,6 +97,7 @@ var claw = function() {
                         $('#prizeBox').html('')
                         num = 0
                         $('#moveClawGrab').html(num)
+                        dropBox()
                     }
 
                 })
@@ -162,6 +163,7 @@ var claw = function() {
 
 
     $('#moveClawGrab').click(function() {
+        dropBox()
         clawDown("RedemtionView");
         whereAmI(); //updates user location with GPS
     });
@@ -190,6 +192,7 @@ var claw = function() {
         dropBox()
     })
     $('#redeemDisplay').click(function() {
+        dropBox()
         clawDown("redeem")
     })
 

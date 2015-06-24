@@ -168,11 +168,13 @@ var firstStackCreation = function() {
 	$('body').on('click', "#stackerGame", function() {
 		console.log(clickCount);
 		clickCount += 1;
-		if (clickCount <= 10) {
+		if (clickCount <= 9) {
 			generateAnimation();
 			stackerScore();
 		}
-		else if (clickCount === 11)  {
+		else if (clickCount === 10)  {
+			generateAnimation();
+			stackerScore();
 			finalStackerResult();
 		}
 		else if ($('#stackerScoreComplete').css('display') == 'block'){

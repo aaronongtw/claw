@@ -23,12 +23,19 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+      if @current_user.admin
+      @games = Game.all
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /games/1
   # GET /games/1.json
   def show
+    if !@current_user.admin
+      redirect_to root_path
+    end
   end
 
   # GET /games/new
@@ -38,6 +45,10 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
+    if !@current_user.admin
+      redirect_to root_path
+    end
+
   end
 
   # POST /games
