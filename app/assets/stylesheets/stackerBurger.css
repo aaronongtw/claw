@@ -25,30 +25,34 @@
 }
 
 #stackerGame {
-	width: 520px;
-	height: 700px;
+	width: 500px;
+	height: 100%;
 	margin: 0 auto;
 	background-image: url('burgerStacker/stackBurgerBKG.png');
+	background-repeat: no-repeat;
 	background-size: contain;
 	position: relative;
 }
 
 #stackCentre {
 	position: relative;
-	top: 108px;
+	top: 106px;
 	margin: 0 auto;
-	width: 197px;
-	height: 559px;
+	width: 190px;
+	height: 536px;
 	background-image: url('burgerStacker/stackerCenter.png');
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .stack {
 	position: absolute;
-	bottom: 33px;
-	width: 197px;
-	height: 56px;
+	bottom: 90px;
+	width: 190px;
+	height: 54px;
 	z-index: 1;
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 #stack0 {

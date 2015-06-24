@@ -163,7 +163,6 @@ game.beans = function() {
     }
 
 
-
     function createBeans() {
 
         console.log('create beans');
