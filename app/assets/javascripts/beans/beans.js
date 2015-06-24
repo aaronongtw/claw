@@ -16,7 +16,7 @@ game.beans = function() {
     var waitForEnd;
     var emitter;
 
-    var game = new Phaser.Game(400, 600, Phaser.AUTO, 'bean', {
+    var game = new Phaser.Game(320, 550, Phaser.AUTO, 'bean', {
         preload: preload,
         create: create,
         update: update

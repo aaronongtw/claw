@@ -557,7 +557,7 @@ game.flappy = function() {
     var PlayState = new Play;
     var PreloadState = new Preload;
 
-    var game = new Phaser.Game(288, 505, Phaser.AUTO, 'flappyFood');
+    var game = new Phaser.Game(287, 505, Phaser.AUTO, 'flappyFood');
 
     // Game States
     game.state.add('boot', BootState);
