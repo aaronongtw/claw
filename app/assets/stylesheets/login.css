@@ -1,10 +1,32 @@
+/* Login Page Form */
+
 .login-page {
-/*  border: 1px solid black;
-*/width: 180px;
+  width: 180px;
   text-align: center;
   margin: auto;
   margin-top: 120px;
 }
+
+.edit-user-profile {
+  width: 180px;
+  text-align: center;
+  margin: auto;
+  margin-top: 120px;
+} 
+
+
+.new-user {
+  width: 180px;
+  text-align: center;
+  margin: auto;
+  margin-top: 120px;
+} 
+ 
+
+
+
+
+
 
 /*.pure-input-rounded {
   margin: 0px auto;
@@ -24,13 +46,13 @@
   margin-top: 10px;
 }
 
-#password input:focus, textarea:focus {
-    outline: none;
-}
-
 .pure-button.pure-button-primary {
   border-radius: 8px;
   margin-top: 10px;
+}
+
+#password input:focus, textarea:focus {
+    outline: none;
 }
 
 /*
@@ -46,5 +68,30 @@
 
 .pure-form:focus {
   outline:0 !important;
+}
+
+
+
+
+
+
+
+
+/* Edit User Form */
+
+#user_email  {
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+
+#user_password {
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+#user_password_confirmation {
+  border-radius: 8px;
+  margin-top: 10px;
 }
 

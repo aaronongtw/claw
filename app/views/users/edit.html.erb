@@ -1,6 +1,38 @@
-<h1>Edit User Login</h1>
+<div class="edit-user-profile">
 
-<%= render 'form' %>
+<h3>Edit User Profile</h3>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= form_for(@user, :class => 'pure-form pure-form-stacked') do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="pure-">
+    <div class="field">
+      <%= f.text_field :email, :placeholder => "email", autofocus: 'true' %><br>
+    </div>
+    <div class="field">
+      <%= f.password_field :password, :placeholder => "password" %><br>
+    </div>
+    <div class="field">
+      <%= f.password_field :password_confirmation, :placeholder => "password confirm" %><br>
+    </div>  
+    
+      <%= f.submit "Sign Up", :class => "button-login pure-button pure-button-primary" %>
+    
+    </div>
+
+<% end %>
+
+<!-- <%= render 'form' %> -->
+
+<!-- <%= link_to 'Show', @user %> | -->
+<br> <%= link_to 'Back', users_path %>
