@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
 
   def closestVoucher
     cVouchers = []
-    coins_used = params[:client][:used]
+    coins_used = params[:client][:used].to_i
     client = Client.near(@current_user, 1000, :order => "distance")
     if coins_used >= 5
     client.each do |c|
@@ -24,9 +24,11 @@ class ClientsController < ApplicationController
         cVouchers << c.vouchers.sample
       end
     end
+    prize = cVouchers.sample
     @current_user.coins -= coins_used
     @current_user.save
-    render :json => cVouchers
+    @current_user.vouchers << prize
+    render :json => prize
   end
 
   # GET /clients/1

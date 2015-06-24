@@ -20,6 +20,7 @@
 
   </ul>
 </div>
+<div id="clawString"></div>
 <div id="theClaw"></div>
 
     <%= yield %>
@@ -27,14 +28,14 @@
 <div class="gameController footer" >
     <% if @current_user.present? %>
     <div id="redeemDisplay" class="footerL"% >
-    <h5> <%= @current_user.vouchers.where.not(client_id: 4).length %> 
+    <h5> <%= @current_user.vouchers.where.not(client_id: Client.where(:name=> "Claw of Noms")[0].id).length %> 
     </h5>
     </div>
     <div id="coinDisplay" class="footerL">
-    <h5><%= @current_user.coins %> coin(s)</h5>
+    <h5 id="coinForUser"><%= @current_user.coins %> coin(s)</h5>
     </div>
-    <div id="addCoins" class="coinButton footerL"></div>
-    <div id="lessCoins" class="coinButton footerL"></div>
+    <div id="addCoins" class="coinButton footerL">+</div>
+    <div id="lessCoins" class="coinButton footerL">-</div>
     <div id="moveClawGrab" class="clawButtons footerL">0</div>
   
   <% end %>
@@ -44,6 +45,7 @@
 <%if @current_user.present? %>
 <script type='text/javascript'>
     var CoinCap = <%= @current_user.coins %>
+    var GMID = <%= Client.where(:name=> "Claw of Noms")[0].id %>
   </script>
 <% end %>
 

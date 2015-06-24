@@ -12,9 +12,9 @@ var voucher = function() {
             method: 'post',
             data: data
         }).done(function(data) { 
-            $('#gameBox').append('<div id="voucher-list"></div>')
-              for (var i = 0 ; i < data.length; i += 1){
-                 $('#voucher-list').append('<div>' + data[i].name + ' ' + data[i].description + '</div>')
+            $('#prizeBox').append('<div id="PRIZE"></div>')
+            if (data.textstuff.length > 1) {
+            $('#PRIZE').append('<img src ="assets/prizes/' + data.textstuff + '"></img>')
               }
             })
         }
