@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     
     if @current_user.present?
       @current_user.update(ip_address: request.remote_ip)
-      
     end
 
   end
