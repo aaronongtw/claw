@@ -14726,19 +14726,6 @@ var game = game || {}
 
 game.beans = function() {
 
-
-    var game = new Phaser.Game(400, 600, Phaser.AUTO, 'bean', { preload: preload, create: create, update: update });
-
-
-    function preload() {
-
-        game.load.image('sky', '../assets/beans/sky.png');
-        game.load.image('ground', '../assets/beans/platform.png');
-        game.load.image('star', '../assets/beans/star.png');
-        game.load.spritesheet('dude', '../assets/beans/dude.png', 60, 60);
-
-    }
-
     var player;
     var platforms;
     var cursors;
@@ -14747,8 +14734,27 @@ game.beans = function() {
     var stars;
     var ground;
     var beanFall;
-    var miss = 0;
+    var catchBean = true;
     var beanbeantime;
+    var newGame = true;
+    var waitForEnd;
+    var emitter;
+
+    var game = new Phaser.Game(320, 550, Phaser.AUTO, 'bean', {
+        preload: preload,
+        create: create,
+        update: update
+    });
+
+
+    function preload() {
+
+        game.load.image('sky', '../assets/beans/sky.png');
+        game.load.image('ground', '../assets/beans/platform.png');
+        game.load.image('star', '../assets/beans/star.png');
+        game.load.image('dude', '../assets/beans/dude.png');
+
+    }
 
     function create() {
 
@@ -14759,32 +14765,34 @@ game.beans = function() {
         game.add.sprite(0, 0, 'sky');
 
         // Here we create the ground.
-        ground = game.add.sprite(0, game.world.height - 1, 'ground');
+        ground = game.add.sprite(0, game.world.height - 2, 'ground');
 
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         ground.scale.setTo(2, 2);
-
-        //  This stops it from falling away when you jump on it
-        //ground.body.immovable = true;
 
         game.physics.arcade.enable(ground);
 
 
         // The player and its settings
-        player = game.add.sprite(50, game.world.height - 100, 'dude');
+        player = game.add.sprite(game.world.width / 2, 0, 'dude');
+        player.anchor.setTo(0.5, 0.5);
+        player.inputEnabled = true;
+        player.input.enableDrag();
+        player.events.onDragStart.add(startDrag, this);
+        player.events.onDragStop.add(stopDrag, this);
 
 
-
-
-        //  We need to enable physics on the player
         game.physics.arcade.enable(player);
+        player.enableBody = true;
 
-        //  Player physics properties. Give the little guy a slight bounce.
+
         player.body.collideWorldBounds = true;
 
-        //  Our two animations, walking left and right.
-        player.animations.add('left', [0, 1, 2, 3], 10, true);
-        player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+        player.body.gravity.y = 1500;
+
+        player.body.bounce.y = .7;
+
 
         //  Finally some stars to collect
         stars = game.add.group();
@@ -14792,139 +14800,148 @@ game.beans = function() {
         //  We will enable physics for any star that is created in this group
         stars.enableBody = true;
 
+        emitter = game.add.emitter(0, 0, 100);
+        emitter.makeParticles('star');
+        emitter.gravity = 200;
+
         //  Our controls.
         cursors = game.input.keyboard.createCursorKeys();
 
 
         //  The score
-        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-
-
-        
-
+        scoreText = game.add.text(16, 16, 'score: 0', {
+            fontSize: '32px',
+            fill: '#000'
+        });
 
     }
 
+    function startDrag() {
+        if (newGame) {
+            $('#stackerScoreComplete').css('display', 'none');
+            scoreText.text = 'Score: ' + score;
+            newGame = false
+            randomCreateBean();
+        }
 
+        player.body.moves = false;
+    }
 
+    function stopDrag() {
+        player.body.moves = true;
+    }
 
 
     function update() {
 
-        //  Collide the player and the stars with the platforms
-        game.physics.arcade.collide(player, platforms);
-        //game.physics.arcade.collide(stars, platforms);
-
-        //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
         // This will be beans.
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
         // Collect Missed.
-        game.physics.arcade.overlap(ground, stars, collectMissed , null, this);
-        
-        // // Collect other objects.
-        // game.physics.arcade.overlap(ground, stars, collectStar, null, this);
-        
-        // // Collect other objects.
-        // game.physics.arcade.overlap(ground, stars, collectStar, null, this);
+        game.physics.arcade.overlap(ground, stars, collectMissed, null, this);
 
-
-
-
-
-        //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
 
-        if (cursors.left.isDown)
-        {
-            //  Move to the left
-            player.body.velocity.x = -150;
-
-            player.animations.play('left');
-        }
-        else if (cursors.right.isDown)
-        {
-            //  Move to the right
-            player.body.velocity.x = 150;
-
-            player.animations.play('right');
-        }
-        else
-        {
-            //  Stand still
-            player.animations.stop();
-
-            player.frame = 4;
-        }
-        
-        //  Allow the player to jump if they are touching the ground.
-        if (cursors.up.isDown && player.body.touching.down)
-        {
-            player.body.velocity.y = -350;
-        }
-
-        
-
-        
-
-
-
-    }
-
-    function collectStar (player, star) {
-        
-        // Removes the star from the screen
-        star.kill();
-
-
-        score += 10;
-        scoreText.text = 'Score: ' + score;
-
-
-
-    }
-
-    function collectMissed (ground, star) {
-        star.kill();
-        miss += 1
-        console.log('miss' + miss)
-        if (miss >= 5) {
-            clearTimeout(beanbeantime)
-        }
-
-    }
-
-    function createBeans() {
-
-    console.log('create beans');
-    //  Here we'll create 12 of them evenly spaced apart
-            i = Math.ceil(Math.random() * 8)
-
-            //  Create a star inside of the 'stars' group
-            // i randomized by 50, 
-            var star = stars.create(i * 40, -20, 'star');
-
-            //  Let gravity do its thing
-            star.body.gravity.y = 100;
-            randomCreateBean();
     }
 
     var randomCreateBean = function() {
         beanbeantime = setTimeout(function() {
-            createBeans()}, Math.random() * 2000)
-        }
-
-
-    var resetGame = function () {
-        $('#scoreboard').css('display','none');       
+            createBeans()
+        }, Math.random() * 1000)
     }
 
-    randomCreateBean();
+    function createBeans() {
+        i = Math.ceil(Math.random() * 8)
 
+        // i randomized by 50, 
+        var star = stars.create(i * 35, -40, 'star');
+
+        //  Let gravity do its thing
+        star.body.gravity.y = 1500;
+        randomCreateBean();
+    }
+
+    var gameOver = function() {
+        console.log("game over")
+        requestRank();
+    }
+
+
+    var resetGame = function() {
+        score = 0;
+        miss = false;
+        newGame = true;
+        catchBean = true;
+    }
+
+
+    var requestRank = function() {
+
+        var scoreData = {
+            game: {
+                name: "Bean Drop",
+                highscore: score
+            }
+
+        };
+
+        $.ajax({
+            url: '/game_rank',
+            method: 'POST',
+            data: scoreData
+
+        }).done(function(data) {
+
+            $('#stackerScoreComplete').css('display', 'block');
+            $('#stackerScoreComplete').html('You scored ' + score +
+                ' points! <br> Your best: ' + data.highestscore +
+                '  <br> Rank: ' + data.rank);
+            //show scoreboard and jquery funkyness code
+
+            resetGame();
+        });
+    }
+
+    function collectStar(player, star) {
+
+        // Removes the star from the screen
+        star.kill();
+
+        if (catchBean && !newGame) {
+            score += 10;
+            scoreText.text = 'Score: ' + score;
+        } else {
+
+        }
+
+    }
+
+    function collectMissed(ground, star) {
+        particleBurst(star);
+        star.kill();
+        clearTimeout(beanbeantime);
+
+        if (catchBean) {
+            waitForEnd = setTimeout(function() {
+                gameOver();
+            }, 1500);
+        }
+
+        catchBean = false;
+    }
+
+    function particleBurst(star) {
+        emitter.x = star.x + 20;
+        emitter.y = star.y + 25;
+
+        emitter.start(true, 1500, null, 10);
+    }
+
+
+    $('#bean').append('<div id="stackerResults"><h5 id="stackerScoreComplete"></h5></div>');
+    $('#stackerScoreComplete').css('display', 'none');
 
     $('#scoreboard').on('click', resetGame);
-
-
 
 
 }
@@ -15028,6 +15045,7 @@ var claw = function() {
                         $('#prizeBox').html('')
                         num = 0
                         $('#moveClawGrab').html(num)
+                        dropBox()
                     }
 
                 })
@@ -15093,6 +15111,7 @@ var claw = function() {
 
 
     $('#moveClawGrab').click(function() {
+        dropBox()
         clawDown("RedemtionView");
         whereAmI(); //updates user location with GPS
     });
@@ -15121,6 +15140,7 @@ var claw = function() {
         dropBox()
     })
     $('#redeemDisplay').click(function() {
+        dropBox()
         clawDown("redeem")
     })
 
@@ -15166,7 +15186,7 @@ game.fishing = function() {
 		console.log (fishTimer)
 		fLRotation -= 360
 		fRotation -= 720
-		fishLoop = TweenMax.to('#fishLoop', ((fishTimer/1000)+(10-(scoreCount*0.7))), {rotation:fLRotation,});
+		fishLoop = TweenMax.to('#fishLoop', (1+ (fishTimer/1000)+(10-(scoreCount/5))), {rotation:fLRotation,});
 		fish = TweenMax.to('#fish', 5	, {rotation:fRotation});
 		clearTimeout(fishInterval)
     
@@ -15793,7 +15813,7 @@ game.flappy = function() {
     var PlayState = new Play;
     var PreloadState = new Preload;
 
-    var game = new Phaser.Game(288, 505, Phaser.AUTO, 'flappyFood');
+    var game = new Phaser.Game(287, 505, Phaser.AUTO, 'flappyFood');
 
     // Game States
     game.state.add('boot', BootState);
@@ -18136,7 +18156,7 @@ game.slide = function() {
 var animation,
 	generateAnimation,
 	stackerGameComplete = false; 
-	currentBottom = 33, 
+	currentBottom = 0, 
 	numElement = 0, 
 	time = 1, 
 	score = 0, 
@@ -18174,7 +18194,11 @@ var firstStackCreation = function() {
 		if ( !stackerGameComplete ) {
 			
 			var height = $(".stack").css("height"); // Get the height from the .stack (this returns a NUMpx)
-			currentBottom += parseInt(height); // Current bottom which is 0 at first, add the height (parseInt to get rid of px)
+
+			currentBottom += parseInt(height); 
+			if (clickCount === 1) {
+				currentBottom = parseInt(height) + (parseInt(height)/2)
+			}// Current bottom which is 0 at first, add the height (parseInt to get rid of px)
 			numElement++; // Add 1 to numElement
 			time = time - 0.1; // Reduce the amount of time
 			var id = "stack" + numElement; // Generate an id
@@ -18277,7 +18301,7 @@ var firstStackCreation = function() {
 				$("#stack" + i).remove();
 			}
 		stackerGameComplete = false; 
-		currentBottom = 33, 
+		currentBottom = 90, 
 		numElement = 0, 
 		time = 1, 
 		score = 0, 
@@ -18295,11 +18319,13 @@ var firstStackCreation = function() {
 	$('body').on('click', "#stackerGame", function() {
 		console.log(clickCount);
 		clickCount += 1;
-		if (clickCount <= 10) {
+		if (clickCount <= 9) {
 			generateAnimation();
 			stackerScore();
 		}
-		else if (clickCount === 11)  {
+		else if (clickCount === 10)  {
+			generateAnimation();
+			stackerScore();
 			finalStackerResult();
 		}
 		else if ($('#stackerScoreComplete').css('display') == 'block'){
