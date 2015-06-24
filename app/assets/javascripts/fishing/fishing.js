@@ -67,13 +67,7 @@ game.fishing = function() {
             name: "Taco Fishing",
             highscore: scoreCount
         }
-
-    };
-
-
-    var fishResetGame = function() {
-    	
-    };
+    }
 
     $.ajax({
         url: '/game_rank',
@@ -81,35 +75,33 @@ game.fishing = function() {
         data: scoreData
 
     }).done(function(data){
-
-        console.log("recieved data: " + data);
+        $('#fishGame').html('<h3>score: ' + scoreCount + '</h3><h3>missed: ' + miss + '</h3><h1>YOU LOSE</h1>' + '<h2>Rank: ' + data.rank + '</h2><h2>Highest Score: ' + data.highestscore + '</h2><button id="reset">reset</button>')
+        $('#reset').click(function() {
+        $('#gameBox').html('')
+          $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><div id='catch'></div></div>")
+          
+          miss = 0
+          scoreCount = 0
+          game.endFish()
+          game.fishing()
+      })
 
         //show scoreboard and jquery funkyness code
     });
-  }
+    };
+  
 	
 
 	$('#catch').click(function(){
-		addToScore();
-	})
-
-	$('#fishGame').click(function(){
+    console.log('test')
+    addToScore();
 		$('#scoreTally').html('score: ' + scoreCount + 'missed: ' + miss)
 		if (miss === 5 ) {
-			$('#fishGame').html('<h3>score: ' + scoreCount + '</h3><h3>missed: ' + miss + '</h3><h1>YOU LOSE</h1>' + '<button id="reset">reset</button>')
-			$('#reset').click(function() {
-				$('#gameBox').html('')
-		    	$('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><div id='catch'></div></div>")
-		    	miss = 0
-		    	scoreCount = 0
-		    	game.endFish()
-		    	game.fishing()
-			})
-			game.endFish()
+        requestRank()
 		}
 	})
 
-};
+}
 
 game.endFish = function() {
 	clearTimeout(fishInterval)

@@ -14,7 +14,7 @@ Voucher.destroy_all
 g1 = Game.create(name: 'Fluffy Gelato')
 g2 = Game.create(name: 'Taco Fishing')
 g3 = Game.create(name: 'Slide n Stack')
-g4 = Game.create(name: 'Something Else')
+g4 = Game.create(name: 'Bean Drop')
 
 c1 = Client.create(name: 'Baker Bros', location: 'Shop 1 56-58 York St Sydney NSW 2000', clienttype: 'Cafe')
 c2 = Client.create(name: 'Claw of Noms', location: 'omnipresent', clienttype: 'Game Master')
