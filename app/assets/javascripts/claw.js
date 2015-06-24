@@ -62,6 +62,8 @@ var claw = function() {
                 clearInterval(drawingLine)
                 if (callItem === "flappyFood") {
                     game.flappy()
+                } else if (callItem === "bean") {
+                    game.beans()   
                 } else if (callItem === "taco") {
                     renderFish()
                     game.fishing()
@@ -180,6 +182,9 @@ var claw = function() {
     });
     $('#Slide').click(function() {
         clawDown("slide")
+    });
+    $('#Bean').click(function() {
+        clawDown("bean")
     });
     $('#dropBox').click(function() {
         dropBox()
