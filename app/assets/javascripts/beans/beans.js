@@ -2,7 +2,7 @@ var game = game || {}
 
 game.beans = function() {
 
-    var game = new Phaser.Game(400, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+    var game = new Phaser.Game(400, 600, Phaser.AUTO, 'bean', { preload: preload, create: create, update: update });
 
     function preload() {
 
