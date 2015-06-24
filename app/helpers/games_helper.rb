@@ -10,8 +10,8 @@ module GamesHelper
                                    :game_id => g_id
 
       #check if user highscore exists
+      
       if user_hscore
-
         #only update if user score is lower than new score
         if user_hscore.score < score
             user_hscore.score = score
