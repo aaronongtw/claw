@@ -23,7 +23,6 @@ game.beans = function() {
     });
 
 
-
     function preload() {
 
         game.load.image('sky', '../assets/beans/sky.png');
@@ -32,8 +31,6 @@ game.beans = function() {
         game.load.image('dude', '../assets/beans/dude.png');
 
     }
-
-
 
     function create() {
 
@@ -57,24 +54,19 @@ game.beans = function() {
 
         // The player and its settings
         player = game.add.sprite(game.world.width/2, 0, 'dude');
-
+        player.anchor.setTo(0.5,0.5);
         player.inputEnabled =true;
         player.input.enableDrag();
         player.events.onDragStart.add(startDrag, this);
         player.events.onDragStop.add(stopDrag, this);
 
 
-        //  We need to enable physics on the player
         game.physics.arcade.enable(player);
         player.enableBody = true;
 
-        //  Player physics properties. Give the little guy a slight bounce.
+
         player.body.collideWorldBounds = true;
 
-
-        //  Our two animations, walking left and right.
-        //player.animations.add('left', [0, 1, 2, 3], 10, true);
-        //player.animations.add('right', [5, 6, 7, 8], 10, true);
 
         player.body.gravity.y = 1500;
 
@@ -121,11 +113,6 @@ game.beans = function() {
 
     function update() {
 
-        //  Collide the player and the stars with the platforms
-        game.physics.arcade.collide(player, platforms);
-        //game.physics.arcade.collide(stars, platforms);
-
-        //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
         // This will be beans.
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
@@ -133,24 +120,6 @@ game.beans = function() {
         game.physics.arcade.overlap(ground, stars, collectMissed, null, this);
 
         player.body.velocity.x = 0;
-
-
-        // if (cursors.left.isDown) {
-        //     //  Move to the left
-        //     player.body.velocity.x = -150;
-
-        //     player.animations.play('left');
-        // } else if (cursors.right.isDown) {
-        //     //  Move to the right
-        //     player.body.velocity.x = 150;
-
-        //     player.animations.play('right');
-        // } else {
-        //     //  Stand still
-        //     player.animations.stop();
-
-        //     player.frame = 4;
-        // }
 
     }
 
@@ -161,14 +130,10 @@ game.beans = function() {
     }
 
     function createBeans() {
-        //  Here we'll create 12 of them evenly spaced apart
         i = Math.ceil(Math.random() * 8)
-        console.log(i);
 
-        //  Create a star inside of the 'stars' group
         // i randomized by 50, 
-        var star = stars.create(i * 40, -40, 'star');
-        star.anchor.setTo(0.5,0.5);
+        var star = stars.create(i * 35, -40, 'star');
 
         //  Let gravity do its thing
         star.body.gravity.y = 1500;
@@ -245,8 +210,8 @@ game.beans = function() {
     }
 
     function particleBurst(star){
-        emitter.x = star.x;
-        emitter.y = star.y + 10;
+        emitter.x = star.x + 20;
+        emitter.y = star.y + 25;
 
         emitter.start(true, 1500, null, 10);
     }
@@ -256,8 +221,6 @@ game.beans = function() {
     $('#stackerScoreComplete').css('display','none');
 
     $('#scoreboard').on('click', resetGame);
-
-
 
 
 }
