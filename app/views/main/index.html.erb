@@ -23,6 +23,9 @@
             <fieldset>
             
               <div class="pure-">
+              <% if flash[:notice].present? %>
+              <h4 style='color:red'><%= flash[:notice]  %></h4>
+              <% end %>
 
                 <%= email_field_tag 'email', nil, placeholder: 'email', autofocus: 'true'%>
                 
