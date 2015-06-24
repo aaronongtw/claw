@@ -2,6 +2,9 @@ var game = game || {}
 
 game.beans = function() {
 
+$('#gameBox').append('<div id="stackerGame">  <h2 id="stackerScoreTally">SCORE:</h2><div id="stackerResults"><h5 id="stackerScoreComplete"></h5></div><div id="stackCentre"></div></div>')
+
+
     var game = new Phaser.Game(400, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
     function preload() {
@@ -163,7 +166,6 @@ game.beans = function() {
         miss += 1
         console.log('miss' + miss)
         if (miss == 5) {
-            console.log('STOP SHIT')
             clearTimeout(beanbeantime)
         }
 
@@ -181,7 +183,7 @@ game.beans = function() {
 
             //  Let gravity do its thing
             star.body.gravity.y = 100;
-            randomCreateBean()
+            randomCreateBean();
     }
 
     var randomCreateBean = function() {
@@ -190,6 +192,16 @@ game.beans = function() {
         }
 
 
-    randomCreateBean()
+    var resetGame = function () {
+        $('#scoreboard').css('display','none');       
+    }
+
+    randomCreateBean();
+
+
+    $('#scoreboard').on('click', resetGame);
+
+
+
 
 }
