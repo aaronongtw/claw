@@ -246,7 +246,7 @@ game.beans = function() {
 
     function particleBurst(star){
         emitter.x = star.x;
-        emitter.y = star.y;
+        emitter.y = star.y + 10;
 
         emitter.start(true, 1500, null, 10);
     }
