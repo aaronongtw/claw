@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623045934) do
+ActiveRecord::Schema.define(version: 20150624003355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20150623045934) do
     t.boolean  "admin"
     t.string   "location"
     t.integer  "coins",           default: 0
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "lat"
+    t.float    "lon"
     t.string   "password_digest"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

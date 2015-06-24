@@ -8,6 +8,6 @@ class User <ActiveRecord::Base
    validates :email, :uniqueness => true
 
    geocoded_by :ip_address,
-      :latitude => :latitude, :longitude => :longitude
+      :latitude => :lat, :longitude => :lon
    after_validation :geocode
 end

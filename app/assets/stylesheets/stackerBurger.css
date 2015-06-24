@@ -16,6 +16,7 @@
 	background-color: rgba(0,0,0,0.5);
 	padding-top: 2px;
 	padding-bottom: 2px;
+	border: 2px solid rgb(48,48,48);
 }
 
 #stackerReset {
