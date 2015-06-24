@@ -5,7 +5,7 @@
     left: 15%;
     top: 110%;
     width: 70%;
-    height: 94%;
+    height: 84%;
     background-color: #D2527F;
     margin: 0px auto;
     margin-top: 0.3%;
@@ -67,6 +67,10 @@ canvas {
 
 
 /*styling for individual game icons on home page*/
+.gameInfo {
+  margin: 10px;
+}
+
 .gameSelect {
   top: 20%;
   height: 300px;
@@ -78,6 +82,11 @@ canvas {
   border-radius: 10px;
   opacity: 0.5;
   cursor: pointer;
+}
+
+.instructions {
+  margin: 0px auto;
+  width: 240px;
 }
 
 #Taco {

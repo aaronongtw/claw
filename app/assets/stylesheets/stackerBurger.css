@@ -25,7 +25,8 @@
 }
 
 #stackerGame {
-	width: 500px;
+  position: relative;
+	width: 56%;
 	height: 100%;
 	margin: 0 auto;
 	background-image: url('burgerStacker/stackBurgerBKG.png');
@@ -35,11 +36,12 @@
 }
 
 #stackCentre {
-	position: relative;
-	top: 106px;
+	position: absolute;
+  bottom:4%;
+  left:28%;
 	margin: 0 auto;
-	width: 190px;
-	height: 536px;
+	width: 40%;
+	height: 80%;
 	background-image: url('burgerStacker/stackerCenter.png');
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -47,9 +49,9 @@
 
 .stack {
 	position: absolute;
-	bottom: 90px;
-	width: 190px;
-	height: 54px;
+	width: 40%;
+	height: 8%;
+  bottom: 4%;
 	z-index: 1;
 	background-repeat: no-repeat;
 	background-size: contain;
