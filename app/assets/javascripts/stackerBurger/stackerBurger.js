@@ -5,7 +5,7 @@ game.slide = function() {
 var animation,
 	generateAnimation,
 	stackerGameComplete = false; 
-	currentBottom = 33, 
+	currentBottom = 90, 
 	numElement = 0, 
 	time = 1, 
 	score = 0, 
@@ -146,7 +146,7 @@ var firstStackCreation = function() {
 				$("#stack" + i).remove();
 			}
 		stackerGameComplete = false; 
-		currentBottom = 33, 
+		currentBottom = 90, 
 		numElement = 0, 
 		time = 1, 
 		score = 0, 

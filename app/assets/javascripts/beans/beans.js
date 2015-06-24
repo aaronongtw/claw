@@ -164,7 +164,7 @@ game.beans = function() {
         star.kill();
         miss += 1
         console.log('miss' + miss)
-        if (miss == 5) {
+        if (miss >= 5) {
             clearTimeout(beanbeantime)
         }
 
