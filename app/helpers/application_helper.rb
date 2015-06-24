@@ -8,7 +8,7 @@ module ApplicationHelper
     if @current_user.present?
 
       nav += '<li class="pure-menu-item">' + link_to("Log out #{@current_user.email}", login_path, :class => "pure-menu-link", :method => :delete ) + '</li>'
-      nav += '<li class="pure-menu-item">' + link_to('Users Page', edit_user_path(@current_user), :class => "pure-menu-link" )
+      nav += '<li class="pure-menu-item">' + link_to('Edit User', edit_user_path(@current_user), :class => "pure-menu-link" )
     else
       nav += '<li class="pure-menu-item">' +link_to('Sign up', new_user_path, :class => "pure-menu-link") + '</li>'
     end
