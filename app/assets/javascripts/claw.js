@@ -188,5 +188,4 @@ var claw = function() {
         clawDown("redeem")
     })
 
-
 };
