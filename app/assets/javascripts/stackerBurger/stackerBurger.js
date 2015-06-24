@@ -5,7 +5,7 @@ game.slide = function() {
 var animation,
 	generateAnimation,
 	stackerGameComplete = false; 
-	currentBottom = 90, 
+	currentBottom = 0, 
 	numElement = 0, 
 	time = 1, 
 	score = 0, 
@@ -43,7 +43,11 @@ var firstStackCreation = function() {
 		if ( !stackerGameComplete ) {
 			
 			var height = $(".stack").css("height"); // Get the height from the .stack (this returns a NUMpx)
-			currentBottom += parseInt(height); // Current bottom which is 0 at first, add the height (parseInt to get rid of px)
+
+			currentBottom += parseInt(height); 
+			if (clickCount === 1) {
+				currentBottom = parseInt(height) + (parseInt(height)/2)
+			}// Current bottom which is 0 at first, add the height (parseInt to get rid of px)
 			numElement++; // Add 1 to numElement
 			time = time - 0.1; // Reduce the amount of time
 			var id = "stack" + numElement; // Generate an id
