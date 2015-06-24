@@ -33,6 +33,8 @@ class ApplicationController < ActionController::Base
         coins_distribute(topscore_array)
 
       end
+
+      playerscore_reset
   end
 
 
@@ -40,13 +42,13 @@ class ApplicationController < ActionController::Base
       #not using User.find because throws sql errors in console with id nil
       topscore_array.each do | score |
         user = (User.where :id => score.user_id).first
-        if user             #need to check for user because of nil user 
+        if user            #need to check for user because of nil user 
           user.coins +=1 if user.coins < 10
           user.save
         end
       end
 
-      playerscore_reset
+      
 
   end
 
