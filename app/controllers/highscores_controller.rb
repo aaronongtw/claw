@@ -1,10 +1,10 @@
 class HighscoresController < ApplicationController
   before_action :set_highscore, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_if_admin
   # GET /highscores
   # GET /highscores.json
   def index
-    @highscores = Highscore.all
+      @highscores = Highscore.all
   end
 
   # GET /highscores/1
@@ -65,6 +65,12 @@ class HighscoresController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_highscore
       @highscore = Highscore.find(params[:id])
+    end
+
+    def check_if_admin
+      if !@current_user.admin
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

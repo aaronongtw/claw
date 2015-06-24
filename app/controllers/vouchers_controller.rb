@@ -4,12 +4,19 @@ class VouchersController < ApplicationController
   # GET /vouchers
   # GET /vouchers.json
   def index
-    @vouchers = Voucher.all
+    if @current_user.admin
+      @vouchers = Voucher.all
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /vouchers/1
   # GET /vouchers/1.json
   def show
+    if !@current_user.admin
+      redirect_to root_path
+    end
   end
 
   def item
@@ -24,11 +31,18 @@ class VouchersController < ApplicationController
 
   # GET /vouchers/new
   def new
-    @voucher = Voucher.new
+    if @current_user.admin
+      @voucher = Voucher.new
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /vouchers/1/edit
   def edit
+    if !@current_user.admin
+      redirect_to root_path
+    end
   end
 
   # POST /vouchers

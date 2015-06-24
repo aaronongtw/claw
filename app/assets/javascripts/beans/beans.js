@@ -2,6 +2,19 @@ var game = game || {}
 
 game.beans = function() {
 
+    var player;
+    var platforms;
+    var cursors;
+    var score = 0;
+    var scoreText;
+    var stars;
+    var ground;
+    var beanFall;
+    var catchBean = true;
+    var beanbeantime;
+    var newGame = true;
+    var waitForEnd;
+    var emitter;
 
     var game = new Phaser.Game(400, 600, Phaser.AUTO, 'bean', {
         preload: preload,
@@ -16,20 +29,11 @@ game.beans = function() {
         game.load.image('sky', '../assets/beans/sky.png');
         game.load.image('ground', '../assets/beans/platform.png');
         game.load.image('star', '../assets/beans/star.png');
-        game.load.spritesheet('dude', '../assets/beans/dude.png', 60, 60);
+        game.load.image('dude', '../assets/beans/dude.png');
 
     }
 
-    var player;
-    var platforms;
-    var cursors;
-    var score = 0;
-    var scoreText;
-    var stars;
-    var ground;
-    var beanFall;
-    var miss = 0;
-    var beanbeantime;
+
 
     function create() {
 
@@ -40,7 +44,7 @@ game.beans = function() {
         game.add.sprite(0, 0, 'sky');
 
         // Here we create the ground.
-        ground = game.add.sprite(0, game.world.height - 1, 'ground');
+        ground = game.add.sprite(0, game.world.height-2, 'ground');
 
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         ground.scale.setTo(2, 2);
@@ -52,26 +56,40 @@ game.beans = function() {
 
 
         // The player and its settings
-        player = game.add.sprite(50, game.world.height - 100, 'dude');
+        player = game.add.sprite(game.world.width/2, 0, 'dude');
 
-
+        player.inputEnabled =true;
+        player.input.enableDrag();
+        player.events.onDragStart.add(startDrag, this);
+        player.events.onDragStop.add(stopDrag, this);
 
 
         //  We need to enable physics on the player
         game.physics.arcade.enable(player);
+        player.enableBody = true;
 
         //  Player physics properties. Give the little guy a slight bounce.
         player.body.collideWorldBounds = true;
 
+
         //  Our two animations, walking left and right.
-        player.animations.add('left', [0, 1, 2, 3], 10, true);
-        player.animations.add('right', [5, 6, 7, 8], 10, true);
+        //player.animations.add('left', [0, 1, 2, 3], 10, true);
+        //player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+        player.body.gravity.y = 1500;
+
+        player.body.bounce.y = .7;
+
 
         //  Finally some stars to collect
         stars = game.add.group();
 
         //  We will enable physics for any star that is created in this group
         stars.enableBody = true;
+
+        emitter = game.add.emitter(0, 0, 100);
+        emitter.makeParticles('star');
+        emitter.gravity = 200;
 
         //  Our controls.
         cursors = game.input.keyboard.createCursorKeys();
@@ -83,14 +101,22 @@ game.beans = function() {
             fill: '#000'
         });
 
-
-
-
-
     }
 
+    function startDrag(){
+        if(newGame){
+            $('#stackerScoreComplete').css('display', 'none');
+            scoreText.text = 'Score: ' + score;
+            newGame = false
+            randomCreateBean();
+        }
+        
+        player.body.moves = false;
+    }
 
-
+    function stopDrag(){
+        player.body.moves = true;
+    }
 
 
     function update() {
@@ -106,87 +132,60 @@ game.beans = function() {
         // Collect Missed.
         game.physics.arcade.overlap(ground, stars, collectMissed, null, this);
 
-        // // Collect other objects.
-        // game.physics.arcade.overlap(ground, stars, collectStar, null, this);
-
-        // // Collect other objects.
-        // game.physics.arcade.overlap(ground, stars, collectStar, null, this);
-
-
-
-
-
-        //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
 
-        if (cursors.left.isDown) {
-            //  Move to the left
-            player.body.velocity.x = -150;
 
-            player.animations.play('left');
-        } else if (cursors.right.isDown) {
-            //  Move to the right
-            player.body.velocity.x = 150;
+        // if (cursors.left.isDown) {
+        //     //  Move to the left
+        //     player.body.velocity.x = -150;
 
-            player.animations.play('right');
-        } else {
-            //  Stand still
-            player.animations.stop();
+        //     player.animations.play('left');
+        // } else if (cursors.right.isDown) {
+        //     //  Move to the right
+        //     player.body.velocity.x = 150;
 
-            player.frame = 4;
-        }
+        //     player.animations.play('right');
+        // } else {
+        //     //  Stand still
+        //     player.animations.stop();
 
-        //  Allow the player to jump if they are touching the ground.
-        if (cursors.up.isDown && player.body.touching.down) {
-            player.body.velocity.y = -350;
-        }
+        //     player.frame = 4;
+        // }
 
-
-
-
-
-
-
-    }
-
-    function collectStar(player, star) {
-
-        // Removes the star from the screen
-        star.kill();
-
-
-        score += 10;
-        scoreText.text = 'Score: ' + score;
-
-
-
-    }
-
-
-    function createBeans() {
-
-        console.log('create beans');
-        //  Here we'll create 12 of them evenly spaced apart
-        i = Math.ceil(Math.random() * 8)
-
-        //  Create a star inside of the 'stars' group
-        // i randomized by 50, 
-        var star = stars.create(i * 40, -20, 'star');
-
-        //  Let gravity do its thing
-        star.body.gravity.y = 100;
-        randomCreateBean();
     }
 
     var randomCreateBean = function() {
         beanbeantime = setTimeout(function() {
             createBeans()
-        }, Math.random() * 2000)
+        }, Math.random() * 1000)
+    }
+
+    function createBeans() {
+        //  Here we'll create 12 of them evenly spaced apart
+        i = Math.ceil(Math.random() * 8)
+        console.log(i);
+
+        //  Create a star inside of the 'stars' group
+        // i randomized by 50, 
+        var star = stars.create(i * 40, -40, 'star');
+        star.anchor.setTo(0.5,0.5);
+
+        //  Let gravity do its thing
+        star.body.gravity.y = 1500;
+        randomCreateBean();
+    }
+
+    var gameOver = function(){
+        console.log("game over")
+        requestRank();
     }
 
 
     var resetGame = function() {
-        $('#scoreboard').css('display', 'none');
+        score = 0;
+        miss = false;
+        newGame = true;
+        catchBean = true;
     }
 
 
@@ -212,22 +211,49 @@ game.beans = function() {
                 ' points! <br> Your best: ' + data.highestscore +
                 '  <br> Rank: ' + data.rank);
             //show scoreboard and jquery funkyness code
+
+            resetGame();
         });
     }
 
-    function collectMissed(ground, star) {
+    function collectStar(player, star) {
+
+        // Removes the star from the screen
         star.kill();
-        miss += 1
-        console.log('miss' + miss)
-        if (miss == 5) {
-            clearTimeout(beanbeantime)
-            gameOver();
+
+        if(catchBean && !newGame){
+            score += 10;
+            scoreText.text = 'Score: ' + score;
+        }else{
+
         }
 
     }
 
-    randomCreateBean();
+    function collectMissed(ground, star) {
+        particleBurst(star);
+        star.kill();
+        clearTimeout(beanbeantime);
 
+        if(catchBean){
+            waitForEnd = setTimeout( function(){
+                gameOver();
+            }, 1500);
+        }
+
+        catchBean = false;
+    }
+
+    function particleBurst(star){
+        emitter.x = star.x;
+        emitter.y = star.y;
+
+        emitter.start(true, 1500, null, 10);
+    }
+
+
+    $('#bean').append('<div id="stackerResults"><h5 id="stackerScoreComplete"></h5></div>');
+    $('#stackerScoreComplete').css('display','none');
 
     $('#scoreboard').on('click', resetGame);
 
