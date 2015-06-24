@@ -39,7 +39,7 @@ game.fishing = function() {
 		console.log (fishTimer)
 		fLRotation -= 360
 		fRotation -= 720
-		fishLoop = TweenMax.to('#fishLoop', ((fishTimer/1000)+(10-(scoreCount*0.7))), {rotation:fLRotation,});
+		fishLoop = TweenMax.to('#fishLoop', (1+ (fishTimer/1000)+(10-(scoreCount/5))), {rotation:fLRotation,});
 		fish = TweenMax.to('#fish', 5	, {rotation:fRotation});
 		clearTimeout(fishInterval)
     
