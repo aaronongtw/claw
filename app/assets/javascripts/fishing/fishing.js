@@ -51,7 +51,7 @@ game.fishing = function() {
 
 
 	var addToScore = function() {
-    if ($('#fish').position().top < 40){
+    if ($('#fish').position().top < 0){
  		scoreCount +=1
     flyTaco();
     }
@@ -96,10 +96,10 @@ game.fishing = function() {
 	$('#fishGame').click(function(){
 		$('#scoreTally').html('score: ' + scoreCount + 'missed: ' + miss)
 		if (miss === 5 ) {
-			$('#fishGame').html('YOU LOSE FOOL' + '<button id="reset">reset</button>')
+			$('#fishGame').html('<h3>score: ' + scoreCount + '</h3><h3>missed: ' + miss + '</h3><h1>YOU LOSE</h1>' + '<button id="reset">reset</button>')
 			$('#reset').click(function() {
 				$('#gameBox').html('')
-		    	$('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'><div id='catch'></div></div></div>")
+		    	$('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><div id='catch'></div></div>")
 		    	miss = 0
 		    	scoreCount = 0
 		    	game.endFish()
