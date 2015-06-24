@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ClawOfNoms</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
-
-
+  <head>
+    <title>ClawOfNoms</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
 </head>
+
 <body>
 
+  <div id="#clawTop" class="pure-menu pure-menu-horizontal">
+    <a href="/" class="pure-menu-heading">Claw of Noms</a>
+    <ul class="pure-menu-list">
 
-<div id="#clawTop" class="pure-menu pure-menu-horizontal">
-  <a href="/" class="pure-menu-heading">Claw of Noms</a>
-  <ul class="pure-menu-list">
-    <%== smart_nav %>
+      <%== smart_nav %>
 
-  </ul>
-</div>
-<div id="clawString"></div>
-<div id="theClaw"></div>
-
-    <%= yield %>
-
-<div class="gameController footer" >
-    <% if @current_user.present? %>
-    <div id="redeemDisplay" class="footerL"% >
-    <h5> <%= @current_user.vouchers.where.not(client_id: Client.where(:name=> "Claw of Noms")[0].id).length %> 
-    </h5>
-    </div>
-    <div id="coinDisplay" class="footerL">
-    <h5 id="coinForUser"><%= pluralize(@current_user.coins, 'coin') %></h5>
-    </div>
-    <div id="addCoins" class="coinButton footerL">+</div>
-    <div id="lessCoins" class="coinButton footerL">-</div>
-    <h2 id="redeemText">Redeem<br>Coins</h2>
-    <h1 id="moveClawGrab" class="clawButtons footerL">0</h1>
+    </ul>
+  </div>
   
-  <% end %>
-</div>
+  <div id="clawString"></div>
+  <div id="theClaw"></div>
+
+      <%= yield %>
+
+  <div class="gameController footer" >
+      <% if @current_user.present? %>
+      <div id="redeemDisplay" class="footerL"% >
+      <h5> <%= @current_user.vouchers.where.not(client_id: Client.where(:name=> "Claw of Noms")[0].id).length %> 
+      </h5>
+      </div>
+
+      <div id="coinDisplay" class="footerL">
+        <h5 id="coinForUser"><%= pluralize(@current_user.coins, 'coin') %></h5>
+      </div>
+
+      <div id="addCoins" class="coinButton footerL">+</div>
+      <div id="lessCoins" class="coinButton footerL">-</div>
+      <h2 id="redeemText">Redeem<br>Coins</h2>
+      <h1 id="moveClawGrab" class="clawButtons footerL">0</h1>
+    
+      <% end %>
+    
+  </div>
 
 </body>
-<%if @current_user.present? %>
-<script type='text/javascript'>
-    var CoinCap = <%= @current_user.coins %>
-    var GMID = <%= Client.where(:name=> "Claw of Noms")[0].id %>
-  </script>
-<% end %>
+
+  <%if @current_user.present? %>
+  <script type='text/javascript'>
+      var CoinCap = <%= @current_user.coins %>
+      var GMID = <%= Client.where(:name=> "Claw of Noms")[0].id %>
+    </script>
+  <% end %>
 
 </html>
 

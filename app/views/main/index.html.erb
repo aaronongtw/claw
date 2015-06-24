@@ -15,20 +15,22 @@
 <div id="prizeBox"></div>
         <% else %>
 
+
+
         <div class="login-page">
+
           <%= form_tag '/login', class: 'pure-form pure-form-stacked' do %>
             <fieldset>
+            
               <div class="pure-">
                 <%= label_tag 'email' %>
-                <%= email_field_tag 'email', nil, class: 'pure-input-rounded',
-                 placeholder: 'email', autofocus: 'true'%>
+                <%= email_field_tag 'email', nil, placeholder: 'email', autofocus: 'true'%>
                 
                 <%= label_tag 'password' %>
-                <%= password_field_tag 'password', nil, class: 'pure-input-rounded',
-                 placeholder: 'password'%>
+                <%= password_field_tag 'password', nil, placeholder: 'password'%>
 
                 <%= submit_tag 'Login', class: 'pure-button pure-button-primary' %>
-              
+                 
             <fieldset>
 
           <% end %>
