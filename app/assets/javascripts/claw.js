@@ -79,6 +79,7 @@ var claw = function() {
         console.log('Grabbing Prize')
         voucher();
         grabbingPrize = TweenMax.to('#prizeBox', 2.2, {
+            'display' : 'block',
             top: '30px',
             left: '10px',
             onComplete: function() {
@@ -92,6 +93,8 @@ var claw = function() {
                             'left': '50%'
                         })
                         $('#prizeBox').html('')
+                        num = 0
+                        $('#moveClawGrab').html(num)
                     }
 
                 })
