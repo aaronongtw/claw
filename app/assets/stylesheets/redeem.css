@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+
 .voucher {
   background-image: url(../assets/layout/ticketfinal.png);
   background-position: center;
@@ -7,14 +9,18 @@
 }
 
 .voucher h3 {
-  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1E1E1E;
   margin-top: 20px;
   padding-top: 40px;
-
 }
 
 
 #redeemItem {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
   background-color: #967C30;
   color: #C4A558;
   border-radius: 12px;
@@ -24,8 +30,27 @@
   outline:none;
 }
 
-
 #redeemItem:hover {
   background-color: #7A6122;
-
 } 
+
+
+.redeemIt {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 340px;
+  margin: 0 auto;
+  padding: 12px 0px 12px 0px; 
+  margin-top: 10px;
+  background-color: #C4A558;
+  border-radius: 12px;
+  color: #1E1E1E;
+}
+
+.redeemIt:hover {
+  background-color: #B2934F;
+}
+
