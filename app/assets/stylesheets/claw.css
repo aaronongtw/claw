@@ -96,7 +96,7 @@ canvas {
 #moveClawGrab {
   position: absolute;
   top: -12px;
-  left: 80%;
+  left: 20%;
   width: 50px;
   height: 50px;
   color: #ffffff;

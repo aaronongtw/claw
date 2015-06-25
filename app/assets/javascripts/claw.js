@@ -161,6 +161,7 @@ var claw = function() {
 
     $('#moveClawGrab').click(function() {
         clearInterval(glowOn);
+        $('#moveClawGrab').removeClass('glowButton');
         if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
         hideDropButton()
         dropBox()
