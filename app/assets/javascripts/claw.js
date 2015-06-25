@@ -88,7 +88,6 @@ var claw = function() {
                         })
                         $('#prizeBox').html('')
                         num = 0
-                        $('#moveClawGrab').html(num)
                         dropBox()
                     }
 
@@ -161,6 +160,7 @@ var claw = function() {
 
 
     $('#moveClawGrab').click(function() {
+        clearInterval(glowOn);
         if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
         hideDropButton()
         dropBox()
