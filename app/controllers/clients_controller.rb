@@ -18,12 +18,12 @@ class ClientsController < ApplicationController
     clawGM.vouchers.each do |v|
         cVouchers << v
     end
-    
     prize = cVouchers.sample
     @current_user.coins -= coins_used
     @current_user.save
     @current_user.vouchers << prize
-    render :json => prize
+    data = [prize, @current_user.coins, @current_user.vouchers.where.not. ]
+    render :json => data
   end
 
   # GET /clients/1
