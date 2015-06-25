@@ -9,21 +9,16 @@ class ClientsController < ApplicationController
 
   def closestVoucher
     cVouchers = []
-    coins_used = params[:client][:used].to_i
+    coins_used = 1
     client = Client.near(@current_user, 1000, :order => "distance")
-    if coins_used >= 5
     client.each do |c|
       cVouchers << c.vouchers.sample
     end
-    elsif coins_used >= 1
       clawGM = (Client.find_by :name => "Claw of Noms")
-      (clawGM.vouchers * (5 - coins_used)).each do |virthers|
-        cVouchers << virthers
-      end
-      client.each do |c|
-        cVouchers << c.vouchers.sample
-      end
+    clawGM.vouchers.each do |v|
+        cVouchers << v
     end
+    
     prize = cVouchers.sample
     @current_user.coins -= coins_used
     @current_user.save
