@@ -106,9 +106,13 @@ canvas {
   line-height: 45px;
   font-size: 33px;
   text-shadow: 0 -1px 0 #476b6b;
-  border-radius: 10%;
+
+  -webkit-transition: box-shadow 2s linear;
+  -moz-transition: box-shadow 2s linear;
+  transition: box-shadow 2s linear; 
+
 }
-#moveClawGrab {
+.moveClawGrab {
    border-top: 1px solid #fa2d2d;
    background: #cc1212;
    background: -webkit-gradient(linear, left top, left bottom, from(#8c0000), to(#cc1212));
@@ -119,9 +123,11 @@ canvas {
    -webkit-border-radius: 15px;
    -moz-border-radius: 15px;
    border-radius: 15px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+
+/*   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
    box-shadow: rgba(0,0,0,1) 0 1px 0;
+*/   
    text-decoration: none;
    vertical-align: middle;
 }
@@ -136,29 +142,9 @@ canvas {
    background: #b51717;
 }
 
+.glowButton{
+  -webkit-box-shadow: 0px 1px 50px rgba(249, 134, 92, 0.81) inset, 0px 0px 60px rgba(245, 128, 137, 1);
+  -moz-box-shadow: 0px 1px 50px rgba(249, 134, 92, 0.81) inset, 0px 0px 60px rgba(245, 128, 137, 1);
+  box-shadow: 0px 1px 50px rgba(249, 134, 92, 0.81) inset, 0px 0px 60px rgba(245, 128, 137, 1);
 
-
-/*.clawButtons {
-  margin: 0 10px 40px 0;
-  width: 40px;
-  height: 40px;
-  background-color: grey;
-  color:#fff;
-  font-family:'Helvetica Neue',sans-serif;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 35px;
-  font-size:30px;
-  border-radius:4px;
-  border:1px solid #E8124F
-}*/
-
-/*.clawButtons {
-  margin-left: 20px;
-  margin-right: 20px;
-  display: inline-block;
-  height:50px;
-  width: 50px;
-  border-radius: 50%;
-  background-color: #E67E22;
-}*/
+}

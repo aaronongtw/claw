@@ -1,3 +1,5 @@
+var glowOn;
+
 $(document).ready(function() {
 
     claw();
@@ -33,9 +35,17 @@ $(document).ready(function() {
           $('#coinDisplay').html('<h5 id="coinForUser" class="tlt">' + coin + ' ' + pluralcoin + '</h5>')
 
           $('.tlt').textillate({ in: { effect: 'bounce', sync:true, } });
+
+          glowButton();
         }
     }
     
-    pollCoin.checkCoin();
+    var clawHere = $('#moveClawGrab');
+
+    if(clawHere.length){
+      if ( parseInt($('#coinForUser').html().split(' ')[0]) ) {glowButton()};
+
+      pollCoin.checkCoin();
+    }
 
 });
