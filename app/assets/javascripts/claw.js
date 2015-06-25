@@ -7,6 +7,10 @@ var claw = function() {
 
     var xMovement;
 
+    var hideDropButton = function(){
+      $('#dropBox').css('display', 'none');
+    }
+
     var randomMovement = function() {
         xMovement = Math.floor((Math.random() * 10)- 20)
     }
@@ -151,6 +155,7 @@ var claw = function() {
 
     $('#moveClawGrab').click(function() {
         if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
+        hideDropButton()
         dropBox()
         clawDown("RedemtionView");
         whereAmI(); //updates user location with GPS
@@ -178,5 +183,7 @@ var claw = function() {
         dropBox()
         clawDown("redeem")
     })
+
+    $('#dropBox').on('click', hideDropButton);
 
 };

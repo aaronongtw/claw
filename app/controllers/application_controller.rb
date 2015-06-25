@@ -56,9 +56,6 @@ class ApplicationController < ActionController::Base
           user.save
         end
       end
-
-      
-
   end
 
 
