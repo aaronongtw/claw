@@ -1,6 +1,8 @@
 $(document).ready(function() {
     claw();
 
+    //$("#dropBox").css("display", "none");
+
     var pollCoin = {};
 
     pollCoin.checkCoin = function(){
@@ -35,6 +37,12 @@ $(document).ready(function() {
         }
     }
 
+    var hideDropButton = function(){
+      $('#dropBox').css('display', 'none');
+    }
+
     pollCoin.checkCoin();
+
+    $('#dropBox').on('click', hideDropButton);
 
 });
