@@ -9,7 +9,7 @@ var redeemList = function() {
             return el.client_id != GMID
         });
         for (var i = 0; i < RedeemData.length; i += 1) {
-            $('#redeem').append('<div id=' + RedeemData[i].id + ' class="redeemIt">' + RedeemData[i].name + ' ' + RedeemData[i].description + '</div>')
+            $('#redeem').append('<div id=' + RedeemData[i].id + ' class="redeemIt">' + RedeemData[i].name + '</div>')
         }
         DigitalData = data.filter(function(el) {
             return el.client_id == GMID
