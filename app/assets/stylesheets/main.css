@@ -4,7 +4,7 @@ html body {
   max-height: 100vh;
   overflow: hidden;
   background-color: ghostwhite;
-
+}
 
 
 #gameBox {
@@ -14,13 +14,9 @@ html body {
     top: 110%;
     width: 70%;
     height: 84%;
-<<<<<<< HEAD
-    background-color: #E9CE90;
-=======
     background-color: snow;
     box-shadow: 0 0 14px silver;
     border-radius: 5px;
->>>>>>> cc5277a5b908138969a7c98f7a20c53074830e0f
     margin: 0px auto;
     margin-top: 0.3%;
     z-index: 10;
@@ -64,18 +60,31 @@ html body {
 
 
 /* * * GAME TITLE * * */
-.gameTitle {
+/*.gameTitle {
     overflow: auto;
     color: #303030;
     text-shadow: 0 0 1px grey;
     font-size: 20px;
 }
-
+*/
 
 
 
 .pure-menu-heading {
   font-family: 'Bangers', cursive;
+  font-size: 24px;
+  color: #DC0815;
+  letter-spacing: 3px;
+}
+
+.pure-menu-heading:hover {
+  color: #B3191E;
+}
+
+
+
+.pure-menu .pure-menu-horizontal {
+
 }
 
 

@@ -17,6 +17,8 @@ game.beans = function() {
     var waitForEnd;
     var emitter;
 
+    UpdateMarq('Bean Drop','white')
+
     var game = new Phaser.Game(320, 550, Phaser.AUTO, 'bean', {
         preload: preload,
         create: create,
