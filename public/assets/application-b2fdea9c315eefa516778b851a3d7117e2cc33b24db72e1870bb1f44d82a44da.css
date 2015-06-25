@@ -4458,13 +4458,9 @@ canvas {
   box-shadow: 0 0 2px black;
 }
 
-#clawGlass {
-  position: relative;
+#clawsil {
+  height:80%;
   width: 80%;
-  height: 80%;
-  left : 10%;
-  top: 5%;
-  background-color: rgba(200,200,255,0.3);
 }
 
 #clawTop {
@@ -4521,7 +4517,23 @@ canvas {
   position: absolute;
   width: 2px;
   background-color: black;
+  z-index: -100;
 }
+
+#blackBox {
+  position:absolute;
+  background-color:black;
+  box-shadow:0 0 2px white;
+  top: 30%;
+  left:32%;
+  width:45%;
+  height: 40%;
+  color: green;
+  font-family: Monospace;
+  font-size: 130%;
+}
+
+
 
 
 /*redeem coin display*/
@@ -4750,7 +4762,14 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 .pure-button.pure-button-primary {
   border-radius: 8px;
   margin-top: 10px;
+  background-color: #B3191E;
 }
+
+.pure-button.pure-button-primary:hover {
+  background-color: #DC0815;
+}
+
+
 
 #password input:focus, textarea:focus {
     outline: none;
@@ -4780,7 +4799,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 
 /* Edit User Form */
 
-#user_email  {
+/*#user_email  {
   border-radius: 8px;
   margin-top: 10px;
 }
@@ -4794,7 +4813,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 #user_password_confirmation {
   border-radius: 8px;
   margin-top: 10px;
-}
+}*/
 
 /* * * GAME BOX - POSITION WHERE GAMES ARE DISPLAYED * * */
 
@@ -4859,12 +4878,36 @@ html body {
 
 
 /* * * GAME TITLE * * */
-.gameTitle {
+/*.gameTitle {
     overflow: auto;
     color: #303030;
     text-shadow: 0 0 1px grey;
     font-size: 20px;
 }
+*/
+
+
+
+.pure-menu-heading {
+  font-family: 'Bangers', cursive;
+  font-size: 24px;
+  color: #DC0815;
+  letter-spacing: 3px;
+}
+
+.pure-menu-heading:hover {
+  color: #B3191E;
+}
+
+
+
+.pure-menu {
+/*  margin-top: -10px;
+*/
+height: 44px;
+}
+
+
 
 #gameSelector h1 {
     text-align: center;
@@ -5561,6 +5604,8 @@ in the near future
 
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+
+@import url(http://fonts.googleapis.com/css?family=Bangers);
 
 
 body {

@@ -148,12 +148,21 @@ game.beans = function() {
 
     function createBeans() {
         i = Math.ceil(Math.random() * 8)
+        var drop = 300;
 
         // i randomized by 50, 
         var star = stars.create(i * 35, -40, 'star');
 
         //  Let gravity do its thing
-        star.body.gravity.y = 1500;
+
+        if(score > 250){
+            drop = 1200;
+        }else if(score >150){
+            drop = 600;
+        }
+
+        star.body.gravity.y = drop;
+
         randomCreateBean();
     }
 

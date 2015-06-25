@@ -14722,6 +14722,367 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 	};
 
 }(jQuery));
+/*global jQuery */
+/*!
+* Lettering.JS 0.7.0
+*
+* Copyright 2010, Dave Rupert http://daverupert.com
+* Released under the WTFPL license
+* http://sam.zoy.org/wtfpl/
+*
+* Thanks to Paul Irish - http://paulirish.com - for the feedback.
+*
+* Date: Mon Sep 20 17:14:00 2010 -0600
+*/
+
+(function($){
+  function injector(t, splitter, klass, after) {
+    var text = t.text()
+    , a = text.split(splitter)
+    , inject = '';
+    if (a.length) {
+      $(a).each(function(i, item) {
+        inject += '<span class="'+klass+(i+1)+'" aria-hidden="true">'+item+'</span>'+after;
+      });
+      t.attr('aria-label',text)
+      .empty()
+      .append(inject)
+
+    }
+  }
+
+
+  var methods = {
+    init : function() {
+
+      return this.each(function() {
+        injector($(this), '', 'char', '');
+      });
+
+    },
+
+    words : function() {
+
+      return this.each(function() {
+        injector($(this), ' ', 'word', ' ');
+      });
+
+    },
+
+    lines : function() {
+
+      return this.each(function() {
+        var r = "eefec303079ad17405c889e092e105b0";
+        // Because it's hard to split a <br/> tag consistently across browsers,
+        // (*ahem* IE *ahem*), we replace all <br/> instances with an md5 hash
+        // (of the word "split").  If you're trying to use this plugin on that
+        // md5 hash string, it will fail because you're being ridiculous.
+        injector($(this).children("br").replaceWith(r).end(), r, 'line', '');
+      });
+
+    }
+  };
+
+  $.fn.lettering = function( method ) {
+    // Method calling logic
+    if ( method && methods[method] ) {
+      return methods[ method ].apply( this, [].slice.call( arguments, 1 ));
+    } else if ( method === 'letters' || ! method ) {
+      return methods.init.apply( this, [].slice.call( arguments, 0 ) ); // always pass an array
+    }
+    $.error( 'Method ' +  method + ' does not exist on jQuery.lettering' );
+    return this;
+  };
+
+})(jQuery);
+/*
+ * textillate.js
+ * http://jschr.github.com/textillate
+ * MIT licensed
+ *
+ * Copyright (C) 2012-2013 Jordan Schroter
+ */
+
+
+(function ($) {
+  "use strict";
+
+  function isInEffect (effect) {
+    return /In/.test(effect) || $.inArray(effect, $.fn.textillate.defaults.inEffects) >= 0;
+  };
+
+  function isOutEffect (effect) {
+    return /Out/.test(effect) || $.inArray(effect, $.fn.textillate.defaults.outEffects) >= 0;
+  };
+
+
+  function stringToBoolean(str) {
+    if (str !== "true" && str !== "false") return str;
+    return (str === "true");
+  };
+
+  // custom get data api method
+  function getData (node) {
+    var attrs = node.attributes || []
+      , data = {};
+
+    if (!attrs.length) return data;
+
+    $.each(attrs, function (i, attr) {
+      var nodeName = attr.nodeName.replace(/delayscale/, 'delayScale');
+      if (/^data-in-*/.test(nodeName)) {
+        data.in = data.in || {};
+        data.in[nodeName.replace(/data-in-/, '')] = stringToBoolean(attr.nodeValue);
+      } else if (/^data-out-*/.test(nodeName)) {
+        data.out = data.out || {};
+        data.out[nodeName.replace(/data-out-/, '')] =stringToBoolean(attr.nodeValue);
+      } else if (/^data-*/.test(nodeName)) {
+        data[nodeName.replace(/data-/, '')] = stringToBoolean(attr.nodeValue);
+      }
+    })
+
+    return data;
+  }
+
+  function shuffle (o) {
+      for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+      return o;
+  }
+
+  function animate ($t, effect, cb) {
+    $t.addClass('animated ' + effect)
+      .css('visibility', 'visible')
+      .show();
+
+    $t.one('animationend webkitAnimationEnd oAnimationEnd', function () {
+        $t.removeClass('animated ' + effect);
+        cb && cb();
+    });
+  }
+
+  function animateTokens ($tokens, options, cb) {
+    var that = this
+      , count = $tokens.length;
+
+    if (!count) {
+      cb && cb();
+      return;
+    }
+
+    if (options.shuffle) $tokens = shuffle($tokens);
+    if (options.reverse) $tokens = $tokens.toArray().reverse();
+
+    $.each($tokens, function (i, t) {
+      var $token = $(t);
+
+      function complete () {
+        if (isInEffect(options.effect)) {
+          $token.css('visibility', 'visible');
+        } else if (isOutEffect(options.effect)) {
+          $token.css('visibility', 'hidden');
+        }
+        count -= 1;
+        if (!count && cb) cb();
+      }
+
+      var delay = options.sync ? options.delay : options.delay * i * options.delayScale;
+
+      $token.text() ?
+        setTimeout(function () { animate($token, options.effect, complete) }, delay) :
+        complete();
+    });
+  };
+
+  var Textillate = function (element, options) {
+    var base = this
+      , $element = $(element);
+
+    base.init = function () {
+      base.$texts = $element.find(options.selector);
+
+      if (!base.$texts.length) {
+        base.$texts = $('<ul class="texts"><li>' + $element.html() + '</li></ul>');
+        $element.html(base.$texts);
+      }
+
+      base.$texts.hide();
+
+      base.$current = $('<span>')
+        .html(base.$texts.find(':first-child').html())
+        .prependTo($element);
+
+      if (isInEffect(options.in.effect)) {
+        base.$current.css('visibility', 'hidden');
+      } else if (isOutEffect(options.out.effect)) {
+        base.$current.css('visibility', 'visible');
+      }
+
+      base.setOptions(options);
+
+      base.timeoutRun = null;
+
+      setTimeout(function () {
+        base.options.autoStart && base.start();
+      }, base.options.initialDelay)
+    };
+
+    base.setOptions = function (options) {
+      base.options = options;
+    };
+
+    base.triggerEvent = function (name) {
+      var e = $.Event(name + '.tlt');
+      $element.trigger(e, base);
+      return e;
+    };
+
+    base.in = function (index, cb) {
+      index = index || 0;
+
+      var $elem = base.$texts.find(':nth-child(' + ((index||0) + 1) + ')')
+        , options = $.extend(true, {}, base.options, $elem.length ? getData($elem[0]) : {})
+        , $tokens;
+
+      $elem.addClass('current');
+
+      base.triggerEvent('inAnimationBegin');
+
+      base.$current
+        .html($elem.html())
+        .lettering('words');
+
+      // split words to individual characters if token type is set to 'char'
+      if (base.options.type == "char") {
+        base.$current.find('[class^="word"]')
+            .css({
+              'display': 'inline-block',
+              // fix for poor ios performance
+              '-webkit-transform': 'translate3d(0,0,0)',
+              '-moz-transform': 'translate3d(0,0,0)',
+              '-o-transform': 'translate3d(0,0,0)',
+              'transform': 'translate3d(0,0,0)'
+            })
+            .each(function () { $(this).lettering() });
+      }
+
+      $tokens = base.$current
+        .find('[class^="' + base.options.type + '"]')
+        .css('display', 'inline-block');
+
+      if (isInEffect(options.in.effect)) {
+        $tokens.css('visibility', 'hidden');
+      } else if (isOutEffect(options.in.effect)) {
+        $tokens.css('visibility', 'visible');
+      }
+
+      base.currentIndex = index;
+
+      animateTokens($tokens, options.in, function () {
+        base.triggerEvent('inAnimationEnd');
+        if (options.in.callback) options.in.callback();
+        if (cb) cb(base);
+      });
+    };
+
+    base.out = function (cb) {
+      var $elem = base.$texts.find(':nth-child(' + ((base.currentIndex||0) + 1) + ')')
+        , $tokens = base.$current.find('[class^="' + base.options.type + '"]')
+        , options = $.extend(true, {}, base.options, $elem.length ? getData($elem[0]) : {})
+
+      base.triggerEvent('outAnimationBegin');
+
+      animateTokens($tokens, options.out, function () {
+        $elem.removeClass('current');
+        base.triggerEvent('outAnimationEnd');
+        if (options.out.callback) options.out.callback();
+        if (cb) cb(base);
+      });
+    };
+
+    base.start = function (index) {
+      setTimeout(function () {
+        base.triggerEvent('start');
+
+      (function run (index) {
+        base.in(index, function () {
+          var length = base.$texts.children().length;
+
+          index += 1;
+
+          if (!base.options.loop && index >= length) {
+            if (base.options.callback) base.options.callback();
+            base.triggerEvent('end');
+          } else {
+            index = index % length;
+
+            base.timeoutRun = setTimeout(function () {
+              base.out(function () {
+                run(index)
+              });
+            }, base.options.minDisplayTime);
+          }
+        });
+      }(index || 0));
+      }, base.options.initialDelay);
+    };
+
+    base.stop = function () {
+      if (base.timeoutRun) {
+        clearInterval(base.timeoutRun);
+        base.timeoutRun = null;
+      }
+    };
+
+    base.init();
+  }
+
+  $.fn.textillate = function (settings, args) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('textillate')
+        , options = $.extend(true, {}, $.fn.textillate.defaults, getData(this), typeof settings == 'object' && settings);
+
+      if (!data) {
+        $this.data('textillate', (data = new Textillate(this, options)));
+      } else if (typeof settings == 'string') {
+        data[settings].apply(data, [].concat(args));
+      } else {
+        data.setOptions.call(data, options);
+      }
+    })
+  };
+
+  $.fn.textillate.defaults = {
+    selector: '.texts',
+    loop: false,
+    minDisplayTime: 2000,
+    initialDelay: 0,
+    in: {
+      effect: 'fadeInLeftBig',
+      delayScale: 1.5,
+      delay: 50,
+      sync: false,
+      reverse: false,
+      shuffle: false,
+      callback: function () {}
+    },
+    out: {
+      effect: 'hinge',
+      delayScale: 1.5,
+      delay: 50,
+      sync: false,
+      reverse: false,
+      shuffle: false,
+      callback: function () {}
+    },
+    autoStart: true,
+    inEffects: [],
+    outEffects: [ 'hinge' ],
+    callback: function () {},
+    type: 'char'
+  };
+
+}(jQuery));
 var game = game || {}
 
 game.beans = function() {
@@ -14731,6 +15092,7 @@ game.beans = function() {
     var cursors;
     var score = 0;
     var scoreText;
+    var instructions;
     var stars;
     var ground;
     var beanFall;
@@ -14739,6 +15101,8 @@ game.beans = function() {
     var newGame = true;
     var waitForEnd;
     var emitter;
+
+    UpdateMarq('Bean Drop','white')
 
     var game = new Phaser.Game(320, 550, Phaser.AUTO, 'bean', {
         preload: preload,
@@ -14765,12 +15129,14 @@ game.beans = function() {
         game.add.sprite(0, 0, 'sky');
 
         // Here we create the ground.
-        ground = game.add.sprite(0, game.world.height - 2, 'ground');
+        ground = game.add.sprite(0, game.world.height - 40, 'ground');
 
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         ground.scale.setTo(2, 2);
 
         game.physics.arcade.enable(ground);
+
+        ground.body.immovable = true;
 
 
         // The player and its settings
@@ -14794,6 +15160,8 @@ game.beans = function() {
         player.body.bounce.y = .7;
 
 
+
+
         //  Finally some stars to collect
         stars = game.add.group();
 
@@ -14814,10 +15182,19 @@ game.beans = function() {
             fill: '#000'
         });
 
+        instructions = game.add.text(12,12,'Drag Me', {
+            font: 'Serif',
+            fontSize: '8px',
+            fill: '#22313F'
+        });
+
+        instructions.anchor.setTo(0.5, 0.5);
+
     }
 
     function startDrag() {
         if (newGame) {
+            instructions.text = "";
             $('#stackerScoreComplete').css('display', 'none');
             scoreText.text = 'Score: ' + score;
             newGame = false
@@ -14833,6 +15210,10 @@ game.beans = function() {
 
 
     function update() {
+        game.physics.arcade.collide(player, ground);
+
+        instructions.x = Math.floor(player.x + 4);
+        instructions.y = Math.floor(player.y - player.width/2);
 
         // This will be beans.
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
@@ -14852,12 +15233,21 @@ game.beans = function() {
 
     function createBeans() {
         i = Math.ceil(Math.random() * 8)
+        var drop = 300;
 
         // i randomized by 50, 
         var star = stars.create(i * 35, -40, 'star');
 
         //  Let gravity do its thing
-        star.body.gravity.y = 1500;
+
+        if(score > 250){
+            drop = 1200;
+        }else if(score >150){
+            drop = 600;
+        }
+
+        star.body.gravity.y = drop;
+
         randomCreateBean();
     }
 
@@ -14872,6 +15262,7 @@ game.beans = function() {
         miss = false;
         newGame = true;
         catchBean = true;
+        instructions.text = "Drag to play again!";
     }
 
 
@@ -14948,12 +15339,17 @@ game.beans = function() {
 ;
 var drawLine;
 var prizeUp;
+var UpdateMarq;
 
 var claw = function() {
 
     var num = 0
 
     var xMovement;
+
+    var hideDropButton = function(){
+      $('#dropBox').css('display', 'none');
+    }
 
     var randomMovement = function() {
         xMovement = Math.floor((Math.random() * 10)- 20)
@@ -14989,6 +15385,7 @@ var claw = function() {
             top: '30px',
             display: 'block',
             onComplete: function() {
+                $('#dropBox').css("display", "inline");
                 clearInterval(drawingLine)
                 if (callItem === "flappyFood") {
                     game.flappy()
@@ -15030,7 +15427,6 @@ var claw = function() {
                         })
                         $('#prizeBox').html('')
                         num = 0
-                        $('#moveClawGrab').html(num)
                         dropBox()
                     }
 
@@ -15085,7 +15481,7 @@ var claw = function() {
 
 
     var renderFish = function() {
-        $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><div id='catch'></div></div>")
+        $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><button id='catch'>click!</button></div>")
     }
 
     var renderSlide = function() {
@@ -15093,45 +15489,65 @@ var claw = function() {
 
     }
 
-
+    UpdateMarq = function(text, colour) {
+        $('#mText').html(text)
+        if (colour == null){
+            colour = 'green'
+            }
+        $('#mText').css('color',colour)
+    }
 
 
     $('#moveClawGrab').click(function() {
+        stopTheGlow()
         if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
+        hideDropButton()
         dropBox()
         clawDown("RedemtionView");
         whereAmI(); //updates user location with GPS
         voucher();
+        }
+        else {
+            UpdateMarq('You have no coins to use', 'red')
         }
     });
 
 
     $('#Fluffy').click(function() {
         clawDown("flappyFood")
+        UpdateMarq('Loading Fluffy Gelato')
     });
     $('#Taco').click(function() {
         clawDown("taco")
+        UpdateMarq('Loading Taco Fishing')
     });
     $('#Slide').click(function() {
         clawDown("slide")
+        UpdateMarq('Loading Burger Stacker')
     });
     $('#Bean').click(function() {
         clawDown("bean")
+        UpdateMarq('Loading Bean Drop')
     });
     $('#dropBox').click(function() {
+        UpdateMarq('Claw of Noms', 'white')
         dropBox()
+        hideDropButton()
     })
     $('#redeemDisplay').click(function() {
+        UpdateMarq('Loading Prizes Won')
         dropBox()
         clawDown("redeem")
     })
+
+    
 
 };
 var game = game || {}
 var fishInterval
 var miss = 0
 game.fishing = function() {
-	
+	UpdateMarq('Taco Fishing', 'white')
 	var fLRotation = 0
 	var fRotation = 0
 	var fishTimer
@@ -15242,6 +15658,7 @@ game.flappy = function() {
     ////////////////////boot/////////////////////
     function Boot() {};
 
+
     Boot.prototype = {
         preload: function() {
             this.load.image('preloader', '../assets/preloader.gif');
@@ -15251,7 +15668,7 @@ game.flappy = function() {
             this.game.state.start('preload');
         }
     };
-
+    UpdateMarq('Fluffy Gelato', 'white')
     ////////////////////menu//////////////////////
     function Menu() {}
 
@@ -15806,6 +16223,29 @@ game.flappy = function() {
 
     game.state.start('boot');
 
+};
+var stopTheGlow = function(){
+  clearInterval(glowOn);
+  $('#moveClawGrab').removeClass('glowButton');
+  $('#moveClawGrab').addClass('clawBottomShadow');
+
+}
+
+
+var glowButton = function(){
+      $('#moveClawGrab').removeClass('clawBottomShadow');
+
+    setTimeout(function(){
+      var timeMe = 0
+      glowOn = setInterval( function(){
+        timeMe +=1
+        if(timeMe < 15){
+          $('#moveClawGrab').toggleClass('glowButton');
+        }else{
+         stopTheGlow();
+        }
+      },2000);
+    },1000);
 };
 /*!
  * VERSION: 1.17.0
@@ -17801,7 +18241,10 @@ game.flappy = function() {
   };
 
 }(jQuery));
+var glowOn;
+
 $(document).ready(function() {
+
     claw();
 
     var pollCoin = {};
@@ -17824,17 +18267,31 @@ $(document).ready(function() {
     }
 
     pollCoin.updateCoin = function(coin){
+      var currentCoin = parseInt($('#coinForUser').html().split(' ')[0]);
+        if ( currentCoin != coin ){
+          var pluralcoin;
+              if (coin === 1) {
+                  pluralcoin = 'coin'
+              } else {
+                  pluralcoin =  'coins'
+              }
+          $('#coinDisplay').html('<h5 id="coinForUser" class="tlt">' + coin + ' ' + pluralcoin + '</h5>')
 
-        var pluralcoin;
-            if (coin === 1) {
-                pluralcoin = 'coin'
-            } else {
-                pluralcoin =  'coins'
-            }
-        $('#coinDisplay').html('<h5 id="coinForUser">' + coin + ' ' + pluralcoin + '</h5>')
+          $('.tlt').textillate({ in: { effect: 'bounce', sync:true, } });
+
+          $('#mText').html('You just won '+ (coin - currentCoin)+
+            pluralcoin + '!!!!!');
+          glowButton();
+        }
     }
+    
+    var clawHere = $('#moveClawGrab');
 
-    pollCoin.checkCoin();
+    if(clawHere.length){
+      if ( parseInt($('#coinForUser').html().split(' ')[0]) ) {glowButton()};
+
+      pollCoin.checkCoin();
+    }
 
 });
 /* Phaser v2.0.5 - http://phaser.io - @photonstorm - (c) 2014 Photon Storm Ltd. */
@@ -18128,8 +18585,8 @@ function whereAmI() {
         console.log("sending: " + lat + " and " + lng);
         var userLocation = {  
                 user:{
-                    latitude: lat,
-                    longitude: lng
+                    lat: lat,
+                    lon: lng
                 }
 
             };
@@ -18180,6 +18637,7 @@ var animation,
 	perfectWinningPosition = 0,
 	clickCount = 0;
 
+UpdateMarq('Burger Stacker', 'white')
 
 var firstStackCreation = function() {
 	var $stack0 = $('<div class="stack" id="stack0"></div>');
@@ -18378,6 +18836,7 @@ var voucher = function() {
             }
         $('#coinDisplay').html('<h5 id="coinForUser">' + data[1] + ' ' + pluralcoin + '</h5>')
         $('#redeemDisplay').html('<h5>' + data[2] + '</h5>')
+        UpdateMarq('Congratulations, you got ' + data[0].name)
     })
 }
 ;
