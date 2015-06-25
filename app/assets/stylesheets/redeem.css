@@ -1,0 +1,14 @@
+.voucher {
+  background-image: url(../assets/layout/ticketfinal.png);
+  background-position: center;
+  margin: 0 auto;
+  width: 420px;
+  height: 180px;
+}
+
+.voucher h3 {
+  font-size: 18px;
+  margin-top: 20px;
+  padding-top: 40px;
+
+}
