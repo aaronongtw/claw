@@ -7,7 +7,13 @@ class UsersController < ApplicationController
   end
 
   def uvoucher
-    render json: @current_user.vouchers
+    @clientList = []
+    @userVouchers = []
+    @current_user.vouchers.each do |v|
+      @clientList << v.client.name 
+    end
+    @userVouchers << @current_user.vouchers << @clientList
+    render json: @userVouchers
   end
 
   # GET /users

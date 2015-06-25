@@ -68,7 +68,6 @@ var claw = function() {
 
     var grabPrize = function() {
         console.log('Grabbing Prize')
-
         prizeUp()
     }
 
@@ -151,18 +150,23 @@ var claw = function() {
 
     }
 
-    UpdateMarq = function(text, colour) {
+    UpdateMarq = function(text, colour, behavior) {
         $('#mText').html(text)
         if (colour == null) {
             colour = 'green'
         }
+        if (behavior == null){
+            behavior = 'scroll'
+        }
         $('#mText').css('color', colour)
+        $('#mText').attr('behavior', behavior)
     }
 
 
     $('#moveClawGrab').click(function() {
         stopTheGlow()
         if (parseInt($('#coinForUser').html().split(' ')[0]) > 0) {
+            UpdateMarq('Claw Activated', 'deeppink')
             hideDropButton()
             dropBox()
             clawDown("RedemtionView");

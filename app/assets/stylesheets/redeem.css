@@ -40,17 +40,21 @@
   font-weight: 700;
   font-size: 14px;
   margin-top: 20px;
-  border-radius: 10px;
-  width: 340px;
   margin: 0 auto;
   padding: 12px 0px 12px 0px; 
   margin-top: 10px;
   background-color: #C4A558;
   border-radius: 12px;
   color: #1E1E1E;
+  width:70%;
 }
 
 .redeemIt:hover {
   background-color: #B2934F;
 }
 
+.locationIt {
+  display:inline-block;
+  margin-left: 60px;
+  color: darkred;
+}

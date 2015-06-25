@@ -2,7 +2,7 @@ var game = game || {}
 var fishInterval
 var miss = 0
 game.fishing = function() {
-	UpdateMarq('Taco Fishing', 'white')
+	UpdateMarq('Taco Fishing', 'white', 'alternate')
 	var fLRotation = 0
 	var fRotation = 0
 	var fishTimer

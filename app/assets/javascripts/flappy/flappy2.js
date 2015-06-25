@@ -14,7 +14,7 @@ game.flappy = function() {
             this.game.state.start('preload');
         }
     };
-    UpdateMarq('Fluffy Gelato', 'white')
+    UpdateMarq('Fluffy Gelato', 'white', 'alternate')
     ////////////////////menu//////////////////////
     function Menu() {}
 
