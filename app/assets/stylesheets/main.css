@@ -51,7 +51,7 @@ html body {
 #theClaw {
     background-image: url('claw/claw.png');
     position:absolute;
-    top:0;
+    top:20px;
     left:45%;
     height: 119px;
     width:83px;

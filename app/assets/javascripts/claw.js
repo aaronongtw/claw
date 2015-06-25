@@ -1,6 +1,7 @@
 var drawLine;
 var prizeUp;
 var UpdateMarq;
+var clawTrace
 
 var claw = function() {
 
@@ -8,12 +9,12 @@ var claw = function() {
 
     var xMovement;
 
-    var hideDropButton = function(){
-      $('#dropBox').css('display', 'none');
+    var hideDropButton = function() {
+        $('#dropBox').css('display', 'none');
     }
 
     var randomMovement = function() {
-        xMovement = Math.floor((Math.random() * 10)- 20)
+        xMovement = Math.floor((Math.random() * 10) - 20)
     }
 
 
@@ -51,7 +52,7 @@ var claw = function() {
                 if (callItem === "flappyFood") {
                     game.flappy()
                 } else if (callItem === "bean") {
-                    game.beans()   
+                    game.beans()
                 } else if (callItem === "taco") {
                     renderFish()
                     game.fishing()
@@ -67,13 +68,13 @@ var claw = function() {
 
     var grabPrize = function() {
         console.log('Grabbing Prize')
-        
+
         prizeUp()
     }
 
-    var prizeUp = function() {    
+    var prizeUp = function() {
         grabbingPrize = TweenMax.to('#prizeBox', 2.2, {
-            'display' : 'block',
+            'display': 'block',
             top: '30px',
             left: '10px',
             onComplete: function() {
@@ -82,7 +83,7 @@ var claw = function() {
                     onComplete: function() {
                         clearInterval(drawingLine)
                         $('#prizeBox').css({
-                            'display':'none',
+                            'display': 'none',
                             'top': '130%',
                             'left': '50%'
                         })
@@ -99,7 +100,7 @@ var claw = function() {
     }
 
     var clawDown = function(grabItem) {
-        drawingLine = setInterval(drawLine,10)
+        drawingLine = setInterval(drawLine, 10)
         $('#gameSelector').css('display', 'none')
         $('#gameBox').html('')
         clowDownAn = TweenMax.to('#theClaw', 3, {
@@ -109,11 +110,11 @@ var claw = function() {
                 $('#gameBox').append('<div id=' + grabItem + '></div>')
                 item = grabItem
                 if (grabItem === "RedemtionView") {
-                clawSide()
-                grabPrize()
-                }else {
-                clawUp();
-                grabGame(item);
+                    clawSide()
+                    grabPrize()
+                } else {
+                    clawUp();
+                    grabGame(item);
                 }
             }
 
@@ -132,7 +133,7 @@ var claw = function() {
             left: '10px',
             top: '0px',
             onComplete: function() {
-                clawReturn = TweenMax.to('#theClaw',4, {
+                clawReturn = TweenMax.to('#theClaw', 4, {
                     left: '50%'
                 })
             }
@@ -152,26 +153,28 @@ var claw = function() {
 
     UpdateMarq = function(text, colour) {
         $('#mText').html(text)
-        if (colour == null){
+        if (colour == null) {
             colour = 'green'
-            }
-        $('#mText').css('color',colour)
+        }
+        $('#mText').css('color', colour)
     }
 
 
     $('#moveClawGrab').click(function() {
         stopTheGlow()
-        if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
-        hideDropButton()
-        dropBox()
-        clawDown("RedemtionView");
-        whereAmI(); //updates user location with GPS
-        voucher();
-        }
-        else {
+        if (parseInt($('#coinForUser').html().split(' ')[0]) > 0) {
+            hideDropButton()
+            dropBox()
+            clawDown("RedemtionView");
+            whereAmI(); //updates user location with GPS
+            voucher();
+        } else {
             UpdateMarq('You have no coins to use', 'red')
         }
     });
+
+
+
 
 
     $('#Fluffy').click(function() {
@@ -201,6 +204,6 @@ var claw = function() {
         clawDown("redeem")
     })
 
-    
+
 
 };
