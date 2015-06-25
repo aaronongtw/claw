@@ -60,18 +60,31 @@ html body {
 
 
 /* * * GAME TITLE * * */
-.gameTitle {
+/*.gameTitle {
     overflow: auto;
     color: #303030;
     text-shadow: 0 0 1px grey;
     font-size: 20px;
 }
-
+*/
 
 
 
 .pure-menu-heading {
   font-family: 'Bangers', cursive;
+  font-size: 24px;
+  color: #DC0815;
+  letter-spacing: 3px;
+}
+
+.pure-menu-heading:hover {
+  color: #B3191E;
+}
+
+
+
+.pure-menu .pure-menu-horizontal {
+
 }
 
 
