@@ -41,6 +41,7 @@ var claw = function() {
             top: '30px',
             display: 'block',
             onComplete: function() {
+                $('#dropBox').css("display", "inline");
                 clearInterval(drawingLine)
                 if (callItem === "flappyFood") {
                     game.flappy()
@@ -137,7 +138,7 @@ var claw = function() {
 
 
     var renderFish = function() {
-        $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><div id='catch'></div></div>")
+        $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><button id='catch'>click!</button></div>")
     }
 
     var renderSlide = function() {

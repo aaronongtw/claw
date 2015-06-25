@@ -3,8 +3,8 @@
 html body {
   max-height: 100vh;
   overflow: hidden;
-  background-color: #ecf0f1;
-}
+  background-color: ghostwhite;
+
 
 
 #gameBox {
@@ -14,7 +14,13 @@ html body {
     top: 110%;
     width: 70%;
     height: 84%;
+<<<<<<< HEAD
     background-color: #E9CE90;
+=======
+    background-color: snow;
+    box-shadow: 0 0 14px silver;
+    border-radius: 5px;
+>>>>>>> cc5277a5b908138969a7c98f7a20c53074830e0f
     margin: 0px auto;
     margin-top: 0.3%;
     z-index: 10;
@@ -97,7 +103,7 @@ html body {
   cursor: pointer;
   box-shadow: 0 0 5px black;
   -webkit-transition: -webkit-filter 0.2s, opacity 0.2s;
-  -webkit-filter: saturate(30%);
+  -webkit-filter: saturate(15%);
 }
 
 .gameDiv {
@@ -367,11 +373,12 @@ position: absolute;
 
 #dropBox {
     position:absolute;
-    right: 10px;
-    top: 10px;    
+    left: 84%;
+    top: 16px;    
     height: 20px;
     width: 20px;
     background-image: url('layout/close-button.png');
     background-size: 100%;
     cursor: pointer;
+    z-index: 9999;
 }
