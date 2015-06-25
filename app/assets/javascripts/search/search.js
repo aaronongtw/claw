@@ -24,8 +24,8 @@ function whereAmI() {
         console.log("sending: " + lat + " and " + lng);
         var userLocation = {  
                 user:{
-                    latitude: lat,
-                    longitude: lng
+                    lat: lat,
+                    lon: lng
                 }
 
             };
