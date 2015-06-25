@@ -83,8 +83,10 @@ html body {
 
 
 
-.pure-menu .pure-menu-horizontal {
-
+.pure-menu {
+/*  margin-top: -10px;
+*/
+height: 44px;
 }
 
 
