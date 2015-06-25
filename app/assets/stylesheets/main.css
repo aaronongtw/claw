@@ -101,12 +101,11 @@ html body {
   background: url('burgerStacker/stackerGameIcon.png');
 }
 
-#Something {
-/*  needs a background icon*/
-}
+#Bean {
+  background: url('beans/beanicon.png');}
 
 #Fluffy {
-/*  needs a background icon*/
+  background: url('fluffygelatoicon.png');
 }
 
 
