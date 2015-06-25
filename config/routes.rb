@@ -110,7 +110,7 @@ Rails.application.routes.draw do
 
   get 'play/flappyfood'
 
-  match '*path' => redirect('/')
+  
 
   get 'play/fishingtacos'
   post 'closest' => 'clients#closestVoucher'
