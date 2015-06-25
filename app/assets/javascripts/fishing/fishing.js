@@ -78,7 +78,7 @@ game.fishing = function() {
         $('#fishGame').html('<h3>score: ' + scoreCount + '</h3><h3>missed: ' + miss + '</h3><h1>YOU LOSE</h1>' + '<h2>Rank: ' + data.rank + '</h2><h2>Highest Score: ' + data.highestscore + '</h2><button id="reset">reset</button>')
         $('#reset').click(function() {
         $('#gameBox').html('')
-          $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><div id='catch'></div></div>")
+          $('#gameBox').append("<div id='fishGame'><h5 id='scoreTally'>SCORE</h5><div id='waveOne'></div><div id='waveTwo'></div><div id='fishLoop'><div id='fish'></div></div><div id='fish2'></div><button id='catch'>click!</button></div>")
           
           miss = 0
           scoreCount = 0
