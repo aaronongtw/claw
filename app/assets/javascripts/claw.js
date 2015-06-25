@@ -191,6 +191,7 @@ var claw = function() {
         UpdateMarq('Loading Bean Drop')
     });
     $('#dropBox').click(function() {
+        UpdateMarq('Claw of Noms', 'white')
         dropBox()
         hideDropButton()
     })
