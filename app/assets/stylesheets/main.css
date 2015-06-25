@@ -3,6 +3,7 @@
 html body {
   max-height: 100vh;
   overflow: hidden;
+  background-color: ghostwhite;
 }
 
 
@@ -13,7 +14,9 @@ html body {
     top: 110%;
     width: 70%;
     height: 84%;
-    background-color: #D2527F;
+    background-color: snow;
+    box-shadow: 0 0 14px silver;
+    border-radius: 5px;
     margin: 0px auto;
     margin-top: 0.3%;
     z-index: 10;
@@ -87,7 +90,7 @@ html body {
   cursor: pointer;
   box-shadow: 0 0 5px black;
   -webkit-transition: -webkit-filter 0.2s, opacity 0.2s;
-  -webkit-filter: saturate(30%);
+  -webkit-filter: saturate(15%);
 }
 
 .gameDiv {
