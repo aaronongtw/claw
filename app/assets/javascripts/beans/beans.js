@@ -7,6 +7,7 @@ game.beans = function() {
     var cursors;
     var score = 0;
     var scoreText;
+    var instructions;
     var stars;
     var ground;
     var beanFall;
@@ -41,12 +42,14 @@ game.beans = function() {
         game.add.sprite(0, 0, 'sky');
 
         // Here we create the ground.
-        ground = game.add.sprite(0, game.world.height - 2, 'ground');
+        ground = game.add.sprite(0, game.world.height - 40, 'ground');
 
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         ground.scale.setTo(2, 2);
 
         game.physics.arcade.enable(ground);
+
+        ground.body.immovable = true;
 
 
         // The player and its settings
@@ -70,6 +73,8 @@ game.beans = function() {
         player.body.bounce.y = .7;
 
 
+
+
         //  Finally some stars to collect
         stars = game.add.group();
 
@@ -90,10 +95,19 @@ game.beans = function() {
             fill: '#000'
         });
 
+        instructions = game.add.text(12,12,'Drag Me', {
+            font: 'Serif',
+            fontSize: '8px',
+            fill: '#22313F'
+        });
+
+        instructions.anchor.setTo(0.5, 0.5);
+
     }
 
     function startDrag() {
         if (newGame) {
+            instructions.text = "";
             $('#stackerScoreComplete').css('display', 'none');
             scoreText.text = 'Score: ' + score;
             newGame = false
@@ -109,6 +123,10 @@ game.beans = function() {
 
 
     function update() {
+        game.physics.arcade.collide(player, ground);
+
+        instructions.x = Math.floor(player.x + 4);
+        instructions.y = Math.floor(player.y - player.width/2);
 
         // This will be beans.
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
@@ -148,6 +166,7 @@ game.beans = function() {
         miss = false;
         newGame = true;
         catchBean = true;
+        instructions.text = "Drag to play again!";
     }
 
 

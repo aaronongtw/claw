@@ -1,7 +1,6 @@
 $(document).ready(function() {
-    claw();
 
-    //$("#dropBox").css("display", "none");
+    claw();
 
     var pollCoin = {};
 
@@ -24,7 +23,7 @@ $(document).ready(function() {
 
     pollCoin.updateCoin = function(coin){
         
-        if (parseInt($('#coinForUser').html().split(' ')[0]) === coin){
+        if (parseInt($('#coinForUser').html().split(' ')[0]) != coin){
           var pluralcoin;
               if (coin === 1) {
                   pluralcoin = 'coin'
@@ -36,13 +35,7 @@ $(document).ready(function() {
           $('.tlt').textillate({ in: { effect: 'bounce', sync:true, } });
         }
     }
-
-    var hideDropButton = function(){
-      $('#dropBox').css('display', 'none');
-    }
-
+    
     pollCoin.checkCoin();
-
-    $('#dropBox').on('click', hideDropButton);
 
 });
