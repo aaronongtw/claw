@@ -15,6 +15,7 @@ var animation,
 	perfectWinningPosition = 0,
 	clickCount = 0;
 
+UpdateMarq('Burger Stacker', 'white')
 
 var firstStackCreation = function() {
 	var $stack0 = $('<div class="stack" id="stack0"></div>');
