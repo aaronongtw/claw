@@ -41,6 +41,7 @@ var claw = function() {
             top: '30px',
             display: 'block',
             onComplete: function() {
+                $('#dropBox').css("display", "inline");
                 clearInterval(drawingLine)
                 if (callItem === "flappyFood") {
                     game.flappy()
