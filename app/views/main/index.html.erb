@@ -13,6 +13,11 @@
 
 <div id="gameBox"></div><div id="dropBox" style="display:none"></div>
 <div id="prizeBox"></div>
+
+<script type='text/javascript'>
+              stopClaw()
+          </script>
+
         <% else %>
 
 
@@ -34,9 +39,14 @@
                 <%= submit_tag 'Login', class: 'pure-button pure-button-primary' %>
                  
             <fieldset>
-
+          
           <% end %>
+          <script type='text/javascript'>
+              followClaw()
+          </script>
+          
         </div>
+        
 
 
         <% end %>
