@@ -149,10 +149,12 @@ var claw = function() {
 
 
     $('#moveClawGrab').click(function() {
+        if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
         dropBox()
         clawDown("RedemtionView");
         whereAmI(); //updates user location with GPS
         voucher();
+        }
     });
 
 
