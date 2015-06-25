@@ -1,10 +1,11 @@
 var drawLine;
 var prizeUp;
 var UpdateMarq;
-var clawTrace
+var clawTrace;
+
 
 var claw = function() {
-
+    var play;
     var num = 0
 
     var xMovement;
@@ -50,15 +51,15 @@ var claw = function() {
                 $('#dropBox').css("display", "inline");
                 clearInterval(drawingLine)
                 if (callItem === "flappyFood") {
-                    game.flappy()
+                    play = game.flappy()
                 } else if (callItem === "bean") {
-                    game.beans()
+                    play = game.beans()
                 } else if (callItem === "taco") {
                     renderFish()
-                    game.fishing()
+                    playe = game.fishing()
                 } else if (callItem === "slide") {
                     renderSlide()
-                    game.slide()
+                    play = game.slide()
                 } else if (callItem === "redeem") {
                     redeemList()
                 }
