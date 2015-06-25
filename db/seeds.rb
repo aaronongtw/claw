@@ -12,14 +12,37 @@ Game.destroy_all
 Voucher.destroy_all
 
 g1 = Game.create(name: 'Fluffy Gelato', highscore: "Strawby has escaped the Gelato Shop in search of a better home. Strangely enough, Strawby's escape path requires her to fly between pipes. Strangely enough, Gelatos can fly. Tap the window or tap the spacebar to keep the Gelato in the air. Fly through as many pipes as possible without crashing.")
-g2 = Game.create(name: 'Taco Fishing', highscore: 'In a quite lake near Mexico, Ola Kitty was seen contaminating the water with hot sauce. Now, all the fish in the lake has turned to tacos. Catch as many tacos as possible. When the taco is out of the water. Hit the white button to catch the taco. A ghost taco going to heaven is an indication that you caught a taco. Miss 5 times and you will lose.')
-g3 = Game.create(name: 'Slide n Stack', highscore: "Nandos just introduced a new food preparation policy which involves timing the stack of a burger. Strangely no matter how far away from the buns your ingredients seem to be, they still manage to stay vertically aligned in some magical way. Click to the game window to see some magic.")
-g4 = Game.create(name: 'Bean Drop', highscore: "What would be impossible to put in a cup? A grandmother. Thats why you use the left right button to catch the coffee beans instead. This new cafe insists that drinking freshly roasted coffee beans is better than actually drinking coffee")
+g2 = Game.create(name: 'Taco Fishing', highscore: 'In a quiet lake near Mexico, Ola Kitty was seen contaminating the water with hot sauce. Now, all the fish in the lake has turned to tacos. Catch as many tacos as possible. When the taco is out of the water. Hit the white button to catch the taco. A ghost taco going to heaven is an indication that you caught a taco. Miss 5 times and you will lose.')
+g3 = Game.create(name: 'Slide n Stack', highscore: "Nandos just introduced a new food preparation policy which involves timing the stack of a burger. No matter how horizontally stacked the burger is, they still manage to stay vertically aligned in some magical way. Click the game window to see some magic.")
+g4 = Game.create(name: 'Bean Drop', highscore: "What would be impossible to put in a cup? A grandmother. Thats why you drag the cup around with your mouse to catch the coffee beans instead. This new cafe insists that drinking freshly roasted coffee beans is better than actually drinking coffee. Miss one bean and you're fired.")
 
 c1 = Client.create(name: 'Baker Bros', location: 'Shop 1 56-58 York St Sydney NSW 2000', clienttype: 'Cafe')
+
 c2 = Client.create(name: 'Claw of Noms', location: 'omnipresent', clienttype: 'Game Master')
 
-v0 = Voucher.create(name: 'Free Coffee')
+c3 = Client.create(name: 'Gelato Messina', location: '80 Pyrmont St Pyrmont NSW 2009', clienttype: 'Ice Cream Bar')
+c4 = Client.create(name: "Mary's Burger", location: '154 Castlereagh St Sydney NSW', clienttype: 'Burger Parlour')
+c5 = Client.create(name: 'Contrabando', location: '21 Bent St Sydney NSW', clienttype: 'Bar')
+c6 = Client.create(name: 'El Loco', location: '111 Sussex St Sydney NSW', clienttype: 'Restaurant')
+
+vbb0 = Voucher.create(name: 'Free Coffee')
+vbb1 = Voucher.create(name: 'Parmeson Egg Roll 1/2 Price')
+vgm0 = Voucher.create(name: 'Buy One Scoop get your second free')
+vgm1 = Voucher.create(name: 'Buy Twenty Scoops and get one free')
+vmb0 = Voucher.create(name: 'Get a burger and get fries and thick shake with that!')
+vbm1 = Voucher.create(name: 'Second burger free')
+vc0 = Voucher.create(name: 'Taco for $3')
+vc1 = Voucher.create(name: 'All you can eat Taco for $15')
+vel0 = Voucher.create(name: 'Get a free Margharita with your meal')
+vel1 = Voucher.create(name: 'Get your second taco for free')
+
+c1.vouchers << vbb0 << vvb1
+c3.vouchers << vgm0 << vgm1
+c4.vouchers << vmb0 << vbm1
+c5.vouchers << vc0 << vc1
+c6.vouchers << vel0 <<vel1
+
+
 v1 = Voucher.create(name: 'Teddy Bear', textstuff: 'teddy.png')
 v2 = Voucher.create(name: 'Rubber Duck', textstuff: 'duck.png')
 v3 = Voucher.create(name: 'Dirty Old Boot', textstuff: 'boot.png')
@@ -30,7 +53,7 @@ v7 = Voucher.create(name: 'Witwicky Glasses', textstuff: 'glasses.png')
 v9 = Voucher.create(name: 'Lucky Clover', textstuff: 'clover.png')
 v10 = Voucher.create(name: 'Smelly Sock', textstuff: 'sock.png')
 
-c1.vouchers << v0
+
 c2.vouchers << v1 << v2 << v3 << v4 << v5 << v6 << v7 << v9 << v10
 
 hs1flap = Highscore.create(score: 20)
