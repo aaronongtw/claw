@@ -20,7 +20,7 @@
 
         <% else %>
 
-
+        <div id=""></div>
 
         <div class="login-page">
 
@@ -37,6 +37,9 @@
                 <%= password_field_tag 'password', nil, placeholder: 'password'%>
 
                 <%= submit_tag 'Login', class: 'pure-button pure-button-primary' %>
+
+                <br>
+                <%= link_to('Sign up', new_user_path, class: 'pure-button pure-button-primary') %>
                  
             <fieldset>
           

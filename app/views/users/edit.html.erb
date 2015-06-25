@@ -2,7 +2,8 @@
 
 <h3>Edit User Profile</h3>
 
-<%= form_for(@user, :class => 'pure-form pure-form-stacked') do |f| %>
+
+<%= form_for @user, :html => { :class => 'pure-form pure-form-stacked'} do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -14,6 +15,10 @@
       </ul>
     </div>
   <% end %>
+
+
+
+
 
 <div class="pure-">
     <div class="field">
@@ -28,11 +33,12 @@
     
       <%= f.submit "Save changes", :class => "button-login pure-button pure-button-primary" %>
     
-    </div>
+</div>
+
 
 <% end %>
 
 <!-- <%= render 'form' %> -->
 
 <!-- <%= link_to 'Show', @user %> | -->
-<br> <%= link_to 'Back', root_path %>
+<br> <%= link_to 'Back', root_path, id: 'editBack' %>

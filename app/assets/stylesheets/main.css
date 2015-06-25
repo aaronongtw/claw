@@ -403,3 +403,8 @@ position: absolute;
     cursor: pointer;
     z-index: 9999;
 }
+
+#editBack {
+  color: black;
+  text-decoration: none;
+}
