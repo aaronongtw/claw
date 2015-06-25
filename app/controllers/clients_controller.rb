@@ -14,15 +14,16 @@ class ClientsController < ApplicationController
     client.each do |c|
       cVouchers << c.vouchers.sample
     end
-      clawGM = (Client.find_by :name => "Claw of Noms")
+    clawGM = (Client.find_by :name => "Claw of Noms")
     clawGM.vouchers.each do |v|
         cVouchers << v
     end
+    clawGM.id
     prize = cVouchers.sample
     @current_user.coins -= coins_used
     @current_user.save
     @current_user.vouchers << prize
-    data = [prize, @current_user.coins, @current_user.vouchers.where.not. ]
+    data = [prize, @current_user.coins, (@current_user.vouchers.where("client_id != #{clawGM.id} ")).length]
     render :json => data
   end
 
