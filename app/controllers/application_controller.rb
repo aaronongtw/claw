@@ -12,8 +12,15 @@ class ApplicationController < ActionController::Base
 
     ## 2 MINUTES FOR STRESS TEST ##
     
+
+
     if @current_user.present?
-      @current_user.update(ip_address: request.remote_ip)
+      if request.remote_ip == "::1"
+      user_ip = "129.78.32.24"
+      else
+      user_ip = request.remote_ip
+      end
+      @current_user.update(ip_address: user_ip)
     end
 
   end

@@ -6,7 +6,7 @@
         <% if @current_user.present? %>
         <div id="gameSelector" class="pure-g game-table">
   <% Game.all.each do |g| %>
-  <div  class="pure-u-1 pure-u-md-1-4"><div id=<%=g.name.split(' ')[0]%> class="pure-u-1 gameSelect"> <h1 class="gameTitle"><%= g.name %></h1></div><div class="instructions"><h5 class="tutorial"><%= g.highscore %></h5></div></div>
+  <div  class="pure-u-1 pure-u-md-1-4 gameDiv"><div id=<%=g.name.split(' ')[0]%> class="pure-u-1 gameSelect"> <h1 class="gameTitle"></h1></div><div class="instructions"><h5 class="tutorial"><%= g.highscore %></h5></div></div>
   <% end %>
 </div>
 

@@ -1,4 +1,5 @@
-var drawLine
+var drawLine;
+var prizeUp;
 
 var claw = function() {
 
@@ -10,25 +11,6 @@ var claw = function() {
         xMovement = Math.floor((Math.random() * 10)- 20)
     }
 
-    var lessCoins = function() {
-        var balance = parseInt($('#coinDisplay h5').html().split(' ')[0])
-        if (num > 0) {
-            num -= 1
-            balance += 1
-            $('#moveClawGrab').html(num)
-            $('#coinDisplay h5').html(balance + " coins")
-        }
-    }
-
-    var addCoins = function() {
-        var balance = parseInt($('#coinDisplay h5').html().split(' ')[0])
-        if (num < CoinCap && num < 5) {
-            num += 1
-            balance -= 1
-            $('#moveClawGrab').html(num)
-            $('#coinDisplay h5').html(balance + " coins")
-        }
-    }
 
     drawLine = function() {
 
@@ -79,7 +61,11 @@ var claw = function() {
 
     var grabPrize = function() {
         console.log('Grabbing Prize')
-        voucher();
+        
+        prizeUp()
+    }
+
+    var prizeUp = function() {    
         grabbingPrize = TweenMax.to('#prizeBox', 2.2, {
             'display' : 'block',
             top: '30px',
@@ -163,18 +149,14 @@ var claw = function() {
 
 
     $('#moveClawGrab').click(function() {
+        if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
         dropBox()
         clawDown("RedemtionView");
         whereAmI(); //updates user location with GPS
+        voucher();
+        }
     });
 
-    $('#addCoins').click(function() {
-        addCoins()
-    });
-
-    $('#lessCoins').click(function() {
-        lessCoins()
-    });
 
     $('#Fluffy').click(function() {
         clawDown("flappyFood")
