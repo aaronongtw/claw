@@ -18,6 +18,10 @@
   opacity: 0.5;
 }
 
+.redeemIt:hover{
+  cursor: pointer;
+}
+
 
 #vPrize {
   height: 100px;
