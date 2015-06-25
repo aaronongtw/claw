@@ -108,22 +108,22 @@ html body {
 
 #Taco {
   background: url('fishing/fishingGameIcon.png');
-  background-size: contain;
+  background-size: cover;
 }
 
 #Slide {
   background: url('burgerStacker/stackerGameIcon.png');
-  background-size: contain;
+  background-size: cover;
 }
 
 #Bean {
   background: url('beans/beanicon.png');
-  background-size: contain;
+  background-size: cover;
 }
 
 #Fluffy {
   background: url('fluffygelatoicon.png');
-  background-size: contain;
+  background-size: cover;
 }
 
 
