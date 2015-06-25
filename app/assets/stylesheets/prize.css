@@ -19,6 +19,20 @@
 }
 
 
+#vPrize {
+  height: 100px;
+  width: 180px;
+  background-image: url('layout/goldenticket.png');
+  background-size: contain;
+  text-align: center;
+  line-height: 30px;
+}
+
+#vPrize h4{
+  margin-top: 20px;
+
+}
+
 #rubber {
   background-image: url('prizes/duck.png')
 }

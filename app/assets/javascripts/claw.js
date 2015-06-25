@@ -1,4 +1,5 @@
-var drawLine
+var drawLine;
+var prizeUp;
 
 var claw = function() {
 
@@ -60,7 +61,11 @@ var claw = function() {
 
     var grabPrize = function() {
         console.log('Grabbing Prize')
-        voucher();
+        
+        prizeUp()
+    }
+
+    var prizeUp = function() {    
         grabbingPrize = TweenMax.to('#prizeBox', 2.2, {
             'display' : 'block',
             top: '30px',
@@ -144,18 +149,14 @@ var claw = function() {
 
 
     $('#moveClawGrab').click(function() {
+        if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
         dropBox()
         clawDown("RedemtionView");
         whereAmI(); //updates user location with GPS
+        voucher();
+        }
     });
 
-    $('#addCoins').click(function() {
-        addCoins()
-    });
-
-    $('#lessCoins').click(function() {
-        lessCoins()
-    });
 
     $('#Fluffy').click(function() {
         clawDown("flappyFood")
