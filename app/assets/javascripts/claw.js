@@ -154,7 +154,7 @@ var claw = function() {
     UpdateMarq = function(text, colour) {
         $('#mText').html(text)
         if (colour == null){
-            colour = green
+            colour = 'green'
             }
         $('#mText').css('color',colour)
     }
