@@ -36,7 +36,7 @@ vc1 = Voucher.create(name: 'All you can eat Taco for $15')
 vel0 = Voucher.create(name: 'Get a free Margharita with your meal')
 vel1 = Voucher.create(name: 'Get your second taco for free')
 
-c1.vouchers << vbb0 << vvb1
+c1.vouchers << vbb0 << vbb1
 c3.vouchers << vgm0 << vgm1
 c4.vouchers << vmb0 << vbm1
 c5.vouchers << vc0 << vc1
@@ -91,4 +91,4 @@ g4.highscores << hs1bean << hs2bean << hs3bean << hs4bean << hs5bean
 u1 = User.create(email: 'admin@site', password: "password", admin: true, coins: 50)
 
 
-u1.vouchers << v0 << v1 << v2
+u1.vouchers << vbb0 << v1 << v2 <<vel0
