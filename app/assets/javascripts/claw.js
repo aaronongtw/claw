@@ -10,25 +10,6 @@ var claw = function() {
         xMovement = Math.floor((Math.random() * 10)- 20)
     }
 
-    var lessCoins = function() {
-        var balance = parseInt($('#coinDisplay h5').html().split(' ')[0])
-        if (num > 0) {
-            num -= 1
-            balance += 1
-            $('#moveClawGrab').html(num)
-            $('#coinDisplay h5').html(balance + " coins")
-        }
-    }
-
-    var addCoins = function() {
-        var balance = parseInt($('#coinDisplay h5').html().split(' ')[0])
-        if (num < CoinCap && num < 5) {
-            num += 1
-            balance -= 1
-            $('#moveClawGrab').html(num)
-            $('#coinDisplay h5').html(balance + " coins")
-        }
-    }
 
     drawLine = function() {
 
