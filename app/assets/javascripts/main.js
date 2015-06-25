@@ -60,11 +60,11 @@ $(document).ready(function() {
 
 var stopClaw = function() {
     clearInterval(clawTrace)
+    $('#loginClaw').css('display','none')
     clawReturn = TweenMax.to('#theClaw', 4, {
         left: '45%',
         top: '20px'
     })
-    ('#loginClaw').hide()
     clearInterval(drawLine)
 
 }
