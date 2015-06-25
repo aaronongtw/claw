@@ -15,7 +15,7 @@ var voucher = function() {
         if (data[0].textstuff != null) {
             $('#PRIZE').append('<img src ="assets/prizes/' + data[0].textstuff + '"></img>')
         } else {
-            $('#PRIZE').append('<h1>VOUCHER</h1>')
+            $('#PRIZE').append('<div id="vPrize"><h4>'+ data[0].name+'</h4></div>')
         }
         var pluralcoin;
             if (data[1] === 1) {
