@@ -3,6 +3,7 @@
 html body {
   max-height: 100vh;
   overflow: hidden;
+  background-color: #ecf0f1;
 }
 
 
@@ -13,7 +14,7 @@ html body {
     top: 110%;
     width: 70%;
     height: 84%;
-    background-color: #D2527F;
+    background-color: #E9CE90;
     margin: 0px auto;
     margin-top: 0.3%;
     z-index: 10;
@@ -63,6 +64,15 @@ html body {
     text-shadow: 0 0 1px grey;
     font-size: 20px;
 }
+
+
+
+
+.pure-menu-heading {
+  font-family: 'Bangers', cursive;
+}
+
+
 
 #gameSelector h1 {
     text-align: center;
