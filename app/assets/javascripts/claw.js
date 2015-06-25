@@ -1,5 +1,6 @@
 var drawLine;
 var prizeUp;
+var UpdateMarq;
 
 var claw = function() {
 
@@ -150,7 +151,13 @@ var claw = function() {
 
     }
 
-
+    UpdateMarq = function(text, colour) {
+        $('#mText').html(text)
+        if (colour == null){
+            colour = green
+            }
+        $('#mText').css('color',colour)
+    }
 
 
     $('#moveClawGrab').click(function() {
@@ -161,29 +168,38 @@ var claw = function() {
         whereAmI(); //updates user location with GPS
         voucher();
         }
+        else {
+            UpdateMarq('You have no coins to use', 'red')
+        }
     });
 
 
     $('#Fluffy').click(function() {
         clawDown("flappyFood")
+        UpdateMarq('Loading Fluffy Gelato')
     });
     $('#Taco').click(function() {
         clawDown("taco")
+        UpdateMarq('Loading Taco Fishing')
     });
     $('#Slide').click(function() {
         clawDown("slide")
+        UpdateMarq('Loading Burger Stacker')
     });
     $('#Bean').click(function() {
         clawDown("bean")
+        UpdateMarq('Loading Bean Drop')
     });
     $('#dropBox').click(function() {
         dropBox()
+        hideDropButton()
     })
     $('#redeemDisplay').click(function() {
+        UpdateMarq('Loading Prizes Won')
         dropBox()
         clawDown("redeem")
     })
 
-    $('#dropBox').on('click', hideDropButton);
+    
 
 };

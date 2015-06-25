@@ -25,5 +25,6 @@ var voucher = function() {
             }
         $('#coinDisplay').html('<h5 id="coinForUser">' + data[1] + ' ' + pluralcoin + '</h5>')
         $('#redeemDisplay').html('<h5>' + data[2] + '</h5>')
+        UpdateMarq('Congratulations, you got ' + data[0].name)
     })
 }

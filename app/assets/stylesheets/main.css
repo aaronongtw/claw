@@ -4,7 +4,7 @@ html body {
   max-height: 100vh;
   overflow: hidden;
   background-color: ghostwhite;
-
+}
 
 
 #gameBox {
@@ -14,13 +14,9 @@ html body {
     top: 110%;
     width: 70%;
     height: 84%;
-<<<<<<< HEAD
-    background-color: #E9CE90;
-=======
     background-color: snow;
     box-shadow: 0 0 14px silver;
     border-radius: 5px;
->>>>>>> cc5277a5b908138969a7c98f7a20c53074830e0f
     margin: 0px auto;
     margin-top: 0.3%;
     z-index: 10;

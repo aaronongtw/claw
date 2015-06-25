@@ -4,6 +4,7 @@ game.flappy = function() {
     ////////////////////boot/////////////////////
     function Boot() {};
 
+
     Boot.prototype = {
         preload: function() {
             this.load.image('preloader', '../assets/preloader.gif');
@@ -13,7 +14,7 @@ game.flappy = function() {
             this.game.state.start('preload');
         }
     };
-
+    UpdateMarq('Fluffy Gelato', 'white')
     ////////////////////menu//////////////////////
     function Menu() {}
 
