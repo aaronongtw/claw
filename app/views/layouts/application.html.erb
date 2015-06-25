@@ -28,6 +28,7 @@
   <div class="gameController footer" >
       <% if @current_user.present? %>
       <div id="redeemDisplay" class="footerL">
+
       <h5> <%= @current_user.vouchers.where.not(client_id: Client.where(:name=> "Claw of Noms")[0].id).length %> 
       </h5>
       </div>
