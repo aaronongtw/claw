@@ -17,46 +17,18 @@ canvas {
     width: 80%;
 }
 
-#clawTop {
-    /*  position: fixed;
-  height: 50%;
-  width:50%;
-  top: 0%;
-  background-color: #E74C3C;*/
+#loginClaw{
+  position:absolute;
+  width: 320px;
+  height: 200px;
+  z-index: -120;
 }
 
-#clawTop li {
-    display: inline-block;
-}
-
-#clawArm {
-    position: relative;
-    left: 50%;
-    height: 8%;
-    width: 3%;
-    top: 5%;
-    background-color: darkgray;
-    z-index: 50;
-}
 
 #clawArm svg {
     fill: currentColor;
 }
 
-#leftClaw {
-    position: absolute;
-    overflow: visible;
-    left: -34px;
-    top: 14px;
-}
-
-#rightClaw {
-    position: absolute;
-    overflow: visible;
-    left: -256px;
-    top: 14px;
-    transform: scaleX(-1);
-}
 
 .gameController {
     position: absolute;

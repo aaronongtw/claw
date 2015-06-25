@@ -13,6 +13,11 @@
 
 <div id="gameBox"></div><div id="dropBox" style="display:none"></div>
 <div id="prizeBox"></div>
+
+<script type='text/javascript'>
+              stopClaw()
+          </script>
+
         <% else %>
 
         <div id=""></div>
@@ -37,9 +42,14 @@
                 <%= link_to('Sign up', new_user_path, class: 'pure-button pure-button-primary') %>
                  
             <fieldset>
-
+          
           <% end %>
+          <script type='text/javascript'>
+              followClaw()
+          </script>
+          
         </div>
+        
 
 
         <% end %>
