@@ -15092,6 +15092,7 @@ game.beans = function() {
     var cursors;
     var score = 0;
     var scoreText;
+    var instructions;
     var stars;
     var ground;
     var beanFall;
@@ -15100,6 +15101,8 @@ game.beans = function() {
     var newGame = true;
     var waitForEnd;
     var emitter;
+
+    UpdateMarq('Bean Drop','white')
 
     var game = new Phaser.Game(320, 550, Phaser.AUTO, 'bean', {
         preload: preload,
@@ -15126,12 +15129,14 @@ game.beans = function() {
         game.add.sprite(0, 0, 'sky');
 
         // Here we create the ground.
-        ground = game.add.sprite(0, game.world.height - 2, 'ground');
+        ground = game.add.sprite(0, game.world.height - 40, 'ground');
 
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         ground.scale.setTo(2, 2);
 
         game.physics.arcade.enable(ground);
+
+        ground.body.immovable = true;
 
 
         // The player and its settings
@@ -15155,6 +15160,8 @@ game.beans = function() {
         player.body.bounce.y = .7;
 
 
+
+
         //  Finally some stars to collect
         stars = game.add.group();
 
@@ -15175,10 +15182,19 @@ game.beans = function() {
             fill: '#000'
         });
 
+        instructions = game.add.text(12,12,'Drag Me', {
+            font: 'Serif',
+            fontSize: '8px',
+            fill: '#22313F'
+        });
+
+        instructions.anchor.setTo(0.5, 0.5);
+
     }
 
     function startDrag() {
         if (newGame) {
+            instructions.text = "";
             $('#stackerScoreComplete').css('display', 'none');
             scoreText.text = 'Score: ' + score;
             newGame = false
@@ -15194,6 +15210,10 @@ game.beans = function() {
 
 
     function update() {
+        game.physics.arcade.collide(player, ground);
+
+        instructions.x = Math.floor(player.x + 4);
+        instructions.y = Math.floor(player.y - player.width/2);
 
         // This will be beans.
         game.physics.arcade.overlap(player, stars, collectStar, null, this);
@@ -15213,12 +15233,21 @@ game.beans = function() {
 
     function createBeans() {
         i = Math.ceil(Math.random() * 8)
+        var drop = 300;
 
         // i randomized by 50, 
         var star = stars.create(i * 35, -40, 'star');
 
         //  Let gravity do its thing
-        star.body.gravity.y = 1500;
+
+        if(score > 250){
+            drop = 1200;
+        }else if(score >150){
+            drop = 600;
+        }
+
+        star.body.gravity.y = drop;
+
         randomCreateBean();
     }
 
@@ -15233,6 +15262,7 @@ game.beans = function() {
         miss = false;
         newGame = true;
         catchBean = true;
+        instructions.text = "Drag to play again!";
     }
 
 
@@ -15309,6 +15339,8 @@ game.beans = function() {
 ;
 var drawLine;
 var prizeUp;
+var UpdateMarq;
+var clawTrace
 
 var claw = function() {
 
@@ -15316,8 +15348,12 @@ var claw = function() {
 
     var xMovement;
 
+    var hideDropButton = function() {
+        $('#dropBox').css('display', 'none');
+    }
+
     var randomMovement = function() {
-        xMovement = Math.floor((Math.random() * 10)- 20)
+        xMovement = Math.floor((Math.random() * 10) - 20)
     }
 
 
@@ -15355,7 +15391,7 @@ var claw = function() {
                 if (callItem === "flappyFood") {
                     game.flappy()
                 } else if (callItem === "bean") {
-                    game.beans()   
+                    game.beans()
                 } else if (callItem === "taco") {
                     renderFish()
                     game.fishing()
@@ -15371,13 +15407,13 @@ var claw = function() {
 
     var grabPrize = function() {
         console.log('Grabbing Prize')
-        
+
         prizeUp()
     }
 
-    var prizeUp = function() {    
+    var prizeUp = function() {
         grabbingPrize = TweenMax.to('#prizeBox', 2.2, {
-            'display' : 'block',
+            'display': 'block',
             top: '30px',
             left: '10px',
             onComplete: function() {
@@ -15386,13 +15422,12 @@ var claw = function() {
                     onComplete: function() {
                         clearInterval(drawingLine)
                         $('#prizeBox').css({
-                            'display':'none',
+                            'display': 'none',
                             'top': '130%',
                             'left': '50%'
                         })
                         $('#prizeBox').html('')
                         num = 0
-                        $('#moveClawGrab').html(num)
                         dropBox()
                     }
 
@@ -15404,7 +15439,7 @@ var claw = function() {
     }
 
     var clawDown = function(grabItem) {
-        drawingLine = setInterval(drawLine,10)
+        drawingLine = setInterval(drawLine, 10)
         $('#gameSelector').css('display', 'none')
         $('#gameBox').html('')
         clowDownAn = TweenMax.to('#theClaw', 3, {
@@ -15414,11 +15449,11 @@ var claw = function() {
                 $('#gameBox').append('<div id=' + grabItem + '></div>')
                 item = grabItem
                 if (grabItem === "RedemtionView") {
-                clawSide()
-                grabPrize()
-                }else {
-                clawUp();
-                grabGame(item);
+                    clawSide()
+                    grabPrize()
+                } else {
+                    clawUp();
+                    grabGame(item);
                 }
             }
 
@@ -15437,7 +15472,7 @@ var claw = function() {
             left: '10px',
             top: '0px',
             onComplete: function() {
-                clawReturn = TweenMax.to('#theClaw',4, {
+                clawReturn = TweenMax.to('#theClaw', 4, {
                     left: '50%'
                 })
             }
@@ -15455,45 +15490,67 @@ var claw = function() {
 
     }
 
-
+    UpdateMarq = function(text, colour) {
+        $('#mText').html(text)
+        if (colour == null) {
+            colour = 'green'
+        }
+        $('#mText').css('color', colour)
+    }
 
 
     $('#moveClawGrab').click(function() {
-        if (parseInt($('#coinForUser').html().split(' ')[0]) > 0)  { 
-        dropBox()
-        clawDown("RedemtionView");
-        whereAmI(); //updates user location with GPS
-        voucher();
+        stopTheGlow()
+        if (parseInt($('#coinForUser').html().split(' ')[0]) > 0) {
+            hideDropButton()
+            dropBox()
+            clawDown("RedemtionView");
+            whereAmI(); //updates user location with GPS
+            voucher();
+        } else {
+            UpdateMarq('You have no coins to use', 'red')
         }
     });
 
 
+
+
+
     $('#Fluffy').click(function() {
         clawDown("flappyFood")
+        UpdateMarq('Loading Fluffy Gelato')
     });
     $('#Taco').click(function() {
         clawDown("taco")
+        UpdateMarq('Loading Taco Fishing')
     });
     $('#Slide').click(function() {
         clawDown("slide")
+        UpdateMarq('Loading Burger Stacker')
     });
     $('#Bean').click(function() {
         clawDown("bean")
+        UpdateMarq('Loading Bean Drop')
     });
     $('#dropBox').click(function() {
+        UpdateMarq('Claw of Noms', 'white')
         dropBox()
+        hideDropButton()
     })
     $('#redeemDisplay').click(function() {
+        UpdateMarq('Loading Prizes Won')
         dropBox()
         clawDown("redeem")
     })
+
+
 
 };
 var game = game || {}
 var fishInterval
 var miss = 0
 game.fishing = function() {
-	
+	UpdateMarq('Taco Fishing', 'white')
 	var fLRotation = 0
 	var fRotation = 0
 	var fishTimer
@@ -15604,6 +15661,7 @@ game.flappy = function() {
     ////////////////////boot/////////////////////
     function Boot() {};
 
+
     Boot.prototype = {
         preload: function() {
             this.load.image('preloader', '../assets/preloader.gif');
@@ -15613,7 +15671,7 @@ game.flappy = function() {
             this.game.state.start('preload');
         }
     };
-
+    UpdateMarq('Fluffy Gelato', 'white')
     ////////////////////menu//////////////////////
     function Menu() {}
 
@@ -16168,6 +16226,29 @@ game.flappy = function() {
 
     game.state.start('boot');
 
+};
+var stopTheGlow = function(){
+  clearInterval(glowOn);
+  $('#moveClawGrab').removeClass('glowButton');
+  $('#moveClawGrab').addClass('clawBottomShadow');
+
+}
+
+
+var glowButton = function(){
+      $('#moveClawGrab').removeClass('clawBottomShadow');
+
+    setTimeout(function(){
+      var timeMe = 0
+      glowOn = setInterval( function(){
+        timeMe +=1
+        if(timeMe < 15){
+          $('#moveClawGrab').toggleClass('glowButton');
+        }else{
+         stopTheGlow();
+        }
+      },2000);
+    },1000);
 };
 /*!
  * VERSION: 1.17.0
@@ -18163,54 +18244,104 @@ game.flappy = function() {
   };
 
 }(jQuery));
-$(document).ready(function() {
-    claw();
+var glowOn;
 
-    //$("#dropBox").css("display", "none");
+$(document).ready(function() {
+
+    claw();
 
     var pollCoin = {};
 
-    pollCoin.checkCoin = function(){
-      setTimeout(pollCoin.pollServer, 600000);
+    pollCoin.checkCoin = function() {
+        setTimeout(pollCoin.pollServer, 600000);
     };
 
-    pollCoin.pollServer = function(){
+    pollCoin.pollServer = function() {
 
         $.ajax({
             url: '/users/1.json',
             method: 'GET'
 
         }).done(function(data) {
-          pollCoin.updateCoin(data.coins);
-          pollCoin.checkCoin();
+            pollCoin.updateCoin(data.coins);
+            pollCoin.checkCoin();
         });
 
     }
 
-    pollCoin.updateCoin = function(coin){
-        
-        if (parseInt($('#coinForUser').html().split(' ')[0]) === coin){
-          var pluralcoin;
-              if (coin === 1) {
-                  pluralcoin = 'coin'
-              } else {
-                  pluralcoin =  'coins'
-              }
-          $('#coinDisplay').html('<h5 id="coinForUser" class="tlt">' + coin + ' ' + pluralcoin + '</h5>')
+    pollCoin.updateCoin = function(coin) {
+        var currentCoin = parseInt($('#coinForUser').html().split(' ')[0]);
+        if (currentCoin != coin) {
+            var pluralcoin;
+            if (coin === 1) {
+                pluralcoin = 'coin'
+            } else {
+                pluralcoin = 'coins'
+            }
+            $('#coinDisplay').html('<h5 id="coinForUser" class="tlt">' + coin + ' ' + pluralcoin + '</h5>')
 
-          $('.tlt').textillate({ in: { effect: 'bounce', sync:true, } });
+            $('.tlt').textillate({ in : {
+                    effect: 'bounce',
+                    sync: true,
+                }
+            });
+
+            $('#mText').html('You just won ' + (coin - currentCoin) +
+                pluralcoin + '!!!!!');
+            glowButton();
         }
     }
 
-    var hideDropButton = function(){
-      $('#dropBox').css('display', 'none');
+    var clawHere = $('#moveClawGrab');
+
+    if (clawHere.length) {
+        if (parseInt($('#coinForUser').html().split(' ')[0])) {
+            glowButton()
+        };
+
+        pollCoin.checkCoin();
     }
 
-    pollCoin.checkCoin();
-
-    $('#dropBox').on('click', hideDropButton);
-
 });
+
+var stopClaw = function() {
+    clearInterval(clawTrace)
+    $('#loginClaw').css('display','none')
+    clawReturn = TweenMax.to('#theClaw', 4, {
+        left: '45%',
+        top: '20px'
+    })
+    clearInterval(drawLine)
+
+}
+
+var followClaw = function() {
+    var $mouseX = 0,
+        $mouseY = 0;
+    var $xp = 0,
+        $yp = 0;
+
+    $(document).mousemove(function(e) {
+        $mouseX = e.pageX - 50;
+        $mouseY = e.pageY - 140;
+    });
+
+    clawTrace = setInterval(function() {
+        // change 12 to alter damping higher is slower
+        drawLine()
+        $xp += (($mouseX - $xp) / 30);
+        $yp += (($mouseY - $yp) / 30);
+        $("#theClaw").css({
+            left: $xp + 'px',
+            top: $yp + 'px'
+        });
+        $("#loginClaw").css({
+            left: ($xp + 70) + 'px',
+            top: $yp + 'px'
+        })
+    }, 30);
+}
+;
 /* Phaser v2.0.5 - http://phaser.io - @photonstorm - (c) 2014 Photon Storm Ltd. */
 
 
@@ -18419,7 +18550,7 @@ var redeemList = function() {
             return el.client_id != GMID
         });
         for (var i = 0; i < RedeemData.length; i += 1) {
-            $('#redeem').append('<div id=' + RedeemData[i].id + ' class="redeemIt">' + RedeemData[i].name + ' ' + RedeemData[i].description + '</div>')
+            $('#redeem').append('<div id=' + RedeemData[i].id + ' class="redeemIt">' + RedeemData[i].name + '</div>')
         }
         DigitalData = data.filter(function(el) {
             return el.client_id == GMID
@@ -18502,8 +18633,8 @@ function whereAmI() {
         console.log("sending: " + lat + " and " + lng);
         var userLocation = {  
                 user:{
-                    latitude: lat,
-                    longitude: lng
+                    lat: lat,
+                    lon: lng
                 }
 
             };
@@ -18554,6 +18685,7 @@ var animation,
 	perfectWinningPosition = 0,
 	clickCount = 0;
 
+UpdateMarq('Burger Stacker', 'white')
 
 var firstStackCreation = function() {
 	var $stack0 = $('<div class="stack" id="stack0"></div>');
@@ -18752,6 +18884,7 @@ var voucher = function() {
             }
         $('#coinDisplay').html('<h5 id="coinForUser">' + data[1] + ' ' + pluralcoin + '</h5>')
         $('#redeemDisplay').html('<h5>' + data[2] + '</h5>')
+        UpdateMarq('Congratulations, you got ' + data[0].name)
     })
 }
 ;
