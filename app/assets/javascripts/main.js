@@ -7,7 +7,7 @@ $(document).ready(function() {
     var pollCoin = {};
 
     pollCoin.checkCoin = function() {
-        setTimeout(pollCoin.pollServer, 600000);
+        setTimeout(pollCoin.pollServer, 300000);
     };
 
     pollCoin.pollServer = function() {
@@ -23,27 +23,40 @@ $(document).ready(function() {
 
     }
 
-    pollCoin.updateCoin = function(coin) {
-        var currentCoin = parseInt($('#coinForUser').html().split(' ')[0]);
-        if (currentCoin != coin) {
-            var pluralcoin;
+    pollCoin.updateCoin = function(newCoin) {
+        var pluralcoin;
+        var winLoss = "You just won ";
+        var oldCoin = parseInt($('#coinForUser').html().split(' ')[0]);
+
+        var whatWord = function(coin){
             if (coin === 1) {
                 pluralcoin = 'coin'
             } else {
                 pluralcoin = 'coins'
             }
-            $('#coinDisplay').html('<h5 id="coinForUser" class="tlt">' + coin + ' ' + pluralcoin + '</h5>')
-
-            $('.tlt').textillate({ in : {
-                    effect: 'bounce',
-                    sync: true,
-                }
-            });
-
-            $('#mText').html('You just won ' + (coin - currentCoin) +
-                pluralcoin + '!!!!!');
-            glowButton();
         }
+
+            if( newCoin > oldCoin){
+                whatWord(newCoin - oldCoin)
+                winLoss = 'You just won ' + (newCoin - oldCoin) + " " + pluralcoin + '!!!!!'
+                glowButton();
+
+                $('.tlt').textillate({ in : {
+                    effect: 'bounce',
+                    sync: true
+                }})
+
+            }else{
+                winLoss = "Play games to earn coins "  
+            }
+
+            whatWord(newCoin);
+
+
+            $('#coinDisplay').html('<h5 id="coinForUser" class="tlt">' + newCoin + ' ' + pluralcoin + '</h5>')
+
+            UpdateMarq(winLoss, "springgreen", "alternate")
+              
     }
 
     var clawHere = $('#moveClawGrab');
