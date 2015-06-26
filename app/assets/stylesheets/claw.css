@@ -17,12 +17,7 @@ canvas {
     width: 80%;
 }
 
-#loginClaw{
-  position:absolute;
-  width: 320px;
-  height: 200px;
-  z-index: -120;
-}
+
 
 
 #clawArm svg {

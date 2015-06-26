@@ -28,9 +28,8 @@
             <fieldset>
             
               <div class="pure-">
-              <% if flash[:notice].present? %>
-              <h4 style='color:red'><%= flash[:notice]  %></h4>
-              <% end %>
+              <div id="loginClaw"><h5> Welcome to Claw of Noms, where you play and earn coins to win tasty nom nom freebies!</h5></div> 
+              
 
                 <%= email_field_tag 'email', nil, placeholder: 'email', autofocus: 'true'%>
                 
@@ -40,6 +39,10 @@
 
                 <br>
                 <%= link_to('Sign up', new_user_path, class: 'pure-button pure-button-primary') %>
+              
+              <% if flash[:notice].present? %>
+              <h4 style='color:red'><%= flash[:notice]  %></h4>
+              <% end %>
                  
             <fieldset>
           
