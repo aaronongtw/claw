@@ -1,28 +1,34 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+README:
+Project 2 - Group Project
+Members: Rodney, Aaron, Connie, Fernando
 
-Things you may want to cover:
+Duration: 1 Week
 
-* Ruby version
+Project Description & Objective:
+To create a site where a user signs up, plays mini games and gains coins (points) that go towards winning free food items e.g.. coffee, burgers, ice cream etc. from participating food outlets.
 
-* System dependencies
+A user will be able to sign up and login/logout
+choose from a selection of games available upon login
+notch up scores in order to gain coins which are given out at 2 hour intervals if the user is in the top 5 for a particular game.
+once the user obtains a coin, they can try their luck at the CLAW which selects a random voucher to redeem a prize.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Models:
+Users
+Games
+Clients (food outlets)
+Vouchers
+HighScores
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Distribution of Tasks:
+
+Aaron: Project Manager
+Took charge of the project outlining and time-boxing various tasks to for each member to reach a daily goal. Worked heavily in the backend as well as throughout the rest of the project. Initially responsible for tying the users to the database.
+
+Rodney:
+Also worked heavily in the backend while also helping throughout the front end as well. Responsible for tying the games and the user high scores to the database, building game logic and debugging.
+
+Connie & Fernando:
+Worked mainly in the front end designing the games, assets, layout, final colour scheme CSS. Also building game logic and debugging.
